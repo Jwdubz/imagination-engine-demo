@@ -38,6 +38,8 @@
     display:flex;align-items:center;justify-content:center;text-align:center;padding:24px}
   #boot .boot-line{font-size:clamp(1.5rem,4.4vw,2.6rem);line-height:1.4;margin:0;
     position:absolute;left:24px;right:24px}
+  /* the audience stays seated until the curtain is fully up */
+  html.booting,html.booting body{overflow:hidden}
   #boot .boot-1{opacity:0;animation:rise 1.2s .5s ease forwards,bootFade .9s 2.7s ease forwards}
   @keyframes bootFade{from{opacity:1}to{opacity:0}}
   #boot .boot-2{opacity:0;animation:rise 1.3s 3.6s ease forwards,bootFade .9s 5.7s ease forwards}
@@ -1126,11 +1128,27 @@
   }catch(e){}
 
   applyMotionClass();
-  /* lights on: hold black a beat, then fade the world in */
+  /* lights on: hold black through the overture, no scrolling until the veil is fully up */
   try{
     var boot=document.getElementById('boot');
+    docEl.classList.add('booting');
+    var bootBlock=function(e){e.preventDefault();};
+    var bootKeys=function(e){
+      var k=e.key;
+      if(k===' '||k==='ArrowDown'||k==='ArrowUp'||k==='PageDown'||k==='PageUp'||k==='Home'||k==='End')
+        e.preventDefault();
+    };
+    addEventListener('wheel',bootBlock,{passive:false});
+    addEventListener('touchmove',bootBlock,{passive:false});
+    addEventListener('keydown',bootKeys);
     requestAnimationFrame(function(){requestAnimationFrame(function(){boot.style.opacity='0';});});
-    setTimeout(function(){try{boot.remove();}catch(e){}},12200);
+    setTimeout(function(){
+      docEl.classList.remove('booting');
+      removeEventListener('wheel',bootBlock);
+      removeEventListener('touchmove',bootBlock);
+      removeEventListener('keydown',bootKeys);
+      try{boot.remove();}catch(e){}
+    },11600);
   }catch(e){}
   if(motionOn)startLoop();
   setTimeout(function(){
