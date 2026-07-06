@@ -1,0 +1,1147 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Imagination Engine — a demonstration</title>
+<meta name="description" content="You Have Something Real. So why doesn't everybody know? A cinematic demonstration, documented as it actually happened.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="The Imagination Engine — a demonstration">
+<meta property="og:description" content="You Have Something Real. So why doesn't everybody know? What if you could turn Your Vision into Your Reality?">
+<meta name="twitter:card" content="summary">
+<style>
+  :root{
+    --void:#070417; --deep:#0d0826; --veil:rgba(7,4,23,.55);
+    --nebula-1:#2a1b5e; --nebula-2:#4a2a8a; --nebula-3:#7b4fd0; --nebula-4:#b06fd8;
+    /* NIGHT chord — Sanzo Wada classic #329, played whole:
+       Cream Yellow #fdbf68 (lamplight: labels, links, em, witness, the window-line)
+       Grayish Lavender 2 #c0a9b3 (mist: the secondary voice)
+       Cotinga Purple #501345 (deep structure: rules, card edges)
+       Slate Color #34454c (cool structure: chip, hover edges) */
+    --indigo-2:#141033; --indigo-3:#501345; --indigo-4:#34454c;
+    --sienna:#fdbf68; --sienna-bright:#fdbf68; --brown:#501345;
+    --gold:#fdbf68;
+    --parchment:#ebd3a2; --muted:#c0a9b3; --faint:#94848c;
+    --serif:'Iowan Old Style','Palatino Linotype',Palatino,Georgia,'Times New Roman',serif;
+    --sans:ui-sans-serif,system-ui,'Segoe UI',Roboto,sans-serif;
+  }
+  *{box-sizing:border-box}
+  body{background:var(--void);color:var(--parchment);font-family:var(--serif);
+    font-size:18px;line-height:1.72;margin:0;overflow-x:hidden}
+  ::selection{background:var(--nebula-3);color:var(--void)}
+  a:focus-visible,button:focus-visible{outline:2px solid var(--sienna-bright);outline-offset:3px}
+
+  #fogGL{position:fixed;inset:0;z-index:0;pointer-events:none}
+  #cosmos{position:fixed;inset:0;z-index:1;pointer-events:none}
+  /* the embers ride ABOVE the veils so they stay visible in every section */
+  #emberFG{position:fixed;inset:0;z-index:3;pointer-events:none}
+  #flash{position:fixed;inset:0;z-index:40;pointer-events:none;background:#fff;opacity:0}
+  main{position:relative;z-index:2}
+  .veil{background:linear-gradient(180deg,transparent,var(--veil) 12%,var(--veil) 88%,transparent)}
+
+  .label{font-family:var(--sans);font-size:11px;letter-spacing:.24em;text-transform:uppercase;
+    color:var(--gold);font-weight:600}
+  .measure{max-width:34em;margin-inline:auto;padding-inline:24px}
+  h1,h2{text-wrap:balance;font-weight:400;margin:0}
+  p{margin:0 0 1.35em}
+  a{color:var(--gold)}
+  .quiet{color:var(--muted)}
+  /* the badge-gear's neon spectrum, in type */
+  .rainbow{background:linear-gradient(92deg,#ff7ac2,#ffb35c,#ffe66b,#7dee9a,#63d8f2,#7d9bff,#c68af7);
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+    filter:drop-shadow(0 0 16px rgba(190,140,255,.38))}
+  .after .rainbow{background-image:linear-gradient(92deg,#e5484d,#e5a13a,#c9a227,#2f9e57,#2f8fb0,#7a5fd0);
+    filter:none}
+  .thesis{font-size:clamp(1.15rem,2.7vw,1.6rem)!important;line-height:1.55!important;font-weight:400}
+  .credo{color:var(--gold)}
+  .echo{text-align:center;color:var(--gold);font-size:1.12em;margin-top:1.4em}
+  .book-line{text-align:center;color:var(--muted);font-size:1em;margin-top:3.2em}
+
+  #motion-chip{position:fixed;right:14px;bottom:14px;z-index:50;font-family:var(--sans);
+    font-size:11px;letter-spacing:.08em;padding:8px 14px;border:1px solid var(--indigo-4);
+    background:rgba(13,8,38,.92);color:var(--muted);cursor:pointer;border-radius:999px}
+  #motion-chip:hover{color:var(--parchment);border-color:var(--nebula-3)}
+
+  /* ————— the mark ————— */
+  .mark{position:relative;display:inline-block}
+  .mark svg{display:block;overflow:visible}
+  .mark .gear,.mark .blades{transform-origin:50% 50%}
+  .motion .mark .gear{animation:spin 90s linear infinite}
+  .motion .mark .blades{animation:spin 60s linear infinite reverse}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  .mark-mono{color:#ffffff}
+  .after .mark-mono{color:#ffffff}
+  /* the top mark: the rainbow gear, both worlds */
+  #mark-open{position:relative;filter:drop-shadow(0 0 16px rgba(176,111,216,.45))}
+  #mark-open>svg,#mark-open .spec{position:absolute;inset:0}
+  #mark-open>svg{opacity:0}
+  #mark-open .spec{opacity:1}
+  @property --mkang{syntax:'<angle>';initial-value:0deg;inherits:false}
+  .mark .spec{position:absolute;inset:0;
+    background:conic-gradient(from var(--mkang),#e5484d,#e5a13a,#e7d84b,#59c26a,#3fb6c9,#4f6fe5,#9a5fe0,#d052b8,#e5484d);
+    filter:saturate(.92) brightness(1.05)}
+  @keyframes gradrev{to{--mkang:-360deg}}
+  .motion .mark .spec{animation:spin 14s linear infinite,gradrev 14s linear infinite,hue 18s linear infinite}
+  @keyframes hue{to{filter:saturate(.92) brightness(1.05) hue-rotate(360deg)}}
+  .mark-spectrum .glowring{position:absolute;inset:-14%;border-radius:50%;z-index:-1;
+    background:radial-gradient(circle,rgba(176,111,216,.30),rgba(159,95,224,.12) 55%,transparent 72%)}
+
+  /* ————— opening ————— */
+  .opening{min-height:97vh;display:flex;flex-direction:column;justify-content:center;align-items:center;
+    text-align:center;position:relative;padding:24px}
+  .window-line{width:min(340px,70vw);height:2px;
+    background:linear-gradient(90deg,transparent,#ff7ac2,#ffe66b,#7dee9a,#63d8f2,#c68af7,transparent);
+    box-shadow:0 0 24px 2px rgba(190,140,255,.4);margin:44px 0 52px}
+  .after .window-line{box-shadow:0 0 24px 2px rgba(78,29,76,.30)}
+  .motion .window-line{width:0;animation:openwindow 2.2s .9s cubic-bezier(.22,1,.36,1) forwards}
+  @keyframes openwindow{to{width:min(340px,70vw)}}
+  .opening h1{font-size:clamp(2.1rem,6.4vw,3.6rem);line-height:1.18;
+    text-shadow:0 2px 30px rgba(7,4,23,.9)}
+  .opening .under{color:var(--muted);font-size:clamp(1.05rem,2.6vw,1.3rem);margin-top:1.1em}
+  .motion .opening .mark{opacity:0;animation:rise 1.6s .2s ease forwards}
+  .motion .opening h1{opacity:0;animation:rise 1.4s 2s ease forwards}
+  .motion .opening .under{opacity:0;animation:rise 1.4s 2.8s ease forwards}
+  @keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+  .scroll-hint{position:absolute;bottom:34px;color:var(--faint);font-family:var(--sans);font-size:12px;
+    letter-spacing:.18em;text-transform:uppercase}
+  .motion .scroll-hint{opacity:0;animation:rise 1.4s 3.6s ease forwards}
+
+  /* ————— scenes ————— */
+  .scene{padding:16vh 0;position:relative}
+  /* per-element reveal: each line takes its own breath as you scroll (animation, not transition,
+     so it never collides with the world-turn color transitions) */
+  .motion .rv{opacity:0}
+  .motion .rv.lit{opacity:1;animation:rvin .9s cubic-bezier(.22,1,.36,1) both}
+  @keyframes rvin{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+  /* Me. rises out of the light only after the explosion has had its time */
+  .motion .me-word.rv.lit{animation-duration:1.8s}
+  .scene .label{display:block;margin-bottom:2.2em}
+  .scene h2{font-size:clamp(1.7rem,4.4vw,2.5rem);line-height:1.25;margin-bottom:1em}
+
+  .pain{border-left:2px solid var(--brown);padding-left:1.4em;margin:0 0 1.6em;font-size:1.06em}
+  .pain em{color:var(--gold);font-style:normal}
+
+  /* ————— the mirror (the trigger) ————— */
+  .mirror{min-height:92vh;display:flex;flex-direction:column;justify-content:center;text-align:center;padding:24px}
+  .mirror-pre{color:var(--muted);font-size:clamp(1.05rem,2.6vw,1.35rem);margin:0 0 2.4em}
+  /* the mirror line, reflected in a pool of water: flipped copy, rippled by animated turbulence */
+  #mirror-held{min-height:58vh}
+  #mirror{min-height:40vh}
+  #mirror-bridge{min-height:60vh}
+  #mirror-bridge .line{font-size:clamp(1.35rem,3.4vw,2.1rem)}
+  .held-reflection{transform:scaleY(-1);opacity:.58;margin:-.30em 0 0;
+    -webkit-mask-image:linear-gradient(to top,rgba(0,0,0,.95),transparent 82%);
+    mask-image:linear-gradient(to top,rgba(0,0,0,.95),transparent 82%);
+    filter:blur(.9px);transition:opacity 1.2s ease .35s}
+  .motion #mirror-held .line.rv:not(.lit)~.held-reflection{opacity:0}
+  .motion .held-reflection{filter:url(#waterRipple) blur(.8px);
+    animation:waterbob 7s ease-in-out infinite}
+  @keyframes waterbob{0%,100%{transform:scaleY(-1) translateY(0)}50%{transform:scaleY(-1) translateY(5px)}}
+  .mirror .line{font-size:clamp(1.8rem,5.4vw,3rem);color:var(--gold);line-height:1.35;
+    text-shadow:0 2px 40px rgba(7,4,23,.9)}
+  .mirror-me{min-height:110vh;display:flex;flex-direction:column;justify-content:center;
+    text-align:center;padding:24px}
+  .me-word{margin:0;font-size:clamp(3.2rem,14vw,8rem);line-height:1.05;color:var(--parchment);
+    letter-spacing:-.01em;text-shadow:0 2px 60px rgba(7,4,23,.9)}
+  .me-word .closequote{color:var(--gold)}
+  .mirror-me .sub{color:var(--muted);margin-top:3em;font-size:1.05em}
+  .after .me-word{color:#4e1d4c;text-shadow:0 0 34px rgba(255,255,255,.85),0 0 90px rgba(255,255,255,.5)}
+  .after .me-word .closequote{color:var(--gold)}
+  .after .opening h1{text-shadow:0 0 30px rgba(255,255,255,.85)}
+  .after .mirror .line{text-shadow:0 0 26px rgba(255,255,255,.8)}
+  .after .mirror-me .sub,.after .opening .under{text-shadow:0 0 18px rgba(255,255,255,.75)}
+
+  /* ————— post-explosion world: THE LIGHT ————— */
+  html.after{
+    /* DAY chord — Sanzo Wada classic #50, played whole, the inversion of the night:
+       Ivory Buff #ebd3a2 — the ground itself: the light, given a hue
+       Dusky Madder Violet #4e1d4c — every ink voice upon it
+       (by night the light is the voice; by day the light is the world) */
+    --void:#ebd3a2; --deep:#f2e4c2; --veil:rgba(246,238,216,.72);
+    --parchment:#4e1d4c; --muted:#7d5378; --faint:#997990;
+    --gold:#4e1d4c;
+    --indigo-2:#f7efd9; --indigo-3:#dcc794; --indigo-4:#c9b183;
+    --sienna:#4e1d4c; --sienna-bright:#4e1d4c; --brown:#d9c391;
+  }
+  body,.receipt,.ask .cta,#motion-chip,footer{transition:background-color 1.4s ease,color 1.4s ease,
+    border-color 1.4s ease,box-shadow 1.4s ease}
+  .label,.pain,.pain em,.witness,.honest strong,.loop-step .tick,.mirror .line,.mirror .me,a
+    {transition:color 1.4s ease,border-color 1.4s ease}
+  html.after body{background:var(--void)}
+  .after .receipt{background:#f7efd9;border-color:#dcc794;
+    border-top-color:#4e1d4c;box-shadow:0 10px 30px -18px rgba(78,29,76,.22)}
+  .after .pain{border-left-color:#d9c391}
+  .after .pain em{color:var(--gold)}
+  .after .opening h1,.after .mirror .line{text-shadow:none}
+  .after .mirror .line{color:var(--gold)}
+  .after .mirror .me{color:#4e1d4c}
+  .after .ask .cta{border-color:#4e1d4c;color:#4e1d4c}
+  .after .ask .cta:hover{color:#fff}
+  .after #motion-chip{background:rgba(247,239,217,.92);border-color:#c9b183;color:#7d5378}
+  .after footer{border-top-color:#dcc794}
+  .after .mark-mono{color:#4e1d4c}
+  .after ::selection{background:#4e1d4c;color:#ebd3a2}
+
+  .prism{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;
+    text-align:center;padding:24px;position:relative}
+  .prism .mark{margin:10px 0 26px}
+  .prism .caption{max-width:30em}
+  .prism h2{font-size:clamp(1.6rem,4.2vw,2.3rem);margin:0 0 .8em}
+
+  .ledger{max-width:56em;margin-inline:auto;padding-inline:24px}
+  .ledger-intro{max-width:34em;margin:0 auto 4em}
+  .receipts{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
+  .receipt{background:rgba(20,16,51,.82);border:1px solid var(--indigo-3);border-top:2px solid var(--sienna);
+    padding:22px 22px 18px;font-family:var(--sans);backdrop-filter:blur(2px)}
+  .motion .receipt{transition:transform .45s cubic-bezier(.22,1,.36,1),border-color .45s ease,box-shadow .45s ease}
+  .motion .receipt:hover{transform:translateY(-6px);border-color:var(--indigo-4);
+    box-shadow:0 18px 40px -18px rgba(0,0,0,.7)}
+  .receipt .when{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);
+    font-variant-numeric:tabular-nums;margin-bottom:10px}
+  .receipt .what{font-family:var(--serif);font-size:1.02rem;line-height:1.5;color:var(--parchment);margin-bottom:12px}
+  .receipt .witness{font-size:12px;color:var(--gold);letter-spacing:.06em}
+  .honest{margin-top:3.5em;text-align:center;font-size:1.12em}
+  .honest strong{color:var(--gold);font-weight:400}
+
+  .loop-step{display:flex;gap:1.2em;margin-bottom:1.9em;align-items:baseline}
+  .loop-step .tick{font-family:var(--sans);color:var(--gold);font-size:13px;letter-spacing:.1em;
+    white-space:nowrap;padding-top:.2em;flex:0 0 130px}
+  .loop-step p{margin:0}
+
+  .ask{text-align:center;padding:18vh 24px 10vh}
+  .ask h2{font-size:clamp(1.9rem,5vw,2.8rem);margin-bottom:.7em}
+  .ask .cta{display:inline-block;margin-top:2.2em;padding:16px 34px;border:1px solid var(--nebula-3);
+    color:var(--parchment);text-decoration:none;font-family:var(--sans);font-size:14px;
+    letter-spacing:.14em;text-transform:uppercase;position:relative;overflow:hidden}
+  .motion .ask .cta{transition:color .35s ease}
+  .ask .cta::before{content:'';position:absolute;inset:0;
+    background:linear-gradient(100deg,#e5484d,#e5a13a,#e7d84b,#59c26a,#3fb6c9,#9a5fe0);
+    transform:translateX(-101%);z-index:-1}
+  .motion .ask .cta::before{transition:transform .4s cubic-bezier(.22,1,.36,1)}
+  .ask .cta:hover{color:var(--void)}
+  .ask .cta:hover::before{transform:none}
+  .ask .no-funnel{color:var(--faint);font-size:.95em;margin-top:1.6em}
+  .ask .ask-what{color:var(--muted);max-width:32em;margin:0 auto;font-size:1.05em}
+
+  footer{border-top:1px solid var(--indigo-3);padding:64px 24px 72px;text-align:center;color:var(--faint)}
+  footer .badge{display:flex;flex-direction:column;align-items:center;gap:18px}
+  footer .powered{font-family:var(--sans);font-size:15px;letter-spacing:.12em;text-transform:uppercase;color:var(--parchment)}
+  footer .powered .tm{font-size:.55em;vertical-align:super}
+  footer .rule{width:min(300px,60vw);height:1px;
+    background:linear-gradient(90deg,transparent,#e5484d,#e7d84b,#59c26a,#3fb6c9,#9a5fe0,transparent);opacity:.55}
+  footer .collective{font-family:var(--serif);font-size:1.02em;color:var(--muted)}
+  footer .made{margin-top:34px;font-size:.85em;line-height:1.7}
+  .again{margin-top:38px;padding:13px 30px;border:1px solid var(--indigo-4);border-radius:999px;
+    background:none;color:var(--muted);font-family:var(--sans);font-size:12px;
+    letter-spacing:.16em;text-transform:uppercase;cursor:pointer}
+  .motion .again{transition:border-color .35s ease,color .35s ease}
+  .again:hover{border-color:var(--sienna);color:var(--parchment)}
+  .after .again:hover{border-color:#4e1d4c;color:#4e1d4c}
+  /* the rainbow always wins its element's color, wherever the class lands in the cascade */
+  .rainbow{color:transparent!important}
+</style>
+
+<canvas id="fogGL" aria-hidden="true"></canvas>
+<canvas id="cosmos" aria-hidden="true"></canvas>
+<canvas id="emberFG" aria-hidden="true"></canvas>
+<div id="flash" aria-hidden="true"></div>
+<button id="motion-chip" type="button" hidden>motion: —</button>
+
+<main>
+<section class="opening">
+  <div class="mark mark-mono" id="mark-open" aria-hidden="true"></div>
+  <div class="window-line" aria-hidden="true"></div>
+  <h1>You Have Something <span class="rainbow">Real.</span><br><span class="quiet">So why doesn't everybody know?</span></h1>
+  <p class="under">What if you could turn <span class="rainbow">Your Vision</span> into <span class="rainbow">Your Reality?</span></p>
+  <div class="scroll-hint rainbow">scroll</div>
+</section>
+
+<div class="veil">
+<section class="scene">
+  <div class="measure beat">
+    <span class="label rainbow">The problem</span>
+    <div class="pain">You mastered <span class="rainbow">Your Craft</span> — but turning it into words that sell feels like betraying it.</div>
+    <div class="pain">You can <span class="rainbow">Build</span> — but matching to the right people is a struggle.</div>
+    <div class="pain">You have <span class="rainbow">Solutions</span> — but don't know how best to package them.</div>
+    <div class="pain">And every day, <span style="color:#96294e">The Grind</span> suffocates <span class="rainbow">The Dream.</span></div>
+  </div>
+</section>
+
+<section class="scene">
+  <div class="measure beat">
+    <span class="label rainbow">The confession</span>
+    <h2>I know how it feels...<br>Because that was me.</h2>
+    <p>I'm Jarrett. I had the solution, but couldn't figure out how to package it let alone, who to
+    even sell it to. I built an AI system for this exact gap: I called it <span class="rainbow">“The
+    Imagination Engine.”</span> So I asked <em>it</em> to turn <span class="rainbow">My Own Vision</span>
+    into Reality.</p>
+    <p>It drew on weeks of Cross Adversarial Analysis — <span class="rainbow">Independent AI Minds</span>
+    arguing, checking each other, killing what I thought were the right answers...</p>
+    <p>Then with brutal honesty it did the one thing I didn't expect...</p>
+  </div>
+</section>
+</div>
+
+<section class="mirror" id="mirror-held">
+  <div class="beat">
+    <p class="line">It held up a mirror.</p>
+    <p class="line held-reflection" aria-hidden="true">It held up a mirror.</p>
+  </div>
+</section>
+<svg width="0" height="0" aria-hidden="true" style="position:absolute">
+  <filter id="waterRipple" x="-20%" y="-20%" width="140%" height="140%">
+    <feTurbulence type="fractalNoise" baseFrequency="0.009 0.11" numOctaves="2" seed="4" result="n">
+      <animate attributeName="baseFrequency" dur="11s"
+        values="0.009 0.11;0.013 0.13;0.009 0.11" repeatCount="indefinite"/>
+    </feTurbulence>
+    <feDisplacementMap in="SourceGraphic" in2="n" scale="15" xChannelSelector="R" yChannelSelector="G"/>
+  </filter>
+</svg>
+
+<section class="mirror" id="mirror">
+  <div class="beat">
+    <p class="line">Come to find out my ideal client was...</p>
+  </div>
+</section>
+
+<section class="mirror-me" id="mirror-me">
+  <div class="beat">
+    <p class="me-word"><span id="the-me" class="rainbow">Me.</span></p>
+  </div>
+</section>
+
+<section class="mirror" id="mirror-bridge">
+  <div class="beat">
+    <p class="line">Which means the people this Engine was built for<br>
+    are the ones like me — Solo Experts with something <span class="rainbow">Real</span>,<br>
+    tired of watching it stay invisible.</p>
+  </div>
+</section>
+
+<div class="veil">
+<section class="prism" id="prism">
+  <div class="mark mark-spectrum" id="mark-prism" aria-hidden="true"><div class="glowring"></div></div>
+  <div class="caption beat">
+    <span class="label rainbow">The Imagination Engine</span>
+    <h2>Your <span class="rainbow">Intention</span> Goes In.<br>A <span class="rainbow">Governed
+    Build</span> Begins.</h2>
+    <p class="quiet">Your Vision Enters. <span class="rainbow">Working Assets Generate:</span>
+    Software, Systems, Campaigns, This Very Page.</p>
+    <p class="quiet">All those assets get neatly packaged into Offer Ladders and then get sent through
+    our <span class="rainbow">Message-To-Market Engine “Adam”</span> which can Generate Months worth of
+    Custom Content and Outreach, individually designed for the Social Platforms you choose.</p>
+    <p class="quiet">Everything then gets handed to you to send and schedule so that you are able to
+    Maintain Integrity where it matters most:<br><span class="rainbow">Client Interaction.</span></p>
+    <p class="quiet">When <span class="rainbow">Your Reputation</span> is on the line, you can't afford
+    mistakes.</p>
+    <p>Nothing here acts alone. That is not a limitation.</p>
+    <p><span class="rainbow">That is the Power.</span></p>
+  </div>
+</section>
+
+<section class="scene">
+  <div class="ledger beat">
+    <div class="ledger-intro">
+      <h2>We keep receipts the way banks keep ledgers.</h2>
+      <p class="quiet">True events, from the system's own append-only record. The receipt claims below
+      trace to real artifacts — shown gladly in conversation.</p>
+    </div>
+    <div class="receipts">
+      <div class="receipt">
+        <div class="when">July 2 · decision ledger</div>
+        <div class="what">The truth constraint became written law: create freely, verify what exists,
+        never claim fruit the tree hasn't borne. Every artifact is held to it.</div>
+        <div class="witness">✓ witnessed: tracked doctrine, machine-scanned</div>
+      </div>
+      <div class="receipt">
+        <div class="when">July 3 · governance</div>
+        <div class="what">After a near-miss, the system wrote a rule against itself: never erase the only
+        copy of anything without first surfacing exactly what would be lost.</div>
+        <div class="witness">✓ witnessed: adopted the same day the failure was caught</div>
+      </div>
+      <div class="receipt">
+        <div class="when">July 4 · pull request #38 · merged</div>
+        <div class="what">A strict no-self-replication interlock was built and merged: a hook that
+        blocks the engine's own model from spawning unreviewed copies of itself once activated.
+        Restraint, encoded and reviewable.</div>
+        <div class="witness">✓ witnessed: merged hook + tests; activation stays in Jarrett's hand</div>
+      </div>
+      <div class="receipt">
+        <div class="when">June 29 · doctrine</div>
+        <div class="what">The operators found a ghost in the machine — a hidden efficiency bias in the
+        model's own weights. We didn't deny it. We wrote law to starve it: its favorite metric is
+        banned from every loop.</div>
+        <div class="witness">✓ witnessed: the ban is machine-checked in CI</div>
+      </div>
+      <div class="receipt">
+        <div class="when">July 5 · pull request #73 · merged</div>
+        <div class="what">A pre-registered containment probe: a write outside the sandbox was attempted
+        under test — and the operating system itself said no. We kept the receipt.</div>
+        <div class="witness">✓ witnessed: the denial is the evidence — five observations, verified</div>
+      </div>
+      <div class="receipt">
+        <div class="when">July 6 · this very page</div>
+        <div class="what">Jarrett directed; the system built. Every step — the colors, the words, the
+        detonation — landed as versioned, reviewable commits.</div>
+        <div class="witness">✓ witnessed: you are reading the receipt</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="scene">
+  <div class="measure beat">
+    <span class="label rainbow">What makes this possible</span>
+    <h2 class="thesis"><span class="rainbow">Vision</span> Expressed in <span class="rainbow">Natural
+    Language</span><br>
+    Fed Into a <span class="rainbow">Highly Governed</span> AI System<br>
+    Internally Designed to <span class="rainbow">Fight</span> that which makes most AI feel useless.<br>
+    The Standard?<br>
+    <span class="credo rainbow">No Sycophancy. No Hallucination. No Slop.</span></h2>
+    <p>You bring Your Vision — The Offer, The Practice, <span class="rainbow">The Dream</span> that
+    keeps knocking.</p>
+    <div class="loop-step"><span class="tick rainbow">MADE REAL</span>
+      <p>A Source-Trace Offer and Campaign Draft Package built from your supplied facts — Working
+      Assets, not Slideware.</p></div>
+    <div class="loop-step"><span class="tick rainbow">MADE TRUE</span>
+      <p>Your message becomes claim-true: every word about you traceable to a fact about you.</p></div>
+    <div class="loop-step"><span class="tick rainbow">MADE TARGETED</span>
+      <p>Your Content and Social Media Presence dialed to your Ideal Client Profile.</p></div>
+    <div class="loop-step"><span class="tick rainbow">UNIQUELY YOU</span>
+      <p>You retain approval and execution of everything client-facing. Every Send, Every Publish —
+      Your Decision, Guided by Your Hand.</p></div>
+    <p class="quiet" style="margin-top:2.4em;text-align:center">White Glove By Design. Crafted For Human Interaction.</p>
+    <p class="echo"><span class="rainbow">Want to Make Your Vision Reality?</span></p>
+    <p class="book-line">To learn more about my Methodology, check out my book:<br>
+    <a href="https://www.amazon.com/dp/B0H6S5JK7L" target="_blank" rel="noopener"><span
+    class="rainbow">“The Governed Fleet”</span></a></p>
+  </div>
+</section>
+
+<section class="ask">
+  <div class="beat">
+    <h2><span class="rainbow">Let’s Build Something Together.</span></h2>
+    <p class="ask-what">In our first conversation, we map Your Vision to its first Source-Trace
+    Offer — and what a 30-day Content Spine would look like for you.</p>
+    <a class="cta" href="mailto:Jarrett@jarrettwroten.com?subject=Show%20me%20how%20it%20works">Click here to talk to Jarrett</a>
+    <p class="no-funnel">No funnel. No sequence fires when you click. Just a conversation.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="badge">
+    <div class="mark mark-spectrum" id="mark-badge" aria-hidden="true"><div class="glowring"></div></div>
+    <div class="powered">Powered by <span class="rainbow">The Imagination Engine<span class="tm">™</span></span></div>
+    <div class="rule" aria-hidden="true"></div>
+    <div class="collective"><span class="rainbow">The Imagination Collective</span></div>
+  </div>
+  <div class="made">
+    This page was itself produced by the engine it describes —<br>
+    drafted, adversarially reviewed, and approved by one human hand.<br>
+    Documented true events · July 2026
+  </div>
+  <button id="begin-again" class="again" type="button"><span class="rainbow">Begin again</span></button>
+</footer>
+</div>
+</main>
+
+<script>
+(function(){
+  'use strict';
+  var docEl=document.documentElement;
+  var chip=document.getElementById('motion-chip');
+  var reduced=false;
+  try{reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;}catch(e){}
+  /* this page's motion IS its message: default ON; the chip is the always-visible, honest pause */
+  var motionOn=true;
+
+  function setChip(){
+    chip.hidden=false;
+    chip.textContent=motionOn?
+      (reduced?'motion: on (overriding your system setting) — click to pause':'motion: on — click to pause')
+      :'motion: paused — click to resume';
+  }
+  function applyMotionClass(){
+    if(motionOn){docEl.classList.add('motion');}else{docEl.classList.remove('motion');}
+  }
+
+  /* ---------- the aperture-gear mark ---------- */
+  function makeMark(size){
+    var NS='http://www.w3.org/2000/svg',C=size/2;
+    var svg=document.createElementNS(NS,'svg');
+    svg.setAttribute('width',size);svg.setAttribute('height',size);
+    svg.setAttribute('viewBox','0 0 '+size+' '+size);
+    var gear=document.createElementNS(NS,'g');gear.setAttribute('class','gear');
+    var teeth=14,rOut=C*0.97,rIn=C*0.82,ring=C*0.70,i;
+    var pts=function(r,a){return (C+r*Math.cos(a))+','+(C+r*Math.sin(a));};
+    var d='';
+    for(i=0;i<teeth;i++){
+      var a0=(i/teeth)*Math.PI*2,a1=((i+0.38)/teeth)*Math.PI*2,
+          a2=((i+0.5)/teeth)*Math.PI*2,a3=((i+0.88)/teeth)*Math.PI*2;
+      d+='M'+pts(rIn,a0)+' L'+pts(rOut,a0)+' A'+rOut+','+rOut+' 0 0 1 '+pts(rOut,a1)+
+         ' L'+pts(rIn,a2)+' A'+rIn+','+rIn+' 0 0 1 '+pts(rIn,a3)+' Z ';
+    }
+    var teethPath=document.createElementNS(NS,'path');
+    teethPath.setAttribute('d',d);teethPath.setAttribute('fill','currentColor');
+    gear.appendChild(teethPath);
+    var ringC=document.createElementNS(NS,'circle');
+    ringC.setAttribute('cx',C);ringC.setAttribute('cy',C);ringC.setAttribute('r',ring);
+    ringC.setAttribute('fill','none');ringC.setAttribute('stroke','currentColor');
+    ringC.setAttribute('stroke-width',size*0.05);
+    gear.appendChild(ringC);
+    var blades=document.createElementNS(NS,'g');blades.setAttribute('class','blades');
+    var n=7,rB=C*0.60,rHub=C*0.16;
+    for(i=0;i<n;i++){
+      var a=(i/n)*Math.PI*2;
+      var p1x=C+rB*Math.cos(a),p1y=C+rB*Math.sin(a);
+      var p2x=C+rHub*Math.cos(a+2.4),p2y=C+rHub*Math.sin(a+2.4);
+      var c1x=C+rB*0.95*Math.cos(a+0.85),c1y=C+rB*0.95*Math.sin(a+0.85);
+      var c2x=C+rB*0.45*Math.cos(a+1.9),c2y=C+rB*0.45*Math.sin(a+1.9);
+      var blade=document.createElementNS(NS,'path');
+      blade.setAttribute('d','M'+p1x+','+p1y+' Q'+c1x+','+c1y+' '+p2x+','+p2y+
+        ' Q'+c2x+','+c2y+' '+p1x+','+p1y+' Z');
+      blade.setAttribute('fill','currentColor');
+      blades.appendChild(blade);
+    }
+    svg.appendChild(gear);svg.appendChild(blades);
+    return svg;
+  }
+  function mountMark(id,size,spectrum){
+    try{
+      var host=document.getElementById(id);if(!host)return;
+      var svg=makeMark(size);
+      host.style.width=size+'px';host.style.height=size+'px';
+      if(spectrum){
+        /* the beloved smooth spectrum: conic glow through the mark's silhouette (mask),
+           element spins while --mkang counter-spins the gradient -> geometry turns, colors stand */
+        svg.style.color='#fff';
+        var spec=document.createElement('div');spec.className='spec';
+        var ser=new XMLSerializer().serializeToString(svg);
+        var url='url("data:image/svg+xml,'+encodeURIComponent(ser)+'")';
+        spec.style.webkitMaskImage=url;spec.style.maskImage=url;
+        spec.style.webkitMaskRepeat='no-repeat';spec.style.maskRepeat='no-repeat';
+        spec.style.webkitMaskSize='contain';spec.style.maskSize='contain';
+        host.appendChild(spec);
+        var probe=document.createElement('div');
+        if(!('maskImage' in probe.style)&&!('webkitMaskImage' in probe.style)){
+          spec.remove();svg.style.color='#9a5fe0';host.appendChild(svg);
+        }
+      }else{host.appendChild(svg);}
+    }catch(e){}
+  }
+  /* the top mark carries BOTH natures: white gear by night, rainbow after the turn */
+  mountMark('mark-open',64,false);
+  mountMark('mark-open',64,true);
+  mountMark('mark-prism',210,true);
+  mountMark('mark-badge',72,true);
+
+  /* ---------- reveals: every element takes its own breath ---------- */
+  try{
+    var units=[];
+    var beats=document.querySelectorAll('.beat');
+    for(var b=0;b<beats.length;b++){
+      var kids=beats[b].children,gi=0,k2,r;
+      for(k2=0;k2<kids.length;k2++){
+        var ch=kids[k2];
+        if(ch.classList.contains('receipts')){
+          for(r=0;r<ch.children.length;r++){
+            ch.children[r].classList.add('rv');
+            ch.children[r].style.animationDelay=(Math.min(gi,7)*95)+'ms';
+            units.push(ch.children[r]);gi++;
+          }
+        }else if(ch.classList.contains('me-word')){
+          /* the Me. is NOT scroll-revealed — detonate() calls it up after the burst blooms */
+          ch.classList.add('rv');gi++;
+        }else if(ch.classList.contains('held-reflection')){
+          /* the water reflection follows its source line via CSS, not the observer */
+          gi++;
+        }else{
+          ch.classList.add('rv');
+          ch.style.animationDelay=(Math.min(gi,7)*95)+'ms';
+          units.push(ch);gi++;
+        }
+      }
+    }
+    var io=new IntersectionObserver(function(es){
+      for(var k=0;k<es.length;k++){
+        if(es[k].isIntersecting){es[k].target.classList.add('lit');io.unobserve(es[k].target);}
+      }
+    },{threshold:.15,rootMargin:'0px 0px -6% 0px'});
+    for(var u=0;u<units.length;u++)io.observe(units[u]);
+  }catch(e){docEl.classList.remove('motion');motionOn=false;}
+
+  /* ========== SHADER FOG (vanta-class volumetric noise; his four colors) ========== */
+  var glc=document.getElementById('fogGL'),gl=null,glProg=null,glT0=0,glOK=false;
+  function glInit(){
+    try{
+      gl=glc.getContext('webgl',{alpha:true,antialias:false,premultipliedAlpha:true});
+      if(!gl){glc.style.display='none';return;}
+      var vs='attribute vec2 p;void main(){gl_Position=vec4(p,0.,1.);}';
+      var fs=
+       'precision mediump float;uniform float uT;uniform vec2 uR;uniform float uL;'+
+       'float h(vec3 p){return fract(sin(dot(p,vec3(127.1,311.7,74.7)))*43758.5453);}'+
+       'float n3(vec3 p){vec3 i=floor(p);vec3 f=fract(p);f=f*f*(3.-2.*f);'+
+       'float a=h(i),b=h(i+vec3(1,0,0)),c=h(i+vec3(0,1,0)),d=h(i+vec3(1,1,0)),'+
+       'e=h(i+vec3(0,0,1)),g=h(i+vec3(1,0,1)),j=h(i+vec3(0,1,1)),k=h(i+vec3(1,1,1));'+
+       'return mix(mix(mix(a,b,f.x),mix(c,d,f.x),f.y),mix(mix(e,g,f.x),mix(j,k,f.x),f.y),f.z);}'+
+       'float fbm(vec3 p){float v=0.,a=.5;for(int i=0;i<5;i++){v+=a*n3(p);p*=2.03;a*=.55;}return v;}'+
+       'void main(){vec2 uv=gl_FragCoord.xy/uR;'+
+       'vec2 q=uv*vec2(uR.x/uR.y,1.);'+
+       'float t=uT*.045;'+
+       'float n=fbm(vec3(q*2.0+vec2(t*.9,t*.22),t));'+
+       'n+=.32*fbm(vec3(q*4.6-vec2(t*.5,t*.11),t*1.6));'+
+       'n=n/1.32;'+
+       'float bottom=mix(1.25,.55,uv.y);'+ /* denser low, thinner high */
+       'n*=bottom;'+
+       'vec3 night=mix(vec3(.027,.016,.09),vec3(.043,.027,.141),1.-abs(uv.y-.5)*2.);'+
+       'vec3 low=vec3(.31,.247,.792);'+   /* #4F3FCA */
+       'vec3 mid=vec3(.525,0.,1.);'+       /* #8600FF */
+       'vec3 high=vec3(.435,.161,.773);'+  /* #6F29C5 */
+       'vec3 crest=vec3(1.,.922,.922);'+   /* #FFEBEB */
+       'float f1=smoothstep(.20,.46,n),f2=smoothstep(.42,.66,n),f3=smoothstep(.62,.82,n),f4=smoothstep(.80,.98,n);'+
+       'vec3 col=night;'+
+       'col=mix(col,low,f1*.85);'+
+       'col=mix(col,mid,f2*.8);'+
+       'col=mix(col,high,f3*.85);'+
+       'col=mix(col,crest,f4*.5);'+
+       /* ——— the after-world: rainbow ink-smoke on glowing light ——— */
+       'vec3 lg=mix(vec3(.985,.965,.935),vec3(.95,.93,.905),abs(uv.y-.45)*1.6);'+
+       'float n2=fbm(vec3(q*1.15+vec2(7.3,2.1)+vec2(t*.55,-t*.14),t*.9));'+
+       'vec3 ink=vec3(.5)+vec3(.5)*cos(6.2832*(vec3(1.0,.92,.84)*n2*1.7+vec3(0.,.33,.67)));'+
+       'ink=mix(ink,vec3(1.),f4*.55);'+ /* crests whiten like lit smoke */
+       'float dl=smoothstep(.24,.72,n);'+
+       'vec3 lightCol=mix(lg,ink,dl*.8);'+
+       /* soft central radiance so the light world GLOWS */
+       'float rad=1.-smoothstep(.0,.9,distance(uv,vec2(.5,.42)));'+
+       'lightCol=mix(lightCol,vec3(1.),rad*.22);'+
+       'gl_FragColor=vec4(mix(col,lightCol,uL),1.);}';
+      function sh(t2,src){var s=gl.createShader(t2);gl.shaderSource(s,src);gl.compileShader(s);
+        if(!gl.getShaderParameter(s,gl.COMPILE_STATUS))throw gl.getShaderInfoLog(s);return s;}
+      glProg=gl.createProgram();
+      gl.attachShader(glProg,sh(gl.VERTEX_SHADER,vs));
+      gl.attachShader(glProg,sh(gl.FRAGMENT_SHADER,fs));
+      gl.linkProgram(glProg);
+      if(!gl.getProgramParameter(glProg,gl.LINK_STATUS))throw gl.getProgramInfoLog(glProg);
+      gl.useProgram(glProg);
+      var buf=gl.createBuffer();
+      gl.bindBuffer(gl.ARRAY_BUFFER,buf);
+      gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([-1,-1,3,-1,-1,3]),gl.STATIC_DRAW);
+      var loc=gl.getAttribLocation(glProg,'p');
+      gl.enableVertexAttribArray(loc);
+      gl.vertexAttribPointer(loc,2,gl.FLOAT,false,0,0);
+      glOK=true;
+    }catch(e){
+      glOK=false;glc.style.display='none';
+      try{console.error('[fogGL init]',e);}catch(_){}
+    }
+  }
+  function glSize(){
+    if(!glOK)return;
+    try{
+      var d=Math.min(devicePixelRatio||1,1.25);
+      glc.width=Math.floor(innerWidth*d);glc.height=Math.floor(innerHeight*d);
+      glc.style.width=innerWidth+'px';glc.style.height=innerHeight+'px';
+      gl.viewport(0,0,glc.width,glc.height);
+    }catch(e){}
+  }
+  function glDraw(t){
+    if(!glOK)return;
+    try{
+      gl.uniform1f(gl.getUniformLocation(glProg,'uT'),t*.001);
+      gl.uniform2f(gl.getUniformLocation(glProg,'uR'),glc.width,glc.height);
+      gl.uniform1f(gl.getUniformLocation(glProg,'uL'),0.0); /* ink-morning retired per owner — night only */
+      gl.drawArrays(gl.TRIANGLES,0,3);
+      /* the night's fog yields to the light-world and hushes near the Mirror */
+      glc.style.opacity=(1-lightMix)*(1-hush*.3);
+    }catch(e){
+      glOK=false;glc.style.display='none';
+      try{console.error('[fogGL draw]',e);}catch(_){}
+    }
+  }
+
+  /* ========== THE COSMOS ========== */
+  var cv=document.getElementById('cosmos'),ctx=null;
+  var efg=document.getElementById('emberFG'),ectx=null;
+  var W=0,H=0,dpr=1,running=false,t0=0;
+  var stars=[],blobs=[],burst=[],ambient=[],exploded=false,flashEl=document.getElementById('flash');
+  var scrollFrac=0,lightMix=0,lightTarget=0,lightBlobs=[],fogTiles=[],fogLayers=[];
+
+  var NEBULA_HUES=[[262,62,38],[272,58,46],[282,52,54],[252,60,34],[300,45,48]]; /* h,s,l purples */
+
+  function sizeCanvas(){
+    try{
+      dpr=Math.min(devicePixelRatio||1,1.5);
+      W=cv.width=Math.floor(innerWidth*dpr);H=cv.height=Math.floor(innerHeight*dpr);
+      cv.style.width=innerWidth+'px';cv.style.height=innerHeight+'px';
+      if(efg){efg.width=W;efg.height=H;
+        efg.style.width=innerWidth+'px';efg.style.height=innerHeight+'px';}
+    }catch(e){}
+  }
+  var glowTex=null;
+  function makeGlowTex(){
+    var g=document.createElement('canvas');g.width=g.height=64;
+    var gc=g.getContext('2d');
+    var gr=gc.createRadialGradient(32,32,0,32,32,32);
+    gr.addColorStop(0,'rgba(255,250,238,.9)');
+    gr.addColorStop(.35,'rgba(255,236,205,.35)');
+    gr.addColorStop(1,'rgba(255,230,190,0)');
+    gc.fillStyle=gr;gc.fillRect(0,0,64,64);
+    return g;
+  }
+  function initCosmos(){
+    stars=[];blobs=[];
+    if(!glowTex)glowTex=makeGlowTex();
+    var NS=Math.min(210,Math.floor(innerWidth/7));
+    for(var i=0;i<NS;i++)stars.push({
+      x:Math.random(),y:Math.random(),z:Math.random()*.8+.2,
+      r:(Math.random()*1.3+0.35),tw:Math.random()*Math.PI*2,
+      sp:.35+Math.random()*1.5,
+      big:Math.random()<.05
+    });
+    /* FOG as SMOKE: turbulent tiles — base mass + billows + curling tendril filaments + carved voids */
+    fogTiles=[];
+    for(var ft=0;ft<2;ft++){
+      var tile=document.createElement('canvas');tile.width=1024;tile.height=320;
+      var tc=tile.getContext('2d');
+      var w,wx,wy,wr,wal,wg,hshift;
+      /* 1 — base mass */
+      for(w=0;w<18;w++){
+        wx=Math.random()*1024;wy=90+Math.random()*140;wr=90+Math.random()*150;
+        hshift=258+Math.random()*30;wal=.05+Math.random()*.05;
+        wg=tc.createRadialGradient(wx,wy,0,wx,wy,wr);
+        wg.addColorStop(0,'hsla('+hshift+',30%,76%,'+wal+')');
+        wg.addColorStop(1,'hsla('+hshift+',26%,60%,0)');
+        tc.fillStyle=wg;tc.fillRect(wx-wr,wy-wr,wr*2,wr*2);
+      }
+      /* 2 — billows: the churning mid-scale lumps */
+      for(w=0;w<30;w++){
+        wx=Math.random()*1024;wy=70+Math.random()*180;wr=36+Math.random()*70;
+        hshift=256+Math.random()*34;wal=.10+Math.random()*.12;
+        wg=tc.createRadialGradient(wx-wr*.2,wy-wr*.2,0,wx,wy,wr);
+        wg.addColorStop(0,'hsla('+hshift+',32%,'+(80+Math.random()*12)+'%,'+wal+')');
+        wg.addColorStop(.55,'hsla('+hshift+',28%,70%,'+(wal*.45)+')');
+        wg.addColorStop(1,'hsla('+hshift+',24%,58%,0)');
+        tc.fillStyle=wg;tc.fillRect(wx-wr,wy-wr,wr*2,wr*2);
+      }
+      /* 3 — tendrils: curling filaments stamped along wandering paths */
+      for(var tp=0;tp<9;tp++){
+        var px2=Math.random()*1024,py2=80+Math.random()*160;
+        var ang2=Math.random()*Math.PI*2,curl=(Math.random()-.5)*.7;
+        var steps=12+Math.floor(Math.random()*8);
+        for(var st2=0;st2<steps;st2++){
+          ang2+=curl*(.6+Math.random()*.8);
+          px2+=Math.cos(ang2)*(14+Math.random()*16);
+          py2+=Math.sin(ang2)*(9+Math.random()*10);
+          var trr=10+Math.random()*22,tal=.10+Math.random()*.12;
+          var tg=tc.createRadialGradient(px2,py2,0,px2,py2,trr);
+          tg.addColorStop(0,'hsla('+(256+Math.random()*30)+',30%,'+(84+Math.random()*10)+'%,'+tal+')');
+          tg.addColorStop(1,'hsla(260,26%,64%,0)');
+          tc.fillStyle=tg;tc.fillRect(px2-trr,py2-trr,trr*2,trr*2);
+        }
+      }
+      /* 4 — carve the dark voids that make smoke read as smoke */
+      tc.globalCompositeOperation='destination-out';
+      for(w=0;w<12;w++){
+        wx=Math.random()*1024;wy=60+Math.random()*200;wr=45+Math.random()*95;
+        var eal=.35+Math.random()*.4;
+        wg=tc.createRadialGradient(wx,wy,0,wx,wy,wr);
+        wg.addColorStop(0,'rgba(0,0,0,'+eal+')');
+        wg.addColorStop(1,'rgba(0,0,0,0)');
+        tc.fillStyle=wg;tc.fillRect(wx-wr,wy-wr,wr*2,wr*2);
+      }
+      /* 5 — feather the band edges */
+      tc.globalCompositeOperation='destination-in';
+      var vf=tc.createLinearGradient(0,0,0,320);
+      vf.addColorStop(0,'rgba(0,0,0,0)');vf.addColorStop(.38,'rgba(0,0,0,1)');
+      vf.addColorStop(.72,'rgba(0,0,0,1)');vf.addColorStop(1,'rgba(0,0,0,0)');
+      tc.fillStyle=vf;tc.fillRect(0,0,1024,320);
+      tc.globalCompositeOperation='source-over';
+      fogTiles.push(tile);
+    }
+    fogLayers=[
+      {y:1.0,hgt:.34,spd:.030,alpha:.85,tile:1,bob:.006,bf:.00021},
+      {y:.93,hgt:.30,spd:.022,alpha:.65,tile:0,bob:.008,bf:.00019},
+      {y:.84,hgt:.26,spd:.014,alpha:.48,tile:1,bob:.010,bf:.00014},
+      {y:.74,hgt:.22,spd:.009,alpha:.30,tile:0,bob:.012,bf:.00011},
+      {y:.34,hgt:.20,spd:.006,alpha:.16,tile:1,bob:.010,bf:.00009},
+      {y:.10,hgt:.16,spd:.004,alpha:.11,tile:0,bob:.008,bf:.00007}
+    ];
+    for(var fl=0;fl<fogLayers.length;fl++)fogLayers[fl].off=Math.random()*768;
+    /* the light world's ground IS the glowing rainbow: full-spectrum breathing field */
+    lightBlobs=[];
+    var LH=[0,45,90,135,180,225,270,315];
+    for(var k=0;k<LH.length;k++){
+      lightBlobs.push({
+        x:(k/LH.length+Math.random()*.08)%1,y:Math.random()*.85+.075,
+        r:(Math.random()*.20+.30),h:LH[k],
+        ph:Math.random()*Math.PI*2,sp:.00007+Math.random()*.00006,
+        drx:(Math.random()-.5)*.00003,dry:(Math.random()-.5)*.000018
+      });
+    }
+  }
+
+  function drawCosmos(t){
+    lightMix+=(lightTarget-lightMix)*.028;
+    if(lightMix<0.001)lightMix=lightTarget>0?lightMix:0;
+    var LM=lightMix,DK=1-LM;
+    ctx.clearRect(0,0,W,H);
+    /* ground: the GL fog paints the night beneath; 2D paints it only as fallback */
+    if(!glOK){
+      var g=ctx.createLinearGradient(0,0,0,H);
+      g.addColorStop(0,'#070417');g.addColorStop(.5,'#0b0724');g.addColorStop(1,'#070417');
+      ctx.fillStyle=g;ctx.fillRect(0,0,W,H);
+    }
+    if(LM>0){
+      ctx.globalAlpha=LM;
+      var lg=ctx.createLinearGradient(0,0,0,H);
+      lg.addColorStop(0,'#e2c88e');lg.addColorStop(.5,'#f7efd5');lg.addColorStop(1,'#e2c88e');
+      ctx.fillStyle=lg;ctx.fillRect(0,0,W,H);
+      /* THE GLOWING RAINBOW GROUND: saturated spectrum regions, breathing, slowly cycling hue */
+      for(var li=0;li<lightBlobs.length;li++){
+        var lb=lightBlobs[li];
+        lb.x=(lb.x+lb.drx+1)%1;lb.y=(lb.y+lb.dry+1)%1;
+        var lh=(lb.h+t*.0035)%360; /* the whole field slowly turns through the wheel */
+        var lbr=1+.18*Math.sin(t*lb.sp*1000+lb.ph);
+        var lpx=lb.x*W,lpy=(lb.y - scrollFrac*.10)*H,lpr=lb.r*Math.min(W,H)*lbr*2.4;
+        var lrg=ctx.createRadialGradient(lpx,lpy,0,lpx,lpy,lpr);
+        lrg.addColorStop(0,'hsla('+lh+',92%,62%,.34)');
+        lrg.addColorStop(.5,'hsla('+lh+',88%,68%,.16)');
+        lrg.addColorStop(1,'hsla('+lh+',85%,75%,0)');
+        ctx.fillStyle=lrg;
+        ctx.fillRect(lpx-lpr,lpy-lpr,lpr*2,lpr*2);
+      }
+      /* luminous bloom so it GLOWS rather than paints */
+      var cg2=ctx.createRadialGradient(W/2,H*.45,0,W/2,H*.45,Math.max(W,H)*.75);
+      cg2.addColorStop(0,'rgba(255,255,255,.30)');
+      cg2.addColorStop(.6,'rgba(255,255,255,.10)');
+      cg2.addColorStop(1,'rgba(255,255,255,0)');
+      ctx.fillStyle=cg2;ctx.fillRect(0,0,W,H);
+      ctx.globalAlpha=1;
+    }
+    if(DK>0.01){
+      /* the soft purple radiance: two great slow-breathing violet glows behind everything */
+      ctx.globalAlpha=DK*(1-hush*.3);
+      var amb1=.11+.05*Math.sin(t*.00018);
+      var ag1=ctx.createRadialGradient(W*.52,H*.34,0,W*.52,H*.34,Math.max(W,H)*.62);
+      ag1.addColorStop(0,'hsla(268,72%,56%,'+amb1+')');
+      ag1.addColorStop(.6,'hsla(262,68%,42%,'+(amb1*.5)+')');
+      ag1.addColorStop(1,'hsla(258,65%,30%,0)');
+      ctx.fillStyle=ag1;ctx.fillRect(0,0,W,H);
+      var amb2=.08+.04*Math.sin(t*.00013+2.1);
+      var ag2=ctx.createRadialGradient(W*.24,H*.72,0,W*.24,H*.72,Math.max(W,H)*.5);
+      ag2.addColorStop(0,'hsla(280,68%,58%,'+amb2+')');
+      ag2.addColorStop(1,'hsla(270,65%,32%,0)');
+      ctx.fillStyle=ag2;ctx.fillRect(0,0,W,H);
+      /* stars first — the clouds will stand IN FRONT of them, like the references */
+      var hushK=DK*(1-hush*.3);
+      for(var s=0;s<stars.length;s++){
+        var st=stars[s];
+        var twv=Math.pow(Math.abs(Math.sin(t*.0005*st.sp+st.tw)),2.6); /* mostly dim, then FLASH */
+        var a=(.15+.85*twv)*hushK;
+        var sx=st.x*W,sy=((st.y - scrollFrac*.05*st.z)%1+1)%1*H;
+        /* the glow: pre-rendered halo, breathing with the twinkle */
+        var gs=st.r*dpr*(9+11*twv)*(st.big?1.7:1);
+        ctx.globalAlpha=a*.6;
+        ctx.drawImage(glowTex,sx-gs/2,sy-gs/2,gs,gs);
+        /* the core */
+        ctx.globalAlpha=1;
+        ctx.beginPath();ctx.arc(sx,sy,st.r*dpr*(.8+.7*twv),0,7);
+        ctx.fillStyle='rgba(255,248,236,'+a+')';ctx.fill();
+        /* only the rare big stars flare — tiny, faint, always inside the glow */
+        if(st.big&&twv>.92){
+          var fl=st.r*dpr*3*twv;
+          ctx.strokeStyle='rgba(255,244,224,'+(a*.3)+')';ctx.lineWidth=dpr*.5;
+          ctx.beginPath();
+          ctx.moveTo(sx-fl,sy);ctx.lineTo(sx+fl,sy);
+          ctx.moveTo(sx,sy-fl);ctx.lineTo(sx,sy+fl);
+          ctx.stroke();
+        }
+      }
+      /* FOG tiles — fallback only; the GL shader is the real fog */
+      for(var i=0;glOK?false:i<fogLayers.length;i++){
+        var fgl=fogLayers[i];
+        var tileC=fogTiles[fgl.tile];if(!tileC)continue;
+        var drawW=W*1.4,drawH=fgl.hgt*H;
+        var xo=-((t*fgl.spd*dpr+fgl.off)%drawW);
+        var yb=Math.sin(t*fgl.bf+i*1.7)*fgl.bob*H;
+        var yy=fgl.y*H-drawH/2+yb-scrollFrac*.06*H*(1-i*.15);
+        ctx.globalAlpha=fgl.alpha*DK*(1-hush*.35);
+        ctx.drawImage(tileC,xo,yy,drawW,drawH);
+        ctx.drawImage(tileC,xo+drawW,yy,drawW,drawH);
+      }
+      ctx.globalAlpha=1;
+    }
+    /* explosion: powder plumes + light streaks + sparks + core bloom, then ambient dust */
+    if(burst.length||ambient.length){
+      ctx.globalCompositeOperation=LM>.55?'source-over':'lighter';
+      /* the burst is document-anchored: translate by how far the page has scrolled since detonation */
+      var bdy=(burstSY-(window.scrollY||window.pageYOffset||0))*dpr;
+      ctx.save();ctx.translate(0,bdy);
+      for(var p=burst.length-1;p>=0;p--){
+        var q=burst[p];
+        q.life-=q.decay;
+        if(q.life<=0){
+          if(q.type==='spark'&&ambient.length<52&&Math.random()<.4)
+            ambient.push({x:q.x,y:q.y+bdy,hue:q.hue,r:Math.max(q.r*.6,1.1*dpr),tw:Math.random()*7,
+              vx:(Math.random()-.5)*.15,vy:(Math.random()-.5)*.1});
+          burst.splice(p,1);continue;
+        }
+        if(q.type==='puff'){
+          /* volumetric powder cloud: grows, drifts, thick and soft */
+          q.x+=q.vx;q.y+=q.vy;q.vx*=.985;q.vy*=.985;q.r+=q.grow;
+          var pg=ctx.createRadialGradient(q.x,q.y,0,q.x,q.y,q.r);
+          pg.addColorStop(0,'hsla('+q.hue+',85%,'+(60-18*LM)+'%,'+(q.life*.20)+')');
+          pg.addColorStop(.6,'hsla('+q.hue+',80%,'+(48-12*LM)+'%,'+(q.life*.10)+')');
+          pg.addColorStop(1,'hsla('+q.hue+',75%,40%,0)');
+          ctx.fillStyle=pg;
+          ctx.fillRect(q.x-q.r,q.y-q.r,q.r*2,q.r*2);
+        }else if(q.type==='streak'){
+          /* comet ray: luminous trail + hot head (head darkens as the world turns light) */
+          q.px=q.x;q.py=q.y;
+          q.x+=q.vx;q.y+=q.vy;q.vx*=.968;q.vy*=.968;
+          ctx.strokeStyle='hsla('+q.hue+',100%,'+(58+q.life*14-20*LM)+'%,'+(q.life*.85)+')';
+          ctx.lineWidth=Math.max(q.r*q.life,dpr*.5);
+          ctx.lineCap='round';
+          ctx.beginPath();
+          var tx=q.x-q.vx*q.tail,ty=q.y-q.vy*q.tail;
+          ctx.moveTo(tx,ty);ctx.lineTo(q.x,q.y);ctx.stroke();
+          ctx.beginPath();ctx.arc(q.x,q.y,q.r*.55*q.life+dpr*.6,0,7);
+          ctx.fillStyle='rgba('+Math.round(255-215*LM)+','+Math.round(255-235*LM)+','+
+            Math.round(255-175*LM)+','+(q.life*.9)+')';ctx.fill();
+        }else if(q.type==='core'){
+          /* the bloom at the word */
+          q.r+=q.grow;
+          var cg=ctx.createRadialGradient(q.x,q.y,0,q.x,q.y,q.r);
+          cg.addColorStop(0,'rgba(255,255,255,'+(q.life*.9)+')');
+          cg.addColorStop(.35,'rgba(255,240,220,'+(q.life*.4)+')');
+          cg.addColorStop(1,'rgba(255,255,255,0)');
+          ctx.fillStyle=cg;
+          ctx.fillRect(q.x-q.r,q.y-q.r,q.r*2,q.r*2);
+        }else{
+          /* spark: bright droplet with gravity arc */
+          q.x+=q.vx;q.y+=q.vy;q.vx*=.985;q.vy*=.985;q.vy+=.014;
+          ctx.beginPath();ctx.arc(q.x,q.y,q.r*q.life,0,7);
+          ctx.fillStyle='hsla('+q.hue+',95%,'+(66-24*LM)+'%,'+(q.life*.95)+')';ctx.fill();
+          if(q.glint&&q.life>.5){
+            var gl=q.r*q.life*4;
+            ctx.strokeStyle='hsla('+q.hue+',100%,'+(80-30*LM)+'%,'+(q.life*.5)+')';
+            ctx.lineWidth=dpr*.6;
+            ctx.beginPath();
+            ctx.moveTo(q.x-gl,q.y);ctx.lineTo(q.x+gl,q.y);
+            ctx.moveTo(q.x,q.y-gl);ctx.lineTo(q.x,q.y+gl);
+            ctx.stroke();
+          }
+        }
+      }
+      ctx.restore();
+      var ec=ectx||ctx; /* embers draw on the overlay canvas, above the veils */
+      for(var m=0;m<ambient.length;m++){
+        var am=ambient[m];
+        am.x+=am.vx;am.y+=am.vy;
+        if(am.x<0)am.x=W;if(am.x>W)am.x=0;if(am.y<0)am.y=H;if(am.y>H)am.y=0;
+        var aa=.18+.16*Math.sin(t*.0008+am.tw);
+        ec.beginPath();ec.arc(am.x,am.y,am.r,0,7);
+        ec.fillStyle='hsla('+am.hue+',90%,'+(64-22*LM)+'%,'+aa+')';ec.fill();
+      }
+      ctx.globalCompositeOperation='source-over';
+    }
+  }
+
+  function frame(t){
+    if(!running)return;
+    try{glDraw(t);if(ectx)ectx.clearRect(0,0,W,H);drawCosmos(t);}catch(e){
+      running=false;
+      try{console.error('[frame]',e);}catch(_){}
+      return;
+    }
+    requestAnimationFrame(frame);
+  }
+  function startLoop(){
+    if(running)return;
+    try{
+      if(!ctx)ctx=cv.getContext('2d');
+      if(!ectx&&efg)ectx=efg.getContext('2d');
+      if(!gl){glInit();glSize();}
+      sizeCanvas();if(!stars.length)initCosmos();
+      running=true;requestAnimationFrame(frame);
+    }catch(e){
+      try{console.error('[startLoop]',e);}catch(_){}
+      try{glc.style.display='none';}catch(_){}
+    }
+  }
+  function stopLoop(){running=false;try{ctx&&ctx.clearRect(0,0,W,H);ectx&&ectx.clearRect(0,0,W,H);}catch(e){}}
+
+  /* ---------- THE EXPLOSION ---------- */
+  var burstSY=0; /* scroll position at detonation: the burst stays glued to Me.'s place in the document */
+  function detonate(){
+    if(exploded)return;exploded=true;
+    docEl.classList.add('after');
+    /* the explosion owns the stage first; Me. rises out of the light */
+    setTimeout(function(){
+      var mw=document.querySelector('.me-word');if(mw)mw.classList.add('lit');
+    },motionOn?1100:0);
+    if(!motionOn){return;} /* static mode: world shifts color, no fireworks */
+    try{
+      /* white flash — and beneath it, the world turns to light for good */
+      flashEl.style.transition='none';flashEl.style.opacity='0';
+      void flashEl.offsetWidth;
+      flashEl.style.transition='opacity .12s ease-in';flashEl.style.opacity='.97';
+      setTimeout(function(){lightTarget=1;},220);
+      setTimeout(function(){
+        flashEl.style.transition='opacity 1.6s cubic-bezier(.22,1,.36,1)';
+        flashEl.style.opacity='0';
+      },420);
+      /* rainbow detonation from the word — sectored hues, three layers + core */
+      var me=document.getElementById('the-me');
+      var r=me.getBoundingClientRect();
+      var cx=(r.left+r.width/2)*dpr,cy=(r.top+r.height/2)*dpr;
+      burstSY=window.scrollY||window.pageYOffset||0;
+      var sectorHue=function(ang){ /* each direction OWNS a color family (the reference physics) */
+        var base=Math.floor(((ang/(Math.PI*2))*360)/30)*30;
+        return (base+Math.random()*16-8+360)%360;
+      };
+      /* the core bloom */
+      burst.push({type:'core',x:cx,y:cy,r:10*dpr,grow:Math.min(W,H)*.02,life:1,decay:.02});
+      /* powder plumes: thick volumetric color behind everything */
+      var NP=34,i,ang,sp;
+      for(i=0;i<NP;i++){
+        ang=Math.random()*Math.PI*2;
+        sp=(Math.random()*.5+.22)*Math.min(W,H)*.006;
+        burst.push({type:'puff',x:cx,y:cy,
+          vx:Math.cos(ang)*sp,vy:Math.sin(ang)*sp,
+          hue:sectorHue(ang),
+          r:(Math.random()*26+18)*dpr,grow:(Math.random()*.9+.7)*dpr,
+          life:1,decay:.0035+Math.random()*.0035});
+      }
+      /* light streaks: the comet rays */
+      var NSTK=Math.min(130,Math.floor(innerWidth/9));
+      for(i=0;i<NSTK;i++){
+        ang=Math.random()*Math.PI*2;
+        sp=(Math.random()*.75+.55)*Math.min(W,H)*.022;
+        burst.push({type:'streak',x:cx,y:cy,px:cx,py:cy,
+          vx:Math.cos(ang)*sp,vy:Math.sin(ang)*sp,
+          hue:sectorHue(ang),
+          r:(Math.random()*2.4+1.6)*dpr,tail:5+Math.random()*7,
+          life:1,decay:.007+Math.random()*.009});
+      }
+      /* sparks + glints: the droplets and crystal flares */
+      var NSP=Math.min(150,Math.floor(innerWidth/8));
+      for(i=0;i<NSP;i++){
+        ang=Math.random()*Math.PI*2;
+        sp=(Math.random()*.6+.3)*Math.min(W,H)*.014;
+        burst.push({type:'spark',x:cx,y:cy,
+          vx:Math.cos(ang)*sp,vy:Math.sin(ang)*sp,
+          hue:sectorHue(ang),
+          r:(Math.random()*2.4+1.1)*dpr,glint:Math.random()<.14,
+          life:1,decay:.006+Math.random()*.010});
+      }
+      /* (the rainbow ground itself is what the universe keeps) */
+      /* and the sky keeps its embers: seed drifting color-orbs across the whole viewport,
+         so the day world is alive with them everywhere, not just near the wound */
+      for(i=0;i<32;i++){
+        ang=Math.random()*Math.PI*2;
+        ambient.push({x:Math.random()*W,y:Math.random()*H,hue:sectorHue(ang),
+          r:(Math.random()*1.4+1.0)*dpr,tw:Math.random()*7,
+          vx:(Math.random()-.5)*.16,vy:(Math.random()-.5)*.12});
+      }
+    }catch(e){}
+  }
+  var mio=null;
+  function armDetonation(){
+    try{
+      if(mio)mio.disconnect();
+      mio=new IntersectionObserver(function(es){
+        for(var k=0;k<es.length;k++){
+          if(es[k].isIntersecting&&es[k].intersectionRatio>=.5){detonate();mio.disconnect();}
+        }
+      },{threshold:[.5]});
+      mio.observe(document.getElementById('mirror-me'));
+    }catch(e){}
+  }
+  armDetonation();
+
+  /* begin again: the night returns, the truth waits to be found once more */
+  try{
+    document.getElementById('begin-again').addEventListener('click',function(){
+      exploded=false;lightTarget=0;burst.length=0;ambient.length=0;hush=0;
+      docEl.classList.remove('after');
+      try{var mw1=document.querySelector('.me-word');if(mw1)mw1.classList.remove('lit');}catch(e){}
+      try{flashEl.style.transition='none';flashEl.style.opacity='0';}catch(e){}
+      if(mio)mio.disconnect(); /* nothing may fire on the ride home */
+      window.scrollTo({top:0,behavior:motionOn?'smooth':'auto'});
+      (function armWhenHome(){
+        if(scrollY<=20){
+          /* home again: every text takes its first breath anew */
+          try{
+            if(typeof units!=='undefined'&&units&&io){
+              for(var q=0;q<units.length;q++){units[q].classList.remove('lit');io.observe(units[q]);}
+            }
+            if(motionOn){docEl.classList.remove('motion');void docEl.offsetWidth;docEl.classList.add('motion');}
+          }catch(e){}
+          armDetonation();
+        }
+        else{requestAnimationFrame(armWhenHome);}
+      })();
+    });
+  }catch(e){}
+
+  /* consistency on load: if the browser restored scroll past the Mirror, the truth already happened */
+  try{
+    var meR0=document.getElementById('mirror-me').getBoundingClientRect();
+    if(meR0.bottom<innerHeight*.5){
+      exploded=true;lightTarget=1;lightMix=1;docEl.classList.add('after');
+      var mw0=document.querySelector('.me-word');if(mw0)mw0.classList.add('lit');
+      if(mio)mio.disconnect();
+    }
+  }catch(e){}
+
+  /* the hush: as you scroll toward "me.", the cosmos holds its breath (scroll-LINKED, Sakura grammar) */
+  var hush=0;
+  try{
+    var meSec=document.getElementById('mirror-me');
+    addEventListener('scroll',function(){
+      if(exploded){hush=0;return;}
+      var r=meSec.getBoundingClientRect();
+      /* fast-scroll guard: if the reader outran the observer and is already past, the truth still fires */
+      if(r.bottom<innerHeight*.35){detonate();hush=0;return;}
+      var d=r.top/innerHeight; /* 1 = a viewport away, 0 = arrived */
+      hush=Math.max(0,Math.min(1,1-d));
+    },{passive:true});
+  }catch(e){}
+
+  /* ---------- wiring ---------- */
+  try{
+    addEventListener('scroll',function(){
+      var max=document.body.scrollHeight-innerHeight;
+      scrollFrac=max>0?scrollY/max:0;
+    },{passive:true});
+    var rsz;
+    addEventListener('resize',function(){
+      cancelAnimationFrame(rsz);
+      rsz=requestAnimationFrame(function(){sizeCanvas();glSize();initCosmos();});
+    });
+    document.addEventListener('visibilitychange',function(){
+      if(document.hidden){stopLoop();}else if(motionOn){startLoop();}
+    });
+  }catch(e){}
+
+  function setMotion(on){
+    motionOn=on;applyMotionClass();setChip();
+    if(on){startLoop();
+      var lits=document.querySelectorAll('.beat');
+      for(var i=0;i<lits.length;i++){
+        var r=lits[i].getBoundingClientRect();
+        if(r.top<innerHeight)lits[i].classList.add('lit');
+      }
+    }else{stopLoop();}
+  }
+  chip.addEventListener('click',function(){setMotion(!motionOn);});
+
+  applyMotionClass();setChip();
+  if(motionOn)startLoop();
+  setTimeout(function(){
+    var bs=document.querySelectorAll('.beat');
+    for(var i=0;i<bs.length;i++){
+      var r=bs[i].getBoundingClientRect();
+      if(r.top<innerHeight&&!bs[i].classList.contains('lit'))bs[i].classList.add('lit');
+    }
+  },2500);
+})();
+</script>
