@@ -131,11 +131,16 @@
   .mirror{min-height:92vh;display:flex;flex-direction:column;justify-content:center;text-align:center;padding:24px}
   .mirror-pre{color:var(--muted);font-size:clamp(1.05rem,2.6vw,1.35rem);margin:0 0 2.4em}
   /* the mirror line, reflected in a pool of water: flipped copy, rippled by animated turbulence */
-  #mirror-held{min-height:58vh}
-  #mirror{min-height:40vh}
+  #mirror-held{min-height:58vh;position:relative}
+  #mirror-held.spot{z-index:41}
+  #mirror{min-height:60vh}
   #mirror-bridge{min-height:60vh}
+  /* the mirror blackout: the world goes dark while the line prints on the void */
+  #mirrorVeil{position:fixed;inset:0;background:#000;z-index:40;opacity:0;pointer-events:none;
+    transition:opacity 1s ease}
+  #mirrorVeil.on{opacity:1}
   #mirror-bridge .line{font-size:clamp(1.35rem,3.4vw,2.1rem)}
-  .held-reflection{transform:scaleY(-1);opacity:.58;margin:-.30em 0 0;
+  .held-reflection{transform:scaleY(-1);opacity:.58;margin:-.30em 0 0;transition:opacity 1.7s ease;
     -webkit-mask-image:linear-gradient(to top,rgba(0,0,0,.95),transparent 82%);
     mask-image:linear-gradient(to top,rgba(0,0,0,.95),transparent 82%);
     filter:blur(.9px);transition:opacity 1.2s ease .35s}
@@ -145,7 +150,7 @@
   @keyframes waterbob{0%,100%{transform:scaleY(-1) translateY(0)}50%{transform:scaleY(-1) translateY(5px)}}
   .mirror .line{font-size:clamp(1.8rem,5.4vw,3rem);color:var(--gold);line-height:1.35;
     text-shadow:0 2px 40px rgba(7,4,23,.9)}
-  .mirror-me{min-height:110vh;display:flex;flex-direction:column;justify-content:center;
+  .mirror-me{min-height:150vh;display:flex;flex-direction:column;justify-content:center;
     text-align:center;padding:24px}
   .me-word{margin:0;font-size:clamp(3.2rem,14vw,8rem);line-height:1.05;color:var(--parchment);
     letter-spacing:-.01em;text-shadow:0 2px 60px rgba(7,4,23,.9)}
@@ -219,9 +224,9 @@
     .scene{padding:13vh 0}
     .mirror{min-height:82vh}
     #mirror-held{min-height:48vh}
-    #mirror{min-height:33vh}
+    #mirror{min-height:45vh}
     #mirror-bridge{min-height:50vh}
-    .mirror-me{min-height:96vh}
+    .mirror-me{min-height:125vh}
     .ask{padding:14vh 24px 8vh}
   }
   .ask h2{font-size:clamp(1.9rem,5vw,2.8rem);margin-bottom:.7em}
@@ -291,9 +296,9 @@
     <h2>I know how it feels...<br>Because that was me.</h2>
     <p>I'm Jarrett. I had solutions, but couldn't figure out how to package them let alone, figure out
     who even had the problems that I could solve.</p>
-    <p>I built an AI system for this exact gap.<br>I called it...</p>
+    <p>I built an AI system for this exact gap. I called it...</p>
     <p class="callname"><span class="rainbow">“The Imagination Engine”</span></p>
-    <p>I fed <span class="rainbow">my Unmaterialized Vision</span> into the Engine.</p>
+    <p>I fed my <span class="rainbow">Unmaterialized Vision</span> into the Engine.</p>
     <p>What came next was surreal...</p>
     <p>It started digging through weeks of Cross Adversarial Analysis — <span class="rainbow">Independent
     AI Minds</span> arguing, checking each other, killing what I thought were the right answers...</p>
@@ -302,6 +307,7 @@
 </section>
 </div>
 
+<div id="mirrorVeil" aria-hidden="true"></div>
 <section class="mirror" id="mirror-held">
   <div class="beat">
     <p class="line">It held up a mirror.</p>
@@ -570,6 +576,9 @@
         }else if(ch.classList.contains('held-reflection')){
           /* the water reflection follows its source line via CSS, not the observer */
           gi++;
+        }else if(beats[b].parentElement&&beats[b].parentElement.id==='mirror-held'){
+          /* the held line prints only inside the blackout — the moment calls it up */
+          ch.classList.add('rv');gi++;
         }else{
           ch.classList.add('rv');
           ch.style.animationDelay=(baseDelay+Math.min(gi,7)*95)+'ms';
@@ -1104,6 +1113,56 @@
   }
   armDetonation();
 
+  /* ---------- the mirror blackout: the world goes dark, the line prints on the void ---------- */
+  var mirrorPlayed=false,hio=null;
+  function playMirror(){
+    if(mirrorPlayed)return;mirrorPlayed=true;
+    var mv=document.getElementById('mirrorVeil');
+    var held=document.getElementById('mirror-held');
+    var src=held?held.querySelector('.line:not(.held-reflection)'):null;
+    if(!motionOn){if(src)src.classList.add('lit');return;}
+    try{
+      held.classList.add('spot');
+      addEventListener('wheel',bootBlock,{passive:false});
+      addEventListener('touchmove',bootBlock,{passive:false});
+      addEventListener('keydown',bootKeys);
+      /* closed-loop pin: the moment centers itself and holds the stage */
+      var tgt=held.querySelector('.beat')||held;
+      var g0=null;
+      var glide=function(ts){
+        if(g0===null)g0=ts;
+        var el=ts-g0;
+        var r=tgt.getBoundingClientRect();
+        var err=r.top+r.height/2-innerHeight/2;
+        var sy=window.scrollY||window.pageYOffset||0;
+        window.scrollTo(0,sy+err*(el<650?.16:1));
+        if(el<6200)requestAnimationFrame(glide);
+      };
+      requestAnimationFrame(glide);
+      mv.classList.add('on');                                   /* the world goes dark (1s) */
+      setTimeout(function(){if(src)src.classList.add('lit');},1300); /* the line prints on the void */
+      setTimeout(function(){mv.classList.remove('on');},4800);  /* the cosmos returns */
+      setTimeout(function(){
+        held.classList.remove('spot');
+        removeEventListener('wheel',bootBlock);
+        removeEventListener('touchmove',bootBlock);
+        removeEventListener('keydown',bootKeys);
+      },6200);
+    }catch(e){}
+  }
+  function armMirror(){
+    try{
+      if(hio)hio.disconnect();
+      hio=new IntersectionObserver(function(es){
+        for(var k=0;k<es.length;k++){
+          if(es[k].isIntersecting&&es[k].intersectionRatio>=.5){playMirror();hio.disconnect();}
+        }
+      },{threshold:[.5]});
+      hio.observe(document.getElementById('mirror-held'));
+    }catch(e){}
+  }
+  armMirror();
+
   /* begin again: the night returns, the truth waits to be found once more */
   try{
     document.getElementById('begin-again').addEventListener('click',function(){
@@ -1112,6 +1171,10 @@
       try{var mw1=document.querySelector('.me-word');if(mw1)mw1.classList.remove('lit');}catch(e){}
       try{flashEl.style.transition='none';flashEl.style.opacity='0';}catch(e){}
       if(mio)mio.disconnect(); /* nothing may fire on the ride home */
+      mirrorPlayed=false;
+      try{var mvv=document.getElementById('mirrorVeil');if(mvv)mvv.classList.remove('on');}catch(e){}
+      try{var hl1=document.querySelector('#mirror-held .line');if(hl1)hl1.classList.remove('lit');}catch(e){}
+      if(hio)hio.disconnect();
       window.scrollTo({top:0,behavior:motionOn?'smooth':'auto'});
       (function armWhenHome(){
         if(scrollY<=20){
@@ -1123,6 +1186,7 @@
             if(motionOn){docEl.classList.remove('motion');void docEl.offsetWidth;docEl.classList.add('motion');}
           }catch(e){}
           armDetonation();
+          armMirror();
         }
         else{requestAnimationFrame(armWhenHome);}
       })();
@@ -1131,6 +1195,12 @@
 
   /* consistency on load: if the browser restored scroll past the Mirror, the truth already happened */
   try{
+    var hR0=document.getElementById('mirror-held').getBoundingClientRect();
+    if(hR0.bottom<innerHeight*.5){
+      mirrorPlayed=true;
+      var hl0=document.querySelector('#mirror-held .line');if(hl0)hl0.classList.add('lit');
+      if(hio)hio.disconnect();
+    }
     var meR0=document.getElementById('mirror-me').getBoundingClientRect();
     if(meR0.bottom<innerHeight*.5){
       exploded=true;lightTarget=1;lightMix=1;docEl.classList.add('after');
@@ -1143,7 +1213,13 @@
   var hush=0;
   try{
     var meSec=document.getElementById('mirror-me');
+    var heldSec=document.getElementById('mirror-held');
     addEventListener('scroll',function(){
+      /* fast-scroll guard for the blackout: outrun the observer and the dark still finds you */
+      if(!mirrorPlayed&&heldSec){
+        var hb=heldSec.getBoundingClientRect();
+        if(hb.bottom<innerHeight*.35){playMirror();return;}
+      }
       if(exploded){hush=0;return;}
       var r=meSec.getBoundingClientRect();
       /* fast-scroll guard: if the reader outran the observer and is already past, the truth still fires */
