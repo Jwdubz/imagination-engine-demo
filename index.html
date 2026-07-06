@@ -983,6 +983,19 @@
       var mw=document.querySelector('.me-word');if(mw)mw.classList.add('lit');
     },motionOn?850:0);
     if(!motionOn){return;} /* static mode: world shifts color, no fireworks */
+    /* the moment owns the stage: no scrolling until Me. has fully risen */
+    try{
+      docEl.classList.add('booting');
+      addEventListener('wheel',bootBlock,{passive:false});
+      addEventListener('touchmove',bootBlock,{passive:false});
+      addEventListener('keydown',bootKeys);
+      setTimeout(function(){
+        docEl.classList.remove('booting');
+        removeEventListener('wheel',bootBlock);
+        removeEventListener('touchmove',bootBlock);
+        removeEventListener('keydown',bootKeys);
+      },3000);
+    }catch(e){}
     try{
       /* white flash — and beneath it, the world turns to light for good */
       flashEl.style.transition='none';flashEl.style.opacity='0';
