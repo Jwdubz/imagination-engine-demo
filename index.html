@@ -117,7 +117,7 @@
   .motion .rv.lit{opacity:1;animation:rvin 1.7s cubic-bezier(.35,.05,.25,1) both}
   @keyframes rvin{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
   /* Me. rises out of the light only after the explosion has had its time */
-  .motion .me-word.rv.lit{animation-duration:1.8s}
+  .motion .me-word.rv.lit{animation-duration:1.3s}
   .scene .label{display:block;margin-bottom:2.2em}
   .scene h2{font-size:clamp(1.7rem,4.4vw,2.5rem);line-height:1.25;margin-bottom:1em}
 
@@ -979,7 +979,7 @@
     /* the explosion owns the stage first; Me. rises out of the light */
     setTimeout(function(){
       var mw=document.querySelector('.me-word');if(mw)mw.classList.add('lit');
-    },motionOn?1100:0);
+    },motionOn?850:0);
     if(!motionOn){return;} /* static mode: world shifts color, no fireworks */
     try{
       /* white flash — and beneath it, the world turns to light for good */
