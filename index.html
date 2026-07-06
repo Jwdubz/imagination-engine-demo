@@ -34,14 +34,15 @@
   #emberFG{position:fixed;inset:0;z-index:3;pointer-events:none}
   /* the site turns ON: black first — one line speaks, gives way to the next, then the world arrives */
   #boot{position:fixed;inset:0;background:#000;z-index:60;pointer-events:none;
-    opacity:1;transition:opacity 2.3s ease 9.2s;
+    opacity:1;transition:opacity 2.3s ease 11.7s;
     display:flex;align-items:center;justify-content:center;text-align:center;padding:24px}
   #boot .boot-line{font-size:clamp(1.5rem,4.4vw,2.6rem);line-height:1.4;margin:0;
     position:absolute;left:24px;right:24px}
-  #boot .boot-1{opacity:0;animation:rise 1.2s .5s ease forwards,bootFade .9s 2.8s ease forwards}
+  #boot .boot-1{opacity:0;animation:rise 1.2s .5s ease forwards,bootFade .9s 2.7s ease forwards}
   @keyframes bootFade{from{opacity:1}to{opacity:0}}
-  #boot .boot-2{opacity:0;animation:rise 1.3s 3.7s ease forwards,bootFade .9s 5.9s ease forwards}
-  #boot .boot-3{opacity:0;animation:rise 1.5s 6.8s ease forwards}
+  #boot .boot-2{opacity:0;animation:rise 1.3s 3.6s ease forwards,bootFade .9s 5.7s ease forwards}
+  #boot .boot-3{opacity:0;animation:rise 1.1s 6.6s ease forwards,bootFade .9s 8.3s ease forwards}
+  #boot .boot-4{opacity:0;animation:rise 1.5s 9.2s ease forwards}
   #flash{position:fixed;inset:0;z-index:40;pointer-events:none;background:#fff;opacity:0}
   main{position:relative;z-index:2}
   .veil{background:linear-gradient(180deg,transparent,var(--veil) 12%,var(--veil) 88%,transparent)}
@@ -245,8 +246,9 @@
 
 <div id="boot" aria-hidden="true">
   <p class="boot-line boot-1"><span class="rainbow">Close The Gap</span></p>
-  <p class="boot-line boot-2"><span class="rainbow">Between Reality and...</span></p>
-  <p class="boot-line boot-3"><span class="rainbow">Imagination</span></p>
+  <p class="boot-line boot-2"><span class="rainbow">Between Your Reality</span></p>
+  <p class="boot-line boot-3"><span class="rainbow">And</span></p>
+  <p class="boot-line boot-4"><span class="rainbow">Your Imagination</span></p>
 </div>
 <canvas id="fogGL" aria-hidden="true"></canvas>
 <canvas id="cosmos" aria-hidden="true"></canvas>
@@ -1131,7 +1133,7 @@
   try{
     var boot=document.getElementById('boot');
     requestAnimationFrame(function(){requestAnimationFrame(function(){boot.style.opacity='0';});});
-    setTimeout(function(){try{boot.remove();}catch(e){}},12300);
+    setTimeout(function(){try{boot.remove();}catch(e){}},14800);
   }catch(e){}
   if(motionOn)startLoop();
   setTimeout(function(){
