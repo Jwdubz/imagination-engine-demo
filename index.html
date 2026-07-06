@@ -522,7 +522,7 @@
     /* phones scroll text into view faster — make it arrive deeper and a breath later */
     var isMobile=false;
     try{isMobile=matchMedia('(max-width: 640px)').matches;}catch(e){}
-    var baseDelay=isMobile?560:0;
+    var baseDelay=isMobile?280:0;
     var units=[];
     var beats=document.querySelectorAll('.beat');
     for(var b=0;b<beats.length;b++){
@@ -552,7 +552,7 @@
       for(var k=0;k<es.length;k++){
         if(es[k].isIntersecting){es[k].target.classList.add('lit');io.unobserve(es[k].target);}
       }
-    },{threshold:.15,rootMargin:isMobile?'0px 0px -16% 0px':'0px 0px -6% 0px'});
+    },{threshold:.15,rootMargin:isMobile?'0px 0px -26% 0px':'0px 0px -6% 0px'});
     for(var u=0;u<units.length;u++)io.observe(units[u]);
   }catch(e){docEl.classList.remove('motion');motionOn=false;}
 
