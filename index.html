@@ -991,17 +991,17 @@
       addEventListener('keydown',bootKeys);
       var mwc=document.querySelector('.me-word');
       if(mwc){
-        var mcr=mwc.getBoundingClientRect();
-        var sy0=window.scrollY||window.pageYOffset||0;
-        var syT=sy0+mcr.top+mcr.height/2-innerHeight/2;
         var g0=null;
         var glide=function(ts){
           if(g0===null)g0=ts;
           var el=ts-g0;
-          var k=Math.min(1,el/650);
-          window.scrollTo(0,sy0+(syT-sy0)*(1-Math.pow(1-k,3)));
-          /* after the ease, pin dead-center every frame until release —
-             no momentum, fling, or stray gesture can steal the moment */
+          /* closed loop: chase the word's TRUE center every frame — layout
+             shifts, reveal transforms, momentum, and stray gestures all get
+             corrected; eases in, then pins dead-center until release */
+          var r=mwc.getBoundingClientRect();
+          var err=r.top+r.height/2-innerHeight/2;
+          var sy=window.scrollY||window.pageYOffset||0;
+          window.scrollTo(0,sy+err*(el<650?.16:1));
           if(el<3000)requestAnimationFrame(glide);
         };
         requestAnimationFrame(glide);
