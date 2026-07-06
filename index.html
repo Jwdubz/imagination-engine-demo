@@ -34,7 +34,7 @@
   #emberFG{position:fixed;inset:0;z-index:3;pointer-events:none}
   /* the site turns ON: black first — one line speaks, gives way to the next, then the world arrives */
   #boot{position:fixed;inset:0;background:#000;z-index:60;pointer-events:none;
-    opacity:1;transition:opacity 2.3s ease 9.1s;
+    opacity:1;transition:opacity 2.3s ease 10.2s;
     display:flex;align-items:center;justify-content:center;text-align:center;padding:24px}
   #boot .boot-line{font-size:clamp(1.5rem,4.4vw,2.6rem);line-height:1.4;margin:0;
     position:absolute;left:24px;right:24px}
@@ -43,7 +43,7 @@
   #boot .boot-1{opacity:0;animation:rise 1.2s .5s ease forwards,bootFade .9s 2.7s ease forwards}
   @keyframes bootFade{from{opacity:1}to{opacity:0}}
   #boot .boot-2{opacity:0;animation:rise 1.3s 3.6s ease forwards,bootFade .9s 5.7s ease forwards}
-  #boot .boot-3{opacity:0;animation:rise 1.5s 6.6s ease forwards}
+  #boot .boot-3{opacity:0;animation:rise 1.5s 6.6s ease forwards,bootFade .9s 9.1s ease forwards}
   #flash{position:fixed;inset:0;z-index:40;pointer-events:none;background:#fff;opacity:0}
   main{position:relative;z-index:2}
   .veil{background:linear-gradient(180deg,transparent,var(--veil) 12%,var(--veil) 88%,transparent)}
@@ -1177,7 +1177,7 @@
       removeEventListener('touchmove',bootBlock);
       removeEventListener('keydown',bootKeys);
       try{boot.remove();}catch(e){}
-    },11600);
+    },12700);
   }catch(e){}
   if(motionOn)startLoop();
   setTimeout(function(){
