@@ -34,7 +34,7 @@
   #emberFG{position:fixed;inset:0;z-index:3;pointer-events:none}
   /* the site turns ON: black first — one line speaks, gives way to the next, then the world arrives */
   #boot{position:fixed;inset:0;background:#000;z-index:60;pointer-events:none;
-    opacity:1;transition:opacity 2.3s ease 10.2s;
+    opacity:1;transition:opacity 2.3s ease 9.55s;
     display:flex;align-items:center;justify-content:center;text-align:center;padding:24px}
   #boot .boot-line{font-size:clamp(1.5rem,4.4vw,2.6rem);line-height:1.4;margin:0;
     position:absolute;left:24px;right:24px}
@@ -1177,7 +1177,7 @@
       removeEventListener('touchmove',bootBlock);
       removeEventListener('keydown',bootKeys);
       try{boot.remove();}catch(e){}
-    },12700);
+    },12100);
   }catch(e){}
   if(motionOn)startLoop();
   setTimeout(function(){
