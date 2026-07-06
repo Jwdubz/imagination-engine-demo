@@ -32,14 +32,15 @@
   #cosmos{position:fixed;inset:0;z-index:1;pointer-events:none}
   /* the embers ride ABOVE the veils so they stay visible in every section */
   #emberFG{position:fixed;inset:0;z-index:3;pointer-events:none}
-  /* the site turns ON: black first, two lines in the dark, then the world arrives */
+  /* the site turns ON: black first — one line speaks, gives way to the next, then the world arrives */
   #boot{position:fixed;inset:0;background:#000;z-index:60;pointer-events:none;
-    opacity:1;transition:opacity 2.3s ease 5.6s;
-    display:flex;flex-direction:column;gap:.5em;
-    align-items:center;justify-content:center;text-align:center;padding:24px}
-  #boot .boot-line{font-size:clamp(1.5rem,4.4vw,2.6rem);line-height:1.4;margin:0}
-  #boot .boot-1{opacity:0;animation:rise 1.3s .5s ease forwards}
-  #boot .boot-2{opacity:0;animation:rise 1.4s 2.3s ease forwards}
+    opacity:1;transition:opacity 2.3s ease 6.4s;
+    display:flex;align-items:center;justify-content:center;text-align:center;padding:24px}
+  #boot .boot-line{font-size:clamp(1.5rem,4.4vw,2.6rem);line-height:1.4;margin:0;
+    position:absolute;left:24px;right:24px}
+  #boot .boot-1{opacity:0;animation:rise 1.2s .5s ease forwards,bootFade .9s 2.9s ease forwards}
+  @keyframes bootFade{from{opacity:1}to{opacity:0}}
+  #boot .boot-2{opacity:0;animation:rise 1.4s 3.9s ease forwards}
   #flash{position:fixed;inset:0;z-index:40;pointer-events:none;background:#fff;opacity:0}
   main{position:relative;z-index:2}
   .veil{background:linear-gradient(180deg,transparent,var(--veil) 12%,var(--veil) 88%,transparent)}
@@ -1128,7 +1129,7 @@
   try{
     var boot=document.getElementById('boot');
     requestAnimationFrame(function(){requestAnimationFrame(function(){boot.style.opacity='0';});});
-    setTimeout(function(){try{boot.remove();}catch(e){}},8400);
+    setTimeout(function(){try{boot.remove();}catch(e){}},9300);
   }catch(e){}
   if(motionOn)startLoop();
   setTimeout(function(){
