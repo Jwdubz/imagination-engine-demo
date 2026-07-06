@@ -112,7 +112,7 @@
   .motion .scroll-hint{opacity:0;animation:rise 1.4s 3.6s ease forwards}
 
   /* ————— scenes ————— */
-  .scene{padding:16vh 0;position:relative}
+  .scene{padding:14vh 0;position:relative}
   /* per-element reveal: each line takes its own breath as you scroll (animation, not transition,
      so it never collides with the world-turn color transitions) */
   .motion .rv{opacity:0}
@@ -127,12 +127,12 @@
   .pain em{color:var(--gold);font-style:normal}
 
   /* ————— the mirror (the trigger) ————— */
-  .mirror{min-height:92vh;display:flex;flex-direction:column;justify-content:center;text-align:center;padding:24px}
+  .mirror{min-height:86vh;display:flex;flex-direction:column;justify-content:center;text-align:center;padding:24px}
   .mirror-pre{color:var(--muted);font-size:clamp(1.05rem,2.6vw,1.35rem);margin:0 0 2.4em}
   /* the mirror line, reflected in a pool of water: flipped copy, rippled by animated turbulence */
-  #mirror-held{min-height:58vh}
-  #mirror{min-height:40vh}
-  #mirror-bridge{min-height:60vh}
+  #mirror-held{min-height:52vh}
+  #mirror{min-height:36vh}
+  #mirror-bridge{min-height:54vh}
   #mirror-bridge .line{font-size:clamp(1.35rem,3.4vw,2.1rem)}
   .held-reflection{transform:scaleY(-1);opacity:.58;margin:-.30em 0 0;
     -webkit-mask-image:linear-gradient(to top,rgba(0,0,0,.95),transparent 82%);
@@ -144,7 +144,7 @@
   @keyframes waterbob{0%,100%{transform:scaleY(-1) translateY(0)}50%{transform:scaleY(-1) translateY(5px)}}
   .mirror .line{font-size:clamp(1.8rem,5.4vw,3rem);color:var(--gold);line-height:1.35;
     text-shadow:0 2px 40px rgba(7,4,23,.9)}
-  .mirror-me{min-height:110vh;display:flex;flex-direction:column;justify-content:center;
+  .mirror-me{min-height:100vh;display:flex;flex-direction:column;justify-content:center;
     text-align:center;padding:24px}
   .me-word{margin:0;font-size:clamp(3.2rem,14vw,8rem);line-height:1.05;color:var(--parchment);
     letter-spacing:-.01em;text-shadow:0 2px 60px rgba(7,4,23,.9)}
@@ -212,7 +212,7 @@
     white-space:nowrap;padding-top:.2em;flex:0 0 130px}
   .loop-step p{margin:0}
 
-  .ask{text-align:center;padding:18vh 24px 10vh}
+  .ask{text-align:center;padding:15vh 24px 9vh}
   .ask h2{font-size:clamp(1.9rem,5vw,2.8rem);margin-bottom:.7em}
   .ask .cta{display:inline-block;margin-top:2.2em;padding:16px 34px;border:1px solid var(--nebula-3);
     color:var(--parchment);text-decoration:none;font-family:var(--sans);font-size:14px;
