@@ -119,7 +119,7 @@
   .motion .rv.lit{opacity:1;animation:rvin 1.7s cubic-bezier(.35,.05,.25,1) both}
   @keyframes rvin{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
   /* Me. rises out of the light only after the explosion has had its time */
-  .motion .me-word.rv.lit{animation-duration:1.3s}
+  .motion .me-word.rv.lit{animation-duration:1.8s}
   .scene .label{display:block;margin-bottom:2.2em}
   .scene h2{font-size:clamp(1.7rem,4.4vw,2.5rem);line-height:1.25;margin-bottom:1em}
 
@@ -981,7 +981,7 @@
     /* the explosion owns the stage first; Me. rises out of the light */
     setTimeout(function(){
       var mw=document.querySelector('.me-word');if(mw)mw.classList.add('lit');
-    },motionOn?850:0);
+    },motionOn?1700:0);
     if(!motionOn){return;} /* static mode: world shifts color, no fireworks */
     /* the moment owns the stage: block the reader's scroll (not the page's own),
        glide Me. to dead center beneath the flash, release after the rise */
@@ -1002,7 +1002,7 @@
           var err=r.top+r.height/2-innerHeight/2;
           var sy=window.scrollY||window.pageYOffset||0;
           window.scrollTo(0,sy+err*(el<650?.16:1));
-          if(el<3000)requestAnimationFrame(glide);
+          if(el<3800)requestAnimationFrame(glide);
         };
         requestAnimationFrame(glide);
       }
@@ -1010,7 +1010,7 @@
         removeEventListener('wheel',bootBlock);
         removeEventListener('touchmove',bootBlock);
         removeEventListener('keydown',bootKeys);
-      },3000);
+      },3800);
     }catch(e){}
     try{
       /* white flash — and beneath it, the world turns to light for good */
