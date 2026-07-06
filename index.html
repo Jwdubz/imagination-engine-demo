@@ -997,9 +997,12 @@
         var g0=null;
         var glide=function(ts){
           if(g0===null)g0=ts;
-          var k=Math.min(1,(ts-g0)/650);
+          var el=ts-g0;
+          var k=Math.min(1,el/650);
           window.scrollTo(0,sy0+(syT-sy0)*(1-Math.pow(1-k,3)));
-          if(k<1)requestAnimationFrame(glide);
+          /* after the ease, pin dead-center every frame until release —
+             no momentum, fling, or stray gesture can steal the moment */
+          if(el<3000)requestAnimationFrame(glide);
         };
         requestAnimationFrame(glide);
       }
