@@ -32,6 +32,9 @@
   #cosmos{position:fixed;inset:0;z-index:1;pointer-events:none}
   /* the embers ride ABOVE the veils so they stay visible in every section */
   #emberFG{position:fixed;inset:0;z-index:3;pointer-events:none}
+  /* the site turns ON: black first, then the world arrives */
+  #boot{position:fixed;inset:0;background:#000;z-index:60;pointer-events:none;
+    opacity:1;transition:opacity 2.1s ease .45s}
   #flash{position:fixed;inset:0;z-index:40;pointer-events:none;background:#fff;opacity:0}
   main{position:relative;z-index:2}
   .veil{background:linear-gradient(180deg,transparent,var(--veil) 12%,var(--veil) 88%,transparent)}
@@ -104,10 +107,10 @@
   /* per-element reveal: each line takes its own breath as you scroll (animation, not transition,
      so it never collides with the world-turn color transitions) */
   .motion .rv{opacity:0}
-  .motion .rv.lit{opacity:1;animation:rvin .9s cubic-bezier(.22,1,.36,1) both}
-  @keyframes rvin{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+  .motion .rv.lit{opacity:1;animation:rvin 1.7s cubic-bezier(.35,.05,.25,1) both}
+  @keyframes rvin{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
   /* Me. rises out of the light only after the explosion has had its time */
-  .motion .me-word.rv.lit{animation-duration:1.8s}
+  .motion .me-word.rv.lit{animation-duration:2.4s}
   .scene .label{display:block;margin-bottom:2.2em}
   .scene h2{font-size:clamp(1.7rem,4.4vw,2.5rem);line-height:1.25;margin-bottom:1em}
 
@@ -233,6 +236,7 @@
   .rainbow{color:transparent!important}
 </style>
 
+<div id="boot" aria-hidden="true"></div>
 <canvas id="fogGL" aria-hidden="true"></canvas>
 <canvas id="cosmos" aria-hidden="true"></canvas>
 <canvas id="emberFG" aria-hidden="true"></canvas>
@@ -1112,6 +1116,12 @@
   }catch(e){}
 
   applyMotionClass();
+  /* lights on: hold black a beat, then fade the world in */
+  try{
+    var boot=document.getElementById('boot');
+    requestAnimationFrame(function(){requestAnimationFrame(function(){boot.style.opacity='0';});});
+    setTimeout(function(){try{boot.remove();}catch(e){}},3200);
+  }catch(e){}
   if(motionOn)startLoop();
   setTimeout(function(){
     var bs=document.querySelectorAll('.beat');
