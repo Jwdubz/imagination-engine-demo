@@ -552,7 +552,7 @@
       for(var k=0;k<es.length;k++){
         if(es[k].isIntersecting){es[k].target.classList.add('lit');io.unobserve(es[k].target);}
       }
-    },{threshold:.15,rootMargin:isMobile?'0px 0px -26% 0px':'0px 0px -6% 0px'});
+    },{threshold:.15,rootMargin:isMobile?'0px 0px -36% 0px':'0px 0px -6% 0px'});
     for(var u=0;u<units.length;u++)io.observe(units[u]);
   }catch(e){docEl.classList.remove('motion');motionOn=false;}
 
