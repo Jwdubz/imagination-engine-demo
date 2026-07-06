@@ -519,6 +519,10 @@
 
   /* ---------- reveals: every element takes its own breath ---------- */
   try{
+    /* phones scroll text into view faster — make it arrive deeper and a breath later */
+    var isMobile=false;
+    try{isMobile=matchMedia('(max-width: 640px)').matches;}catch(e){}
+    var baseDelay=isMobile?280:0;
     var units=[];
     var beats=document.querySelectorAll('.beat');
     for(var b=0;b<beats.length;b++){
@@ -528,7 +532,7 @@
         if(ch.classList.contains('receipts')){
           for(r=0;r<ch.children.length;r++){
             ch.children[r].classList.add('rv');
-            ch.children[r].style.animationDelay=(Math.min(gi,7)*95)+'ms';
+            ch.children[r].style.animationDelay=(baseDelay+Math.min(gi,7)*95)+'ms';
             units.push(ch.children[r]);gi++;
           }
         }else if(ch.classList.contains('me-word')){
@@ -539,7 +543,7 @@
           gi++;
         }else{
           ch.classList.add('rv');
-          ch.style.animationDelay=(Math.min(gi,7)*95)+'ms';
+          ch.style.animationDelay=(baseDelay+Math.min(gi,7)*95)+'ms';
           units.push(ch);gi++;
         }
       }
@@ -548,7 +552,7 @@
       for(var k=0;k<es.length;k++){
         if(es[k].isIntersecting){es[k].target.classList.add('lit');io.unobserve(es[k].target);}
       }
-    },{threshold:.15,rootMargin:'0px 0px -6% 0px'});
+    },{threshold:.15,rootMargin:isMobile?'0px 0px -16% 0px':'0px 0px -6% 0px'});
     for(var u=0;u<units.length;u++)io.observe(units[u]);
   }catch(e){docEl.classList.remove('motion');motionOn=false;}
 
