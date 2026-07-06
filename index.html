@@ -54,10 +54,6 @@
   .echo{text-align:center;color:var(--gold);font-size:1.12em;margin-top:1.4em}
   .book-line{text-align:center;color:var(--muted);font-size:1em;margin-top:3.2em}
 
-  #motion-chip{position:fixed;right:14px;bottom:14px;z-index:50;font-family:var(--sans);
-    font-size:11px;letter-spacing:.08em;padding:8px 14px;border:1px solid var(--indigo-4);
-    background:rgba(13,8,38,.92);color:var(--muted);cursor:pointer;border-radius:999px}
-  #motion-chip:hover{color:var(--parchment);border-color:var(--nebula-3)}
 
   /* ————— the mark ————— */
   .mark{position:relative;display:inline-block}
@@ -160,7 +156,7 @@
     --indigo-2:#f7efd9; --indigo-3:#dcc794; --indigo-4:#c9b183;
     --sienna:#4e1d4c; --sienna-bright:#4e1d4c; --brown:#d9c391;
   }
-  body,.receipt,.ask .cta,#motion-chip,footer{transition:background-color 1.4s ease,color 1.4s ease,
+  body,.receipt,.ask .cta,footer{transition:background-color 1.4s ease,color 1.4s ease,
     border-color 1.4s ease,box-shadow 1.4s ease}
   .label,.pain,.pain em,.witness,.honest strong,.loop-step .tick,.mirror .line,.mirror .me,a
     {transition:color 1.4s ease,border-color 1.4s ease}
@@ -174,7 +170,6 @@
   .after .mirror .me{color:#4e1d4c}
   .after .ask .cta{border-color:#4e1d4c;color:#4e1d4c}
   .after .ask .cta:hover{color:#fff}
-  .after #motion-chip{background:rgba(247,239,217,.92);border-color:#c9b183;color:#7d5378}
   .after footer{border-top-color:#dcc794}
   .after .mark-mono{color:#4e1d4c}
   .after ::selection{background:#4e1d4c;color:#ebd3a2}
@@ -242,7 +237,6 @@
 <canvas id="cosmos" aria-hidden="true"></canvas>
 <canvas id="emberFG" aria-hidden="true"></canvas>
 <div id="flash" aria-hidden="true"></div>
-<button id="motion-chip" type="button" hidden>motion: —</button>
 
 <main>
 <section class="opening">
@@ -446,18 +440,9 @@
 (function(){
   'use strict';
   var docEl=document.documentElement;
-  var chip=document.getElementById('motion-chip');
-  var reduced=false;
-  try{reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;}catch(e){}
-  /* this page's motion IS its message: default ON; the chip is the always-visible, honest pause */
+  /* this page's motion IS its message: always on, for everyone */
   var motionOn=true;
 
-  function setChip(){
-    chip.hidden=false;
-    chip.textContent=motionOn?
-      (reduced?'motion: on (overriding your system setting) — click to pause':'motion: on — click to pause')
-      :'motion: paused — click to resume';
-  }
   function applyMotionClass(){
     if(motionOn){docEl.classList.add('motion');}else{docEl.classList.remove('motion');}
   }
@@ -1122,19 +1107,7 @@
     });
   }catch(e){}
 
-  function setMotion(on){
-    motionOn=on;applyMotionClass();setChip();
-    if(on){startLoop();
-      var lits=document.querySelectorAll('.beat');
-      for(var i=0;i<lits.length;i++){
-        var r=lits[i].getBoundingClientRect();
-        if(r.top<innerHeight)lits[i].classList.add('lit');
-      }
-    }else{stopLoop();}
-  }
-  chip.addEventListener('click',function(){setMotion(!motionOn);});
-
-  applyMotionClass();setChip();
+  applyMotionClass();
   if(motionOn)startLoop();
   setTimeout(function(){
     var bs=document.querySelectorAll('.beat');
