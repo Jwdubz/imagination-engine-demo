@@ -983,14 +983,27 @@
       var mw=document.querySelector('.me-word');if(mw)mw.classList.add('lit');
     },motionOn?850:0);
     if(!motionOn){return;} /* static mode: world shifts color, no fireworks */
-    /* the moment owns the stage: no scrolling until Me. has fully risen */
+    /* the moment owns the stage: block the reader's scroll (not the page's own),
+       glide Me. to dead center beneath the flash, release after the rise */
     try{
-      docEl.classList.add('booting');
       addEventListener('wheel',bootBlock,{passive:false});
       addEventListener('touchmove',bootBlock,{passive:false});
       addEventListener('keydown',bootKeys);
+      var mwc=document.querySelector('.me-word');
+      if(mwc){
+        var mcr=mwc.getBoundingClientRect();
+        var sy0=window.scrollY||window.pageYOffset||0;
+        var syT=sy0+mcr.top+mcr.height/2-innerHeight/2;
+        var g0=null;
+        var glide=function(ts){
+          if(g0===null)g0=ts;
+          var k=Math.min(1,(ts-g0)/650);
+          window.scrollTo(0,sy0+(syT-sy0)*(1-Math.pow(1-k,3)));
+          if(k<1)requestAnimationFrame(glide);
+        };
+        requestAnimationFrame(glide);
+      }
       setTimeout(function(){
-        docEl.classList.remove('booting');
         removeEventListener('wheel',bootBlock);
         removeEventListener('touchmove',bootBlock);
         removeEventListener('keydown',bootKeys);
