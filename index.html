@@ -347,12 +347,6 @@
   </filter>
 </svg>
 
-<section class="mirror" id="mirror">
-  <div class="beat">
-    <p class="line">Come to find out my ideal client was...</p>
-  </div>
-</section>
-
 <section class="mirror-me" id="mirror-me">
   <div class="beat">
     <p class="me-word"><span id="the-me" class="rainbow">Me.</span></p>
@@ -599,8 +593,8 @@
         }else if(ch.classList.contains('held-reflection')){
           /* the water reflection follows its source line via CSS, not the observer */
           gi++;
-        }else if(beats[b].parentElement&&(beats[b].parentElement.id==='mirror-held'||beats[b].parentElement.id==='mirror')){
-          /* the mirror + realization lines live on the blackout, not the cosmos — never observed */
+        }else if(beats[b].parentElement&&beats[b].parentElement.id==='mirror-held'){
+          /* the mirror line lives on the blackout, not the cosmos — never observed */
           ch.classList.add('rv');gi++;
         }else{
           ch.classList.add('rv');
