@@ -65,6 +65,11 @@
   .credo{color:var(--gold)}
   .echo{text-align:center;color:var(--gold);font-size:1.12em;margin-top:1.4em}
   .book-line{text-align:center;color:var(--muted);font-size:1em;margin-top:3.2em}
+  /* the book link's underline is a rainbow bar, not the flat default (text stays rainbow via .rainbow) */
+  .book-line a{text-decoration:none;padding-bottom:3px;
+    background:linear-gradient(92deg,#ff7ac2,#ffb35c,#ffe66b,#7dee9a,#63d8f2,#7d9bff,#c68af7);
+    background-repeat:no-repeat;background-position:0 100%;background-size:100% 2px}
+  .after .book-line a{background-image:linear-gradient(92deg,#e5484d,#e5a13a,#c9a227,#2f9e57,#2f8fb0,#7a5fd0)}
 
 
   /* ————— the mark ————— */
