@@ -145,13 +145,15 @@
   #mirrorVeil{position:fixed;inset:0;background:#000;z-index:40;opacity:0;pointer-events:none;
     transition:opacity 1s ease}
   #mirrorVeil.on{opacity:1}
-  #mirrorVeil .brutal,#mirrorVeil .held-group{position:absolute;left:0;right:0;top:50%;
+  #mirrorVeil .brutal,#mirrorVeil .held-group,#mirrorVeil .realize{position:absolute;left:0;right:0;top:50%;
     transform:translateY(-50%);padding:0 24px;text-align:center}
   #mirrorVeil .line{color:var(--gold);line-height:1.35;margin:0;opacity:0}
   #mirrorVeil .held{font-size:clamp(1.8rem,5.4vw,3rem);transition:opacity 1.7s ease}
   #mirrorVeil .held.show{opacity:1}
   #mirrorVeil .brutal{font-size:clamp(1.35rem,3.8vw,2.1rem);line-height:1.5;transition:opacity 1.5s ease}
   #mirrorVeil .brutal.show{opacity:1}
+  #mirrorVeil .realize{font-size:clamp(1.6rem,4.6vw,2.5rem);line-height:1.4;transition:opacity 1.6s ease}
+  #mirrorVeil .realize.show{opacity:1}
   #mirrorVeil .held-reflection{font-size:clamp(1.8rem,5.4vw,3rem);margin:-.30em 0 0}
   #mirrorVeil .held-reflection.show{opacity:.58}
   #mirror-bridge .line{font-size:clamp(1.35rem,3.4vw,2.1rem)}
@@ -327,6 +329,7 @@
     <p class="line held">It held up a mirror.</p>
     <p class="line held-reflection">It held up a mirror.</p>
   </div>
+  <p class="line realize">Come to find out my ideal client was...</p>
 </div>
 <section class="mirror" id="mirror-held">
   <div class="beat">
@@ -596,8 +599,8 @@
         }else if(ch.classList.contains('held-reflection')){
           /* the water reflection follows its source line via CSS, not the observer */
           gi++;
-        }else if(beats[b].parentElement&&beats[b].parentElement.id==='mirror-held'){
-          /* the held line prints only inside the blackout — the moment calls it up */
+        }else if(beats[b].parentElement&&(beats[b].parentElement.id==='mirror-held'||beats[b].parentElement.id==='mirror')){
+          /* the mirror + realization lines live on the blackout, not the cosmos — never observed */
           ch.classList.add('rv');gi++;
         }else{
           ch.classList.add('rv');
@@ -1139,20 +1142,17 @@
     if(mirrorPlayed)return;mirrorPlayed=true;
     var mv=document.getElementById('mirrorVeil');
     var held=document.getElementById('mirror-held');
-    var src=held?held.querySelector('.line:not(.held-reflection)'):null;
-    var litSrc=function(){ /* the real line arrives silently, ready for the handoff */
-      if(src){src.classList.add('lit');src.style.animation='none';src.style.opacity='1';}
-    };
-    if(!motionOn){litSrc();return;}
+    if(!motionOn){return;} /* static mode: the sections read plainly, no veil */
     try{
       addEventListener('wheel',bootBlock,{passive:false});
       addEventListener('touchmove',bootBlock,{passive:false});
       addEventListener('keydown',bootKeys);
-      /* closed-loop pin: the moment centers itself and holds the stage */
+      /* closed-loop pin: hold the scroll steady while the whole climax plays on the black */
       var tgt=held.querySelector('.beat')||held;
       var brutal=mv.querySelector('.brutal');
       var vheld=mv.querySelector('.held');
       var vrefl=mv.querySelector('.held-reflection');
+      var vrealize=mv.querySelector('.realize');
       var g0=null;
       var glide=function(ts){
         if(g0===null)g0=ts;
@@ -1161,26 +1161,31 @@
         var err=r.top+r.height/2-innerHeight/2;
         var sy=window.scrollY||window.pageYOffset||0;
         window.scrollTo(0,sy+err*(el<650?.16:1));
-        if(el<9200)requestAnimationFrame(glide);
+        if(el<11600)requestAnimationFrame(glide);
       };
       requestAnimationFrame(glide);
       mv.classList.add('on');                                     /* the world goes dark (1s) */
-      setTimeout(function(){if(brutal)brutal.classList.add('show');},1200);    /* brutal honesty, first */
-      setTimeout(function(){if(brutal)brutal.classList.remove('show');},4200); /* ...it recedes */
-      setTimeout(function(){                                       /* then the mirror — bare on the void;
-                                                                      its reflection waits for the returned cosmos */
+      setTimeout(function(){if(brutal)brutal.classList.add('show');},1000);     /* 1 — brutal honesty */
+      setTimeout(function(){if(brutal)brutal.classList.remove('show');},3400);
+      setTimeout(function(){                                       /* 2 — the mirror, with its reflection */
         if(vheld)vheld.classList.add('show');
-      },5000);
-      setTimeout(litSrc,7900);                                    /* real line takes the stage... */
-      setTimeout(function(){mv.classList.remove('on');},8100);    /* ...as the cosmos returns */
+        if(vrefl)vrefl.classList.add('show');
+      },4200);
+      setTimeout(function(){
+        if(vheld)vheld.classList.remove('show');
+        if(vrefl)vrefl.classList.remove('show');
+      },7000);
+      setTimeout(function(){if(vrealize)vrealize.classList.add('show');},7800); /* 3 — the realization */
+      setTimeout(function(){mv.classList.remove('on');},10600);   /* the veil lifts toward Me. */
       setTimeout(function(){
         if(brutal)brutal.classList.remove('show');
         if(vheld)vheld.classList.remove('show');
         if(vrefl)vrefl.classList.remove('show');
+        if(vrealize)vrealize.classList.remove('show');
         removeEventListener('wheel',bootBlock);
         removeEventListener('touchmove',bootBlock);
         removeEventListener('keydown',bootKeys);
-      },9200);
+      },11600);
     }catch(e){}
   }
   function armMirror(){
@@ -1207,10 +1212,8 @@
       mirrorPlayed=false;
       try{var mvv=document.getElementById('mirrorVeil');
         if(mvv){mvv.classList.remove('on');
-          var vls=mvv.querySelectorAll('.brutal,.held,.held-reflection');
+          var vls=mvv.querySelectorAll('.brutal,.held,.held-reflection,.realize');
           for(var vi=0;vi<vls.length;vi++)vls[vi].classList.remove('show');}}catch(e){}
-      try{var hl1=document.querySelector('#mirror-held .line');
-        if(hl1){hl1.classList.remove('lit');hl1.style.animation='';hl1.style.opacity='';}}catch(e){}
       if(hio)hio.disconnect();
       window.scrollTo({top:0,behavior:motionOn?'smooth':'auto'});
       (function armWhenHome(){
@@ -1235,7 +1238,6 @@
     var hR0=document.getElementById('mirror-held').getBoundingClientRect();
     if(hR0.bottom<innerHeight*.5){
       mirrorPlayed=true;
-      var hl0=document.querySelector('#mirror-held .line');if(hl0)hl0.classList.add('lit');
       if(hio)hio.disconnect();
     }
     var meR0=document.getElementById('mirror-me').getBoundingClientRect();
