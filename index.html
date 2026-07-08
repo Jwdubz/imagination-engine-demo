@@ -44,6 +44,11 @@
   @keyframes bootFade{from{opacity:1}to{opacity:0}}
   #boot .boot-2{opacity:0;animation:rise 1.3s 3.6s ease forwards,bootFade .9s 5.7s ease forwards}
   #boot .boot-3{opacity:0;animation:rise 1.5s 6.6s ease forwards,bootFade .9s 9.1s ease forwards}
+  /* the rainbow gear crowns the third line — same breath in, same breath out */
+  #boot .boot-mark-wrap{position:absolute;left:0;right:0;bottom:calc(50% + 3.1rem);
+    display:flex;justify-content:center}
+  #boot .mark{opacity:0;animation:rise 1.2s 7.5s ease forwards,bootFade .9s 9.1s ease forwards;
+    filter:drop-shadow(0 0 18px rgba(176,111,216,.45))}
   #flash{position:fixed;inset:0;z-index:40;pointer-events:none;background:#fff;opacity:0}
   main{position:relative;z-index:2}
   .veil{background:linear-gradient(180deg,transparent,var(--veil) 12%,var(--veil) 88%,transparent)}
@@ -279,6 +284,7 @@
 </style>
 
 <div id="boot" aria-hidden="true">
+  <div class="boot-mark-wrap"><div class="mark" id="mark-boot"></div></div>
   <p class="boot-line boot-1"><span class="rainbow">Close The Gap</span></p>
   <p class="boot-line boot-2"><span class="rainbow">Between Your Reality</span></p>
   <p class="boot-line boot-3"><span class="rainbow">And Your Imagination</span></p>
@@ -566,6 +572,7 @@
   /* the top mark carries BOTH natures: white gear by night, rainbow after the turn */
   mountMark('mark-open',64,false);
   mountMark('mark-open',64,true);
+  mountMark('mark-boot',88,true);
   mountMark('mark-prism',210,true);
   mountMark('mark-badge',72,true);
 
@@ -1155,22 +1162,22 @@
         var err=r.top+r.height/2-innerHeight/2;
         var sy=window.scrollY||window.pageYOffset||0;
         window.scrollTo(0,sy+err*(el<650?.16:1));
-        if(el<11600)requestAnimationFrame(glide);
+        if(el<14600)requestAnimationFrame(glide);
       };
       requestAnimationFrame(glide);
       mv.classList.add('on');                                     /* the world goes dark (1s) */
       setTimeout(function(){if(brutal)brutal.classList.add('show');},1000);     /* 1 — brutal honesty */
-      setTimeout(function(){if(brutal)brutal.classList.remove('show');},3400);
+      setTimeout(function(){if(brutal)brutal.classList.remove('show');},4400);
       setTimeout(function(){                                       /* 2 — the mirror, with its reflection */
         if(vheld)vheld.classList.add('show');
         if(vrefl)vrefl.classList.add('show');
-      },4200);
+      },5200);
       setTimeout(function(){
         if(vheld)vheld.classList.remove('show');
         if(vrefl)vrefl.classList.remove('show');
-      },7000);
-      setTimeout(function(){if(vrealize)vrealize.classList.add('show');},7800); /* 3 — the realization */
-      setTimeout(function(){mv.classList.remove('on');},10600);   /* the veil lifts toward Me. */
+      },9000);
+      setTimeout(function(){if(vrealize)vrealize.classList.add('show');},9800); /* 3 — the realization */
+      setTimeout(function(){mv.classList.remove('on');},13600);   /* the veil lifts toward Me. */
       setTimeout(function(){
         if(brutal)brutal.classList.remove('show');
         if(vheld)vheld.classList.remove('show');
@@ -1179,7 +1186,7 @@
         removeEventListener('wheel',bootBlock);
         removeEventListener('touchmove',bootBlock);
         removeEventListener('keydown',bootKeys);
-      },11600);
+      },14600);
     }catch(e){}
   }
   function armMirror(){
