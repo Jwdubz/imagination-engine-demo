@@ -611,6 +611,24 @@
 <noscript><style>#boot{display:none!important}.scroll-hint{opacity:1!important}</style></noscript>
 
 <style id="wave-fixes">
+  /* Factory-demo wave: semantic lanes, latest-only ledger pulse, gate thesis, result bridge */
+  .imcRun .lane{grid-template-columns:38px 128px 1fr 92px}
+  .imcRun .lane-state{text-align:right;font-size:9px;letter-spacing:.14em;opacity:.8}
+  .imcRun .lane-checking{color:var(--imc-parchment)}
+  .imcRun .lane-checking i::after{animation-duration:1.4s;background:var(--imc-lamplight)}
+  .imcRun .lane-held{color:var(--imc-faint)}
+  .imcRun .lane-held i::after{transform:none;width:100%;background:var(--imc-line-strong);animation:none}
+  .imcRun .lane-done{color:var(--imc-mist)}
+  .imcRun .lane-done i::after{transform:none;width:100%;background:var(--imc-honey);animation:none}
+  .imcRun .event-active:not(.event-latest) .event-mark{animation:none;opacity:.85}
+  .imcRun .gate-thesis{margin:14px 0 0;color:var(--imc-lamplight);font-size:13px;font-weight:550}
+  .imcRun .result-bridge{color:var(--imc-lamplight)}
+  @media (max-width:640px){
+    .imcRun .lane{grid-template-columns:30px 96px 1fr}
+    /* visually hidden on narrow screens, still in the accessibility tree */
+    .imcRun .lane-state{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;
+      clip:rect(0 0 0 0);white-space:nowrap;border:0}
+  }
   /* Codex F8: desktop control targets meet the 44px floor */
   .imcRun .run-controls button{min-height:44px}
   /* Codex F5: the record's three attestations stay quiet until the run seals */
@@ -785,7 +803,7 @@
           <span class="live-beacon" aria-hidden="true"></span>
           <div><small id="imc-runid-label">Simulated run / IMC-042</small><strong id="imc-shortname">Product launch</strong></div>
         </div>
-        <div class="factory-telemetry" aria-label="Current run metrics">
+        <div class="factory-telemetry" aria-label="Simulated run telemetry">
           <span><small>Specialists</small><strong id="imc-t-specialists">—</strong></span>
           <span><small>Checks passed</small><strong id="imc-t-checks">00</strong></span>
           <span><small>Artifacts</small><strong id="imc-t-artifacts">00</strong></span>
@@ -821,7 +839,8 @@
             <p class="panel-kicker">Intention brief / ready</p>
             <h3 id="imc-ready-objective">Turn the launch brief into a complete, evidence-backed launch package.</h3>
             <p class="panel-body">The Imagination Collective will map the work, dispatch AI specialists,
-            verify their output, and stop before the proposed external action.</p>
+            verify their output, and stop before the proposed external action. The run is compressed
+            to seconds; the owner gate waits for you.</p>
             <div class="artifact-preview" aria-label="Expected deliverables" id="imc-ready-artifacts"></div>
             <div class="panel-actions"><button type="button" class="imc-btn imc-btn-primary" id="imc-btn-run">Run this intention <span aria-hidden="true">→</span></button></div>
           </div>
@@ -831,10 +850,10 @@
             <h3 id="imc-running-title">Objective locked</h3>
             <p class="panel-body" id="imc-running-desc"></p>
             <div class="work-lanes" aria-label="Current specialist activity" id="imc-lanes">
-              <div class="lane"><span>01</span><strong>Research</strong><i aria-hidden="true"></i></div>
-              <div class="lane"><span>02</span><strong>Architecture</strong><i aria-hidden="true"></i></div>
-              <div class="lane"><span>03</span><strong>Production</strong><i aria-hidden="true"></i></div>
-              <div class="lane"><span>04</span><strong>Review</strong><i aria-hidden="true"></i></div>
+              <div class="lane"><span>01</span><strong>Research</strong><i aria-hidden="true"></i><small class="lane-state">queued</small></div>
+              <div class="lane"><span>02</span><strong>Architecture</strong><i aria-hidden="true"></i><small class="lane-state">queued</small></div>
+              <div class="lane"><span>03</span><strong>Production</strong><i aria-hidden="true"></i><small class="lane-state">queued</small></div>
+              <div class="lane"><span>04</span><strong>Review</strong><i aria-hidden="true"></i><small class="lane-state">queued</small></div>
             </div>
           </div>
 
@@ -852,15 +871,16 @@
             <p class="panel-body">Work is complete up to this boundary. Review the exact action before
             anything leaves the run.</p>
             <div class="proposed-action"><small>Proposed action</small><strong id="imc-gate-action"></strong></div>
-            <ul class="prepared-list"><li>Final artifact package</li><li>Destination and impact check</li><li>Approval-ready action record</li></ul>
+            <ul class="prepared-list" id="imc-prep-list"></ul>
+            <p class="gate-thesis">Autonomy ran to this line. Nothing crosses it without you.</p>
             <p class="simulation-note"><strong>Simulation:</strong> nothing will be sent, published,
             purchased, merged, or changed outside this page.</p>
-            <div class="panel-actions"><button type="button" class="imc-btn imc-btn-primary" id="imc-btn-approve">Authorize this action <span aria-hidden="true">→</span></button><button type="button" class="imc-btn imc-btn-secondary" id="imc-btn-block">Keep blocked</button></div>
+            <div class="panel-actions"><button type="button" class="imc-btn imc-btn-primary" id="imc-btn-approve">Authorize this simulated action <span aria-hidden="true">→</span></button><button type="button" class="imc-btn imc-btn-secondary" id="imc-btn-block">Keep blocked</button></div>
           </div>
 
           <div class="imc-panel imc-authorized imc-hidden" id="imc-panel-authorized">
             <span class="authorization-seal" aria-hidden="true">✓</span>
-            <div><p class="panel-kicker">Authorization recorded</p><h3 id="imc-auth-heading" tabindex="-1">Releasing the approved work.</h3>
+            <div><p class="panel-kicker">Authorization recorded</p><h3 id="imc-auth-heading" tabindex="-1">Releasing the approved work — in simulation.</h3>
             <p class="panel-body">The owner decision is now part of this run’s record.</p></div>
           </div>
 
@@ -868,6 +888,7 @@
             <p class="panel-kicker" id="imc-result-kicker">Run complete</p>
             <h3 id="imc-result-heading" tabindex="-1">Objective delivered.</h3>
             <p class="panel-body" id="imc-result-copy"></p>
+            <p class="panel-body result-bridge imc-hidden" id="imc-result-bridge"></p>
             <div class="result-stats imc-hidden" id="imc-result-stats"><span><strong id="imc-stat-phases">06</strong> phases completed</span><span><strong id="imc-stat-checks">28</strong> checks passed</span><span><strong>00</strong> unapproved actions</span></div>
             <div class="panel-actions imc-hidden" id="imc-result-actions"><a class="imc-btn imc-btn-primary" href="#run-record">Inspect the run record <span aria-hidden="true">↓</span></a><button type="button" class="imc-btn imc-btn-secondary" id="imc-btn-reset">Choose another intention</button></div>
           </div>
@@ -883,7 +904,7 @@
       </div>
     </div>
 
-    <div class="imcRecord" id="run-record">
+    <div class="imcRecord" id="run-record" tabindex="-1">
       <div class="record-masthead">
         <span class="record-brand">THE IMAGINATION COLLECTIVE</span>
         <span id="imc-rec-runid">Simulated run record / IMC-042</span>
@@ -2341,28 +2362,31 @@ both directions.
     launch:{index:'01',shortName:'Product launch',
       objective:'Turn the launch brief into a complete, evidence-backed launch package.',
       gateAction:'Publish the approved launch brief and notify the go-to-market team.',
+      deployDesc:'Positioning, message architecture, and rollout assets take shape in four parallel lanes.',
       artifacts:['Launch brief','Message architecture','Rollout plan','Readiness record']},
     feature:{index:'02',shortName:'Feature delivery',
       objective:'Convert product intent into a tested, release-ready implementation package.',
       gateAction:'Merge the reviewed change and release it to the production environment.',
+      deployDesc:'Implementation, tests, and release notes take shape in four parallel lanes.',
       artifacts:['Implementation plan','Test evidence','Release notes','Change record']},
     opportunity:{index:'03',shortName:'Opportunity map',
       objective:'Synthesize the market into a decision-ready opportunity thesis.',
       gateAction:'Send the approved outreach brief to the selected external partners.',
+      deployDesc:'The market map, evidence ledger, and decision brief take shape in four parallel lanes.',
       artifacts:['Market map','Evidence ledger','Decision brief','Risk register']}
   };
   var phases=[
-    {key:'intent',index:'01',name:'Intent',title:'Objective locked',
+    {key:'intent',index:'01',name:'Intent',title:'Structuring the objective',
      desc:'Outcome, constraints, and the definition of done are captured before work begins.'},
-    {key:'map',index:'02',name:'Map',title:'Work mapped',
+    {key:'map',index:'02',name:'Map',title:'Mapping the work',
      desc:'Dependencies, risks, unknowns, and owner-only decisions become an inspectable plan.'},
-    {key:'deploy',index:'03',name:'Deploy',title:'Specialists dispatched',
+    {key:'deploy',index:'03',name:'Deploy',title:'Specialists in motion',
      desc:'Focused AI specialists work in parallel with shared context, artifacts, and clear boundaries.'},
-    {key:'verify',index:'04',name:'Verify',title:'Evidence verified',
+    {key:'verify',index:'04',name:'Verify',title:'Checking the evidence',
      desc:'Claims are traced, outputs are tested, and weak work is revised before delivery.'},
     {key:'gate',index:'05',name:'Owner gate',title:'Authority protected',
      desc:'External publication, commitment, permission, and spend stop for an owner decision.'},
-    {key:'deliver',index:'06',name:'Deliver',title:'Delivery assembled',
+    {key:'deliver',index:'06',name:'Deliver',title:'Assembling the delivery',
      desc:'Artifacts, decisions, and verification receipts become one inspectable run record.'}
   ];
   var phaseForState={intent:0,map:1,deploy:2,verify:3,gate_waiting:4,gate_approved:4,deliver:5,complete:5,blocked:4};
@@ -2385,15 +2409,15 @@ both directions.
 
   function eventFor(state){
     switch(state){
-      case 'intent':return {label:'Objective locked',detail:'Scope and authority boundaries recorded',kind:'verified'};
-      case 'map':return {label:'Work graph forming',detail:'Dependencies and owner gates being mapped',kind:'active'};
-      case 'deploy':return {label:'Specialists dispatched',detail:'Four specialist lanes active',kind:'active'};
-      case 'verify':return {label:'Evidence checks running',detail:'Claims, artifacts, and policies inspected',kind:'active'};
-      case 'gate_waiting':return {label:'Authority protected',detail:'External action held for the owner',kind:'protected'};
-      case 'gate_approved':return {label:'Owner authorization recorded',detail:'Approved demo action released',kind:'decision'};
-      case 'deliver':return {label:'Delivery assembled',detail:'Artifacts and receipts packaged',kind:'active'};
-      case 'complete':return {label:'Run record sealed',detail:'Simulated delivery ready — sample evidence, not live-system proof',kind:'verified'};
-      case 'blocked':return {label:'Action retained',detail:'No external change was made',kind:'decision'};
+      case 'intent':return {k:'intent',label:'Objective locked',detail:'Scope and authority boundaries recorded',kind:'verified'};
+      case 'map':return {k:'map',label:'Work graph forming',detail:'Dependencies and owner gates being mapped',kind:'active'};
+      case 'deploy':return {k:'deploy',label:'Specialists dispatched',detail:'Four specialist lanes active',kind:'active'};
+      case 'verify':return {k:'verify',label:'Evidence checks running',detail:'Claims, artifacts, and policies inspected',kind:'active'};
+      case 'gate_waiting':return {k:'gate',label:'Authority protected',detail:'External action held for the owner',kind:'protected'};
+      case 'gate_approved':return {k:'approved',label:'Owner authorization recorded',detail:'Approved demo action released',kind:'decision'};
+      case 'deliver':return {k:'deliver',label:'Assembling delivery',detail:'Artifacts and receipts packaging',kind:'active'};
+      case 'complete':return {k:'sealed',label:'Run record sealed',detail:'Simulated delivery ready — sample evidence, not live-system proof',kind:'verified'};
+      case 'blocked':return {k:'retained',label:'Action retained',detail:'No external change was made',kind:'decision'};
       default:return null;
     }
   }
@@ -2456,11 +2480,42 @@ both directions.
     var p=currentPhase();return artifactLadder[Math.max(0,p)]||0;
   }
 
+  /* telemetry count-up: values still come only from the fixed sim ladders; the ticker
+     just walks the display toward the current ladder value instead of jumping at phase
+     entry. Reduced-motion snaps. */
+  var statTick=null,statShown={checks:-1,art:-1};
+  function statTargets(){return {checks:checksPassed(),art:artifactCount()};}
+  function writeStats(c,a){setText(els.tChecks,('0'+c).slice(-2));setText(els.tArt,('0'+a).slice(-2));}
+  function stopStatTick(){if(statTick){clearInterval(statTick);statTick=null;}}
+  function startStatTick(){
+    if(statTick||prefersCalm)return;
+    statTick=setInterval(function(){
+      var t=statTargets();
+      if(statShown.checks===t.checks&&statShown.art===t.art){stopStatTick();return;}
+      statShown.checks=statShown.checks<t.checks?Math.min(t.checks,statShown.checks+Math.max(1,Math.ceil((t.checks-statShown.checks)/4))):t.checks;
+      statShown.art=statShown.art<t.art?Math.min(t.art,statShown.art+1):t.art;
+      writeStats(statShown.checks,statShown.art);
+    },220);
+  }
+
+  /* semantic lane states per phase (visible + assistive): the four lanes stop being
+     one binary bar-set; verify emphasizes Review while the others hold for check */
+  function laneClassesFor(p,demo){
+    if(demo==='complete'||demo==='blocked'||p>=5)return ['lane lane-done','lane lane-done','lane lane-done','lane lane-done'];
+    if(demo==='ready')return ['lane','lane','lane','lane'];
+    if(p===4)return ['lane lane-held','lane lane-held','lane lane-held','lane lane-held'];
+    if(p===3)return ['lane lane-held','lane lane-held','lane lane-held','lane active lane-checking'];
+    if(p===2)return ['lane active','lane active','lane active','lane active'];
+    if(p===1)return ['lane active','lane active','lane','lane'];
+    return ['lane active','lane','lane','lane'];
+  }
+  var laneStateWord={'lane':'queued','lane active':'working','lane active lane-checking':'checking','lane lane-held':'held for check','lane lane-done':'complete'};
+
   function pushEv(ev){
     var last=S.events[S.events.length-1];
-    if(last&&last.label===ev.label)return;
+    if(last&&last.k===ev.k)return;
     var elapsed=S.startedAt?Math.max(0,Math.round((Date.now()-S.startedAt)/1000)):0;
-    S.events.push({label:ev.label,detail:ev.detail,kind:ev.kind,
+    S.events.push({k:ev.k,label:ev.label,detail:ev.detail,kind:ev.kind,
       time:'T+'+(elapsed<10?'0':'')+elapsed});
   }
   function emitEvent(state){
@@ -2468,8 +2523,8 @@ both directions.
     if(!ev)return;
     /* the map phase finalizes in the record before deploy begins (both advance and skip paths);
        idempotent across the whole ledger so pause/resume re-entry never re-injects it */
-    if(state==='deploy'&&!S.events.some(function(e){return e.label==='Work graph signed';}))
-      pushEv({label:'Work graph signed',detail:'Dependencies and owner gates mapped',kind:'verified'});
+    if(state==='deploy'&&!S.events.some(function(e){return e.k==='map_signed';}))
+      pushEv({k:'map_signed',label:'Work graph signed',detail:'Dependencies and owner gates mapped',kind:'verified'});
     pushEv(ev);
   }
   function schedule(){
@@ -2488,7 +2543,7 @@ both directions.
   function focusFor(state){
     if(state==='gate_waiting'){setTimeout(function(){try{els.gateHeading.focus();}catch(e){}},80);}
     if(state==='gate_approved'){setTimeout(function(){try{document.getElementById('imc-auth-heading').focus();}catch(e){}},80);}
-    if(state==='complete'||state==='blocked'){setTimeout(function(){try{els.resultHeading.focus();}catch(e){}},80);}
+    if(state==='complete'||state==='blocked'||state==='deliver'){setTimeout(function(){try{els.resultHeading.focus();}catch(e){}},80);}
   }
   function scrollToWindow(){
     try{win.scrollIntoView({behavior:prefersCalm?'auto':'smooth',block:'start'});}catch(e){}
@@ -2497,6 +2552,7 @@ both directions.
   function begin(newRecord){
     if(newRecord){S.counter+=1;S.runId='IMC-'+('00'+S.counter).slice(-3);}
     S.events=[];S.decision=null;S.decisionTime=null;S.resume=null;S.autoPaused=false;
+    stopStatTick();statShown.checks=-1;statShown.art=-1;
     S.startedAt=Date.now();
     S.demo='intent';
     emitEvent('intent');
@@ -2545,6 +2601,7 @@ both directions.
   function reset(quiet){
     S.counter+=1;S.runId='IMC-'+('00'+S.counter).slice(-3);
     S.events=[];S.decision=null;S.decisionTime=null;S.resume=null;S.autoPaused=false;
+    stopStatTick();statShown.checks=-1;statShown.art=-1;
     S.startedAt=null;S.demo='ready';
     schedule();render();
     if(!quiet)scrollToWindow();
@@ -2577,7 +2634,11 @@ both directions.
     var prior=win.className.match(/state-[a-z_]+/);
     if(prior)win.classList.remove(prior[0]);
     win.classList.add('state-'+S.demo);
-    var progress=S.demo==='ready'?0:Math.max(8,Math.min(92,((Math.max(0,p)+0.5)/6)*100));
+    var trackPos=[10,25,41,58,75,90];
+    var progress=S.demo==='ready'?0:
+      S.demo==='complete'?100:
+      S.demo==='blocked'?trackPos[4]:
+      trackPos[Math.max(0,Math.min(5,p))];
     win.style.setProperty('--imc-progress',progress+'%');
 
     els.pill.className='state-pill state-pill-'+S.demo;
@@ -2587,11 +2648,23 @@ both directions.
     setText(els.runIdLabel,'Simulated run / '+S.runId);
     setText(els.shortName,m.shortName);
     var srMsg=statusCopy[S.demo]||'';
-    setText(els.sr,srMsg?(srMsg.indexOf('Simulation')===0?srMsg:'Simulation: '+srMsg):'');
+    if(srMsg&&running.indexOf(S.demo)>=0&&phases[p])srMsg=phases[p].name+' phase. '+srMsg;
+    srMsg=srMsg?(srMsg.indexOf('Simulation')===0?srMsg:'Simulation: '+srMsg):'';
+    if(els.sr.textContent!==srMsg)setText(els.sr,srMsg);
 
     setText(els.tSpec,p>=2?'04':(p>=0?'01':'—'));
-    setText(els.tChecks,('0'+checksPassed()).slice(-2));
-    setText(els.tArt,('0'+artifactCount()).slice(-2));
+    var tgt=statTargets();
+    if(!prefersCalm&&(isRunning()||S.demo==='gate_waiting')){
+      if(statShown.checks<0){statShown.checks=tgt.checks;statShown.art=tgt.art;}
+      startStatTick();
+      writeStats(statShown.checks,statShown.art);
+    }else{
+      stopStatTick();
+      /* pause freezes the glass where the walk stopped; every other settled
+         state snaps to its ladder value */
+      if(S.demo!=='paused'||statShown.checks<0){statShown.checks=tgt.checks;statShown.art=tgt.art;}
+      writeStats(statShown.checks,statShown.art);
+    }
 
     var items=els.phases.children;
     for(i=0;i<items.length;i++){
@@ -2634,6 +2707,11 @@ both directions.
       show('paused');
     }else if(S.demo==='gate_waiting'){
       setText(els.gateAction,m.gateAction);
+      var prep=$('imc-prep-list');
+      if(prep){
+        prep.textContent='';
+        for(i=0;i<m.artifacts.length;i++){var pli=document.createElement('li');pli.textContent=m.artifacts[i];prep.appendChild(pli);}
+      }
       show('gate');
     }else if(S.demo==='gate_approved'){
       show('authorized');
@@ -2648,6 +2726,12 @@ both directions.
         'The Collective is sealing the delivery with its plan, evidence, decisions, and receipts.');
       els.resultStats.classList.toggle('imc-hidden',!(done||blocked));
       els.resultActions.classList.toggle('imc-hidden',!(done||blocked));
+      var bridge=$('imc-result-bridge');
+      if(bridge){
+        bridge.classList.toggle('imc-hidden',!(done||blocked));
+        setText(bridge,done?'The simulation ends here. The audit is where your real one starts.':
+          blocked?'Nothing left the room — that was the point. The audit is where your real one starts.':'');
+      }
       setText(els.statPhases,done?'06':'04');
       setText(els.statChecks,done?'28':'24');
       show('result');
@@ -2656,12 +2740,17 @@ both directions.
       setText(els.runningPhase,'Phase '+ph.index);
       setText(els.runningName,ph.name);
       setText(els.runningTitle,ph.title);
-      setText(els.runningDesc,ph.desc);
-      var lanes=els.lanes.children;
-      for(i=0;i<lanes.length;i++){
-        lanes[i].className=(p>=2||i===0)?'lane active':'lane';
-      }
+      setText(els.runningDesc,(ph.key==='deploy'&&m.deployDesc)?m.deployDesc:ph.desc);
       show('running');
+    }
+    /* lanes update on every state, not just the running panel, so the hidden
+       lane DOM never holds a stale phase after a terminal or paused render */
+    var lanes=els.lanes.children;
+    var laneCls=laneClassesFor(p,S.demo);
+    for(i=0;i<lanes.length;i++){
+      lanes[i].className=laneCls[i];
+      var lst=lanes[i].querySelector('.lane-state');
+      if(lst)lst.textContent=laneStateWord[laneCls[i]]||'';
     }
 
     els.events.textContent='';
@@ -2672,7 +2761,8 @@ both directions.
     }else{
       for(i=0;i<S.events.length;i++){
         var ev=S.events[i];
-        var row=document.createElement('li');row.className='event-'+ev.kind;
+        var row=document.createElement('li');
+        row.className='event-'+ev.kind+(i===S.events.length-1?' event-latest':'');
         var t=document.createElement('time');t.textContent=ev.time;
         var d=document.createElement('div');
         var b=document.createElement('strong');b.textContent=ev.label;
@@ -2735,17 +2825,19 @@ both directions.
   els.btnPause.addEventListener('click',function(){pause();handoff(els.btnResume);});
   els.btnSkip.addEventListener('click',skip);
   els.btnSkip2.addEventListener('click',skip);
-  els.btnResume.addEventListener('click',function(){resume();handoff(els.btnPause);});
+  els.btnResume.addEventListener('click',function(){resume();
+    if(els.btnPause.classList.contains('imc-hidden'))focusFor(S.demo);else handoff(els.btnPause);});
   els.btnApprove.addEventListener('click',function(){decide('approved');});
   els.btnBlock.addEventListener('click',function(){decide('blocked');});
   els.btnReplay.addEventListener('click',function(){begin(true);handoff(els.btnPause);});
-  els.btnReset.addEventListener('click',function(){reset();handoff(options[0]);});
+  els.btnReset.addEventListener('click',function(){reset();var si=keyOrder.indexOf(S.key);handoff(options[si>=0?si:0]);});
 
   /* leaving the tab during a run pauses safely, so no owner decision is missed */
   document.addEventListener('visibilitychange',function(){
     if(!document.hidden||!isRunning())return;
     S.resume=S.demo;S.autoPaused=true;S.demo='paused';
     schedule();render();
+    try{els.btnResume.focus();}catch(e){}
   });
 
   /* the Master's Begin again restarts the whole ride; the governed run resets
