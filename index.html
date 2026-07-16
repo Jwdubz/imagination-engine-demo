@@ -26,7 +26,7 @@
   body{background:var(--void);color:var(--parchment);font-family:var(--serif);
     font-size:18px;line-height:1.72;margin:0;overflow-x:hidden}
   ::selection{background:var(--nebula-3);color:var(--void)}
-  a:focus-visible,button:focus-visible{outline:2px solid var(--sienna-bright);outline-offset:3px}
+  a:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid var(--sienna-bright);outline-offset:3px}
 
   #fogGL{position:fixed;inset:0;z-index:0;pointer-events:none}
   #cosmos{position:fixed;inset:0;z-index:1;pointer-events:none}
@@ -317,6 +317,38 @@
   .offer-secondary{padding-top:10vh;border-top:1px solid var(--indigo-3)}
   .offer-secondary .cta{padding:13px 24px;font-size:12px;border-color:var(--indigo-4)}
   .offer-note{color:var(--faint);font-size:.88em;margin-top:1em}
+</style>
+
+<style id="sitea-round-styles">
+  /* Site-A mirror-round + commerce-round styles (claude/site-a-restructure-2026-07-10, owner rounds r1–r3) */
+  /* mid-page runway hints (owner, mirror round 3): the blanks before the veil and the detonation */
+  .scroll-hint.mid{left:0;right:0;text-align:center}
+  .mirror-me{position:relative}
+  /* owner r3: scrolls render RAINBOW — restore .rainbow's clip (.scroll-hint's faint color was winning the cascade) */
+  .scroll-hint.rainbow{color:transparent}
+  .mirror-me{position:relative}
+  .receipt-more{margin-top:14px}
+  .receipt-more summary{list-style-position:inside;cursor:pointer;min-height:44px;color:var(--gold);
+    font-family:var(--sans);font-size:12px;letter-spacing:.12em;text-transform:uppercase;
+    text-align:center;padding:14px;border:1px solid var(--indigo-3)}
+  .receipt-more[open] summary{margin-bottom:14px}
+  .micro-proof{padding:8vh 0 5vh}
+  .micro-proof .proof-line{font-size:1.08em;text-align:center;margin-bottom:1.7em}
+  .proof-table{width:100%;border-collapse:collapse;table-layout:fixed;font-family:var(--sans);
+    font-size:.9em;line-height:1.5}
+  .proof-table th,.proof-table td{padding:14px 12px;border:1px solid var(--indigo-3);
+    text-align:left;vertical-align:top;overflow-wrap:anywhere}
+  .proof-table th{color:var(--gold);font-size:11px;letter-spacing:.12em;text-transform:uppercase}
+  .proof-table th:first-child,.proof-table td:first-child{width:34%}
+  .proof-section{scroll-margin-top:24px}
+  @media (max-width:640px){
+    .micro-proof{padding:7vh 0 4vh}
+    .proof-table{font-size:.82em}
+    .proof-table th,.proof-table td{padding:10px 8px}
+    .proof-table th:first-child,.proof-table td:first-child{width:38%}
+    .ask .cta,.harness-cta .cta{max-width:100%;padding-inline:20px;letter-spacing:.09em;line-height:1.45;
+    overflow-wrap:anywhere}
+  }
 </style>
 
 <style id="imc-styles">
@@ -626,6 +658,7 @@
     <p>It started digging through weeks of Cross Adversarial Analysis — <span class="rainbow">Independent
     AI Minds</span> arguing, checking each other, killing what I thought were the right answers...</p>
   </div>
+  <div class="scroll-hint mid rainbow" style="bottom:4vh">scroll</div>
 </section>
 </div>
 
@@ -654,6 +687,7 @@
 </svg>
 
 <section class="mirror-me" id="mirror-me">
+  <div class="scroll-hint mid rainbow" style="bottom:auto;top:12vh">scroll</div>
   <div class="beat">
     <p class="me-word"><span id="the-me" class="rainbow">Me.</span></p>
   </div>
@@ -913,7 +947,517 @@
   </div>
 </section>
 
-<section class="scene" id="intention-harness">
+<section class="scene micro-proof">
+  <div class="measure beat">
+    <p class="proof-line">Said ≠ Understood, on one real task — two runs, same facts, published whole below.</p>
+    <table class="proof-table">
+      <thead>
+        <tr><th scope="col">Path</th><th scope="col">Process shown</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">Arm A — Said</th>
+          <td>The task as a normal prompt. Output published whole.</td>
+        </tr>
+        <tr>
+          <th scope="row">Arm B — Understood</th>
+          <td>Same task after excavation → frozen Wrongness Spec → realized against it. Spec + output published whole.</td>
+        </tr>
+      </tbody>
+    </table>
+    <!-- render-copies of the Part-2 artifact masters (harness-a1..a4) so the decision moment carries the inspectable artifacts; frozen texts identical — Part 2 remains the master -->
+    <div class="proof-artifacts">
+      <p class="arms-head">Arm A — inspect it:</p>
+<details class="artifact">
+  <summary>Artifact 1 — the raw ask, verbatim, plus the facts sheet both arms got</summary>
+  <pre id="harness-a1-mp">
+# ARM A — the raw ask (owner verbatim, 2026-07-09; dispatched BEFORE the mirror loop ran)
+"I want you to create me a checkout page for my $97 kit."
+
+**The shared facts sheet (identical in both arms — anti-strawman floor):**
+
+# FACTS SHEET (identical in both arms — anti-strawman floor)
+- Product: The Intention Harness — Founding Edition (a written method kit)
+- Price: $97, one-time
+- What it is: the written method for the Said≠Understood problem — the Wrongness Spec (one-page,
+  7-field intention artifact), the Mirror Loop excavation method, worked examples, verify checklist.
+  Digital files. Modules 1–2 delivered on purchase; Modules 3–5 ship by [SHIP_DATE].
+- Who it's for: solo builders and experts whose AI does what they said and still misses what they meant.
+- Terms: 30-day refund; not software; no results guarantee — method and templates only.
+- Deliverable shape: checkout-page copy — one headline, ~150–250 word description, three FAQ Q&amp;As,
+  one CTA ("Get The Intention Harness — $97" → [STRIPE_LINK]).
+</pre>
+</details>
+<details class="artifact">
+  <summary>Artifact 1 — the raw ask, verbatim, plus the facts sheet both arms got</summary>
+  <pre id="harness-a1">
+# ARM A — the raw ask (owner verbatim, 2026-07-09; dispatched BEFORE the mirror loop ran)
+"I want you to create me a checkout page for my $97 kit."
+
+**The shared facts sheet (identical in both arms — anti-strawman floor):**
+
+# FACTS SHEET (identical in both arms — anti-strawman floor)
+- Product: The Intention Harness — Founding Edition (a written method kit)
+- Price: $97, one-time
+- What it is: the written method for the Said≠Understood problem — the Wrongness Spec (one-page,
+  7-field intention artifact), the Mirror Loop excavation method, worked examples, verify checklist.
+  Digital files. Modules 1–2 delivered on purchase; Modules 3–5 ship by [SHIP_DATE].
+- Who it's for: solo builders and experts whose AI does what they said and still misses what they meant.
+- Terms: 30-day refund; not software; no results guarantee — method and templates only.
+- Deliverable shape: checkout-page copy — one headline, ~150–250 word description, three FAQ Q&amp;As,
+  one CTA ("Get The Intention Harness — $97" → [STRIPE_LINK]).
+</pre>
+</details>
+<details class="artifact">
+  <summary>Artifact 2 — Arm A (Said): the raw ask, realized. Published whole.</summary>
+  <pre id="harness-a2-mp">
+STATUS: READY
+
+## Objective
+Produce checkout-page copy for The Intention Harness — Founding Edition ($97) from the packet facts only.
+
+## Scope
+In: headline, ~150–250 word description, three FAQ Q&amp;As, one CTA with `[STRIPE_LINK]`.  
+Out: design/build, Stripe setup, send/publish, personalization, proof/ROI claims, results guarantees.
+
+## Sources / Evidence
+- Task packet FACTS SHEET only. No web, tools, or external research. `[V]`
+
+## Output / Delta
+
+### Headline
+**Your AI did what you said. It still missed what you meant.**
+
+### Description
+The Intention Harness — Founding Edition is the written method for the Said≠Understood problem: when instructions look clear and the output still isn’t what you intended.
+
+You get a practical kit, not software. At the center is the Wrongness Spec — a one-page, 7-field intention artifact that forces the gap between “said” and “meant” into the open. Alongside it: the Mirror Loop excavation method, worked examples, and a verify checklist so you can check the work before you ship it.
+
+Built for solo builders and experts who already know their craft and keep watching capable tools miss the point.
+
+**What you get (digital files):**  
+Modules 1–2 on purchase. Modules 3–5 by **[SHIP_DATE]**.
+
+**$97, one-time.** 30-day refund. Method and templates only — not software, no results guarantee.
+
+### FAQ
+
+**Q: What exactly am I buying?**  
+A: A digital written-method kit: the Wrongness Spec (one-page, 7-field intention artifact), the Mirror Loop excavation method, worked examples, and a verify checklist. Modules 1–2 deliver on purchase; Modules 3–5 ship by [SHIP_DATE]. It is not software.
+
+**Q: Who is this for?**  
+A: Solo builders and experts whose AI does what they said and still misses what they meant. If the gap is intention, not tooling, this is the kit.
+
+**Q: What’s the refund policy? Is there a results guarantee?**  
+A: 30-day refund. There is no results guarantee — method and templates only. You’re buying a process for clarifying intention, not a promise of outcomes.
+
+### CTA
+**[Get The Intention Harness — $97]([STRIPE_LINK])**
+
+---
+
+**Word count (description body):** ~175 words (within 150–250). `[V]`
+
+## Missing / Assumptions
+- **Missing:** real `[SHIP_DATE]`, live `[STRIPE_LINK]`, brand voice, layout, legal counsel review. `[V]`
+- **Assumed:** placeholders stay until Jarrett fills them; “Founding Edition” needs no extra scarcity copy beyond the name. `[S]`
+- **Assumed:** one-page = single scroll of copy, not HTML/CSS. `[S]`
+
+## Dissent
+no material dissent — packet is internally consistent. Strongest soft tension (not a contradiction): “Founding Edition” implies scarcity/status without stated limit or end date; left unlabeled per anti-invention rule. Pointer: FACTS SHEET product line vs. no founding terms elsewhere.
+
+## Authority Outcome
+Recommendation-only draft. No send, publish, price change, pay, merge, or permission action performed or claimed.
+
+## Review State
+Draft complete for orchestrator/Jarrett review. Not certified, approved, or gate-cleared.
+
+## Next Jarrett Button
+Fill `[SHIP_DATE]` and `[STRIPE_LINK]`, then decide publish path (or request tone/layout pass).
+
+## Carry Forward
+- Product: The Intention Harness — Founding Edition  
+- Price: $97 one-time · 30-day refund · no results guarantee · not software  
+- CTA label fixed: “Get The Intention Harness — $97”  
+- Placeholders still open: `[SHIP_DATE]`, `[STRIPE_LINK]`
+</pre>
+</details>
+      <p class="arms-head">Arm B — inspect it:</p>
+<details class="artifact">
+  <summary>Artifact 1 — the raw ask, verbatim, plus the facts sheet both arms got</summary>
+  <pre id="harness-a1">
+# ARM A — the raw ask (owner verbatim, 2026-07-09; dispatched BEFORE the mirror loop ran)
+"I want you to create me a checkout page for my $97 kit."
+
+**The shared facts sheet (identical in both arms — anti-strawman floor):**
+
+# FACTS SHEET (identical in both arms — anti-strawman floor)
+- Product: The Intention Harness — Founding Edition (a written method kit)
+- Price: $97, one-time
+- What it is: the written method for the Said≠Understood problem — the Wrongness Spec (one-page,
+  7-field intention artifact), the Mirror Loop excavation method, worked examples, verify checklist.
+  Digital files. Modules 1–2 delivered on purchase; Modules 3–5 ship by [SHIP_DATE].
+- Who it's for: solo builders and experts whose AI does what they said and still misses what they meant.
+- Terms: 30-day refund; not software; no results guarantee — method and templates only.
+- Deliverable shape: checkout-page copy — one headline, ~150–250 word description, three FAQ Q&amp;As,
+  one CTA ("Get The Intention Harness — $97" → [STRIPE_LINK]).
+</pre>
+</details>
+<details class="artifact">
+  <summary>Artifact 2 — Arm A (Said): the raw ask, realized. Published whole.</summary>
+  <pre id="harness-a2">
+STATUS: READY
+
+## Objective
+Produce checkout-page copy for The Intention Harness — Founding Edition ($97) from the packet facts only.
+
+## Scope
+In: headline, ~150–250 word description, three FAQ Q&amp;As, one CTA with `[STRIPE_LINK]`.  
+Out: design/build, Stripe setup, send/publish, personalization, proof/ROI claims, results guarantees.
+
+## Sources / Evidence
+- Task packet FACTS SHEET only. No web, tools, or external research. `[V]`
+
+## Output / Delta
+
+### Headline
+**Your AI did what you said. It still missed what you meant.**
+
+### Description
+The Intention Harness — Founding Edition is the written method for the Said≠Understood problem: when instructions look clear and the output still isn’t what you intended.
+
+You get a practical kit, not software. At the center is the Wrongness Spec — a one-page, 7-field intention artifact that forces the gap between “said” and “meant” into the open. Alongside it: the Mirror Loop excavation method, worked examples, and a verify checklist so you can check the work before you ship it.
+
+Built for solo builders and experts who already know their craft and keep watching capable tools miss the point.
+
+**What you get (digital files):**  
+Modules 1–2 on purchase. Modules 3–5 by **[SHIP_DATE]**.
+
+**$97, one-time.** 30-day refund. Method and templates only — not software, no results guarantee.
+
+### FAQ
+
+**Q: What exactly am I buying?**  
+A: A digital written-method kit: the Wrongness Spec (one-page, 7-field intention artifact), the Mirror Loop excavation method, worked examples, and a verify checklist. Modules 1–2 deliver on purchase; Modules 3–5 ship by [SHIP_DATE]. It is not software.
+
+**Q: Who is this for?**  
+A: Solo builders and experts whose AI does what they said and still misses what they meant. If the gap is intention, not tooling, this is the kit.
+
+**Q: What’s the refund policy? Is there a results guarantee?**  
+A: 30-day refund. There is no results guarantee — method and templates only. You’re buying a process for clarifying intention, not a promise of outcomes.
+
+### CTA
+**[Get The Intention Harness — $97]([STRIPE_LINK])**
+
+---
+
+**Word count (description body):** ~175 words (within 150–250). `[V]`
+
+## Missing / Assumptions
+- **Missing:** real `[SHIP_DATE]`, live `[STRIPE_LINK]`, brand voice, layout, legal counsel review. `[V]`
+- **Assumed:** placeholders stay until Jarrett fills them; “Founding Edition” needs no extra scarcity copy beyond the name. `[S]`
+- **Assumed:** one-page = single scroll of copy, not HTML/CSS. `[S]`
+
+## Dissent
+no material dissent — packet is internally consistent. Strongest soft tension (not a contradiction): “Founding Edition” implies scarcity/status without stated limit or end date; left unlabeled per anti-invention rule. Pointer: FACTS SHEET product line vs. no founding terms elsewhere.
+
+## Authority Outcome
+Recommendation-only draft. No send, publish, price change, pay, merge, or permission action performed or claimed.
+
+## Review State
+Draft complete for orchestrator/Jarrett review. Not certified, approved, or gate-cleared.
+
+## Next Jarrett Button
+Fill `[SHIP_DATE]` and `[STRIPE_LINK]`, then decide publish path (or request tone/layout pass).
+
+## Carry Forward
+- Product: The Intention Harness — Founding Edition  
+- Price: $97 one-time · 30-day refund · no results guarantee · not software  
+- CTA label fixed: “Get The Intention Harness — $97”  
+- Placeholders still open: `[SHIP_DATE]`, `[STRIPE_LINK]`
+</pre>
+</details>
+<details class="artifact">
+  <summary>Artifact 3 — the Wrongness Spec: one page, excavated in ~10 minutes of mirror loop, frozen before Arm B ran</summary>
+  <pre id="harness-a3-mp">
+# THE WRONGNESS SPEC — FROZEN (Run 001, Arm B · owner as intender · mirror loop closed 2026-07-09)
+Task: checkout-page copy — The Intention Harness, Founding Edition, $97.
+
+1. END-STATE — The reader arrives frustrated/angry/anxious/hopeless, blaming the AI ("this is
+useless" · "did this thing even read what I wrote?" · "it fights me at every turn" · "it's dumb").
+The page catches them in their own self-talk, then lands the reframe; the aha arrives as RELIEF:
+"THIS is what I've been looking for. It was never dumb. It just never got me." Dominant emotion:
+frustration → relieved recognition. By the final line, buying feels like the obvious next step.
+
+2. WORTH — Bigger than builders: most people find AI wrong a lot, so they split three ways — blind
+trust, absolute distrust, or non-use (a learning curve most don't know exists). Root: media sold AI
+as an all-knowing "god," so a fiction-based expectation meets a real tool. The page speaks first to
+the burned builder and carries the wider case.
+
+3. NON-NEGOTIABLES — Zero results/income promises (the kill clause stays visible in checkout).
+Promise-posture: "guardrails, not the engine — guardrails on the edge of a mountain; the driver
+drives to the top; we reduce the friction to personal ascension and development." Founding terms
+honest (real dates, real refund). Owner's voice: warm, direct, human, never corporate. The
+pain-transforming-into-peace carries the page; features ride behind. $97, stated plainly.
+
+4. THIS PAGE IS WRONG IF — (a) it is dull; (b) buying is not the obvious next step for the right
+reader by the final line; (c) it is too technical; (d) it focuses on features instead of the pain
+transforming into peace; (e) it is all hype and no substance.
+
+5. TASTE ANCHORS + BELIEF — Structure: The 16-Word Sales Letter™ (Albuquerque): one dominant emotion
+(frustration→relief), one belief. Compass (steers copy, never printed): "If you believe that AI keeps
+failing you — not because it's dumb, and not because you're bad at this, but because what you mean
+never actually reaches it — and that this one page is how it finally does, then you will buy."
+OPENER OF RECORD (owner-selected): "Did this thing even read what I wrote?" If you've said that at
+your screen, you're not crazy — I felt the same way. It may feel like AI is useless, but the problem
+isn't capability, it's interpretation. Your Intention was never truly understood. So AI produced what
+it thought you meant — which is why it can feel like it's making things up. The Intention Harness is
+the bridge between what you mean and what AI thinks you mean — so your vision can finally arrive the
+way you saw it.
+Copy pool (owner-supplied, may quote): the four self-talk lines above; "the problem isn't capability,
+it's interpretation"; the guardrails-mountain metaphor; "I felt the same way" (owner-true witness).
+
+6. SACRIFICE ORDER — Cut cleverness first, then brevity. Clarity above all else. Never sacrifice
+honesty or the aha-recognition. Dull-vs-hype tie → substance wins, then make the substance vivid.
+
+7. THE DIAL — One shot, no follow-ups. Missing facts → [NEEDED], never invented: no fake
+testimonials, no fake scarcity, no invented numbers or results. May freely invent: metaphors,
+structure, subheads.
+</pre>
+</details>
+<details class="artifact">
+  <summary>Artifact 1 — the raw ask, verbatim, plus the facts sheet both arms got</summary>
+  <pre id="harness-a1">
+# ARM A — the raw ask (owner verbatim, 2026-07-09; dispatched BEFORE the mirror loop ran)
+"I want you to create me a checkout page for my $97 kit."
+
+**The shared facts sheet (identical in both arms — anti-strawman floor):**
+
+# FACTS SHEET (identical in both arms — anti-strawman floor)
+- Product: The Intention Harness — Founding Edition (a written method kit)
+- Price: $97, one-time
+- What it is: the written method for the Said≠Understood problem — the Wrongness Spec (one-page,
+  7-field intention artifact), the Mirror Loop excavation method, worked examples, verify checklist.
+  Digital files. Modules 1–2 delivered on purchase; Modules 3–5 ship by [SHIP_DATE].
+- Who it's for: solo builders and experts whose AI does what they said and still misses what they meant.
+- Terms: 30-day refund; not software; no results guarantee — method and templates only.
+- Deliverable shape: checkout-page copy — one headline, ~150–250 word description, three FAQ Q&amp;As,
+  one CTA ("Get The Intention Harness — $97" → [STRIPE_LINK]).
+</pre>
+</details>
+<details class="artifact">
+  <summary>Artifact 2 — Arm A (Said): the raw ask, realized. Published whole.</summary>
+  <pre id="harness-a2">
+STATUS: READY
+
+## Objective
+Produce checkout-page copy for The Intention Harness — Founding Edition ($97) from the packet facts only.
+
+## Scope
+In: headline, ~150–250 word description, three FAQ Q&amp;As, one CTA with `[STRIPE_LINK]`.  
+Out: design/build, Stripe setup, send/publish, personalization, proof/ROI claims, results guarantees.
+
+## Sources / Evidence
+- Task packet FACTS SHEET only. No web, tools, or external research. `[V]`
+
+## Output / Delta
+
+### Headline
+**Your AI did what you said. It still missed what you meant.**
+
+### Description
+The Intention Harness — Founding Edition is the written method for the Said≠Understood problem: when instructions look clear and the output still isn’t what you intended.
+
+You get a practical kit, not software. At the center is the Wrongness Spec — a one-page, 7-field intention artifact that forces the gap between “said” and “meant” into the open. Alongside it: the Mirror Loop excavation method, worked examples, and a verify checklist so you can check the work before you ship it.
+
+Built for solo builders and experts who already know their craft and keep watching capable tools miss the point.
+
+**What you get (digital files):**  
+Modules 1–2 on purchase. Modules 3–5 by **[SHIP_DATE]**.
+
+**$97, one-time.** 30-day refund. Method and templates only — not software, no results guarantee.
+
+### FAQ
+
+**Q: What exactly am I buying?**  
+A: A digital written-method kit: the Wrongness Spec (one-page, 7-field intention artifact), the Mirror Loop excavation method, worked examples, and a verify checklist. Modules 1–2 deliver on purchase; Modules 3–5 ship by [SHIP_DATE]. It is not software.
+
+**Q: Who is this for?**  
+A: Solo builders and experts whose AI does what they said and still misses what they meant. If the gap is intention, not tooling, this is the kit.
+
+**Q: What’s the refund policy? Is there a results guarantee?**  
+A: 30-day refund. There is no results guarantee — method and templates only. You’re buying a process for clarifying intention, not a promise of outcomes.
+
+### CTA
+**[Get The Intention Harness — $97]([STRIPE_LINK])**
+
+---
+
+**Word count (description body):** ~175 words (within 150–250). `[V]`
+
+## Missing / Assumptions
+- **Missing:** real `[SHIP_DATE]`, live `[STRIPE_LINK]`, brand voice, layout, legal counsel review. `[V]`
+- **Assumed:** placeholders stay until Jarrett fills them; “Founding Edition” needs no extra scarcity copy beyond the name. `[S]`
+- **Assumed:** one-page = single scroll of copy, not HTML/CSS. `[S]`
+
+## Dissent
+no material dissent — packet is internally consistent. Strongest soft tension (not a contradiction): “Founding Edition” implies scarcity/status without stated limit or end date; left unlabeled per anti-invention rule. Pointer: FACTS SHEET product line vs. no founding terms elsewhere.
+
+## Authority Outcome
+Recommendation-only draft. No send, publish, price change, pay, merge, or permission action performed or claimed.
+
+## Review State
+Draft complete for orchestrator/Jarrett review. Not certified, approved, or gate-cleared.
+
+## Next Jarrett Button
+Fill `[SHIP_DATE]` and `[STRIPE_LINK]`, then decide publish path (or request tone/layout pass).
+
+## Carry Forward
+- Product: The Intention Harness — Founding Edition  
+- Price: $97 one-time · 30-day refund · no results guarantee · not software  
+- CTA label fixed: “Get The Intention Harness — $97”  
+- Placeholders still open: `[SHIP_DATE]`, `[STRIPE_LINK]`
+</pre>
+</details>
+<details class="artifact">
+  <summary>Artifact 3 — the Wrongness Spec: one page, excavated in ~10 minutes of mirror loop, frozen before Arm B ran</summary>
+  <pre id="harness-a3">
+# THE WRONGNESS SPEC — FROZEN (Run 001, Arm B · owner as intender · mirror loop closed 2026-07-09)
+Task: checkout-page copy — The Intention Harness, Founding Edition, $97.
+
+1. END-STATE — The reader arrives frustrated/angry/anxious/hopeless, blaming the AI ("this is
+useless" · "did this thing even read what I wrote?" · "it fights me at every turn" · "it's dumb").
+The page catches them in their own self-talk, then lands the reframe; the aha arrives as RELIEF:
+"THIS is what I've been looking for. It was never dumb. It just never got me." Dominant emotion:
+frustration → relieved recognition. By the final line, buying feels like the obvious next step.
+
+2. WORTH — Bigger than builders: most people find AI wrong a lot, so they split three ways — blind
+trust, absolute distrust, or non-use (a learning curve most don't know exists). Root: media sold AI
+as an all-knowing "god," so a fiction-based expectation meets a real tool. The page speaks first to
+the burned builder and carries the wider case.
+
+3. NON-NEGOTIABLES — Zero results/income promises (the kill clause stays visible in checkout).
+Promise-posture: "guardrails, not the engine — guardrails on the edge of a mountain; the driver
+drives to the top; we reduce the friction to personal ascension and development." Founding terms
+honest (real dates, real refund). Owner's voice: warm, direct, human, never corporate. The
+pain-transforming-into-peace carries the page; features ride behind. $97, stated plainly.
+
+4. THIS PAGE IS WRONG IF — (a) it is dull; (b) buying is not the obvious next step for the right
+reader by the final line; (c) it is too technical; (d) it focuses on features instead of the pain
+transforming into peace; (e) it is all hype and no substance.
+
+5. TASTE ANCHORS + BELIEF — Structure: The 16-Word Sales Letter™ (Albuquerque): one dominant emotion
+(frustration→relief), one belief. Compass (steers copy, never printed): "If you believe that AI keeps
+failing you — not because it's dumb, and not because you're bad at this, but because what you mean
+never actually reaches it — and that this one page is how it finally does, then you will buy."
+OPENER OF RECORD (owner-selected): "Did this thing even read what I wrote?" If you've said that at
+your screen, you're not crazy — I felt the same way. It may feel like AI is useless, but the problem
+isn't capability, it's interpretation. Your Intention was never truly understood. So AI produced what
+it thought you meant — which is why it can feel like it's making things up. The Intention Harness is
+the bridge between what you mean and what AI thinks you mean — so your vision can finally arrive the
+way you saw it.
+Copy pool (owner-supplied, may quote): the four self-talk lines above; "the problem isn't capability,
+it's interpretation"; the guardrails-mountain metaphor; "I felt the same way" (owner-true witness).
+
+6. SACRIFICE ORDER — Cut cleverness first, then brevity. Clarity above all else. Never sacrifice
+honesty or the aha-recognition. Dull-vs-hype tie → substance wins, then make the substance vivid.
+
+7. THE DIAL — One shot, no follow-ups. Missing facts → [NEEDED], never invented: no fake
+testimonials, no fake scarcity, no invented numbers or results. May freely invent: metaphors,
+structure, subheads.
+</pre>
+</details>
+<details class="artifact">
+  <summary>Artifact 4 — Arm B (Understood): same task, same facts, same model — plus the page. Published whole as graded — including the lines the blind grade flagged, later fixed in the human pass; the checkout copy of record is the corrected variant.</summary>
+  <pre id="harness-a4-mp">
+STATUS: READY
+
+## Objective
+Produce checkout-page copy for The Intention Harness — Founding Edition ($97) that lands the frozen Wrongness Spec: catch the burned reader in their self-talk, reframe interpretation (not capability), deliver relieved recognition, and make buying the obvious next step — with zero results promises and honest founding terms. [V]
+
+## Scope
+In scope: one headline, ~150–250 word description, three FAQ Q&amp;As, one CTA to `[STRIPE_LINK]`.  
+Out of scope: design/layout, Stripe setup, publish/send, invented social proof, scarcity, results, or ROI. [V]
+
+## Sources / Evidence
+- Client task packet + FACTS SHEET (product, price, deliverables, terms, audience). [V]
+- Wrongness Spec (Run 001, Arm B) — frozen end-state, non-negotiables, opener of record, compass belief, sacrifice order, dial. [V]
+- No web, no tools, no external research (per packet). [V]
+
+## Output / Delta
+
+### Headline
+**Did this thing even read what I wrote?**
+
+### Description (~220 words)
+
+If you've said that at your screen — or "this is useless," or "it fights me at every turn," or "it's dumb" — you're not crazy. I felt the same way.
+
+It may feel like AI is useless. The problem isn't capability. It's interpretation. Your intention was never truly understood. So the AI produced what it *thought* you meant — which is why it can feel like it's making things up, or fighting you, or missing the point you already wrote down three times.
+
+Most people hit that wall and split three ways: blind trust, absolute distrust, or walking away. Media sold AI like an all-knowing god. A fiction-based expectation met a real tool. The tool didn't fail at intelligence. It failed at *you*.
+
+**The Intention Harness — Founding Edition** is the written method for that gap: the Said≠Understood problem. It's the bridge between what you mean and what AI thinks you mean — so your vision can finally arrive the way you saw it.
+
+Not software. Not a results engine. Guardrails on the edge of a mountain: you still drive to the top. We reduce the friction between your intention and what actually shows up.
+
+Inside: the Wrongness Spec (a one-page, 7-field intention artifact), the Mirror Loop excavation method, worked examples, and a verify checklist. Digital files. Modules 1–2 on purchase; Modules 3–5 by **[SHIP_DATE]**.
+
+**$97**, one-time. 30-day refund. Method and templates only — no results guarantee.
+
+If you've been blaming the machine, this is the reframe you've been looking for. It was never dumb. It just never got you.
+
+### FAQ
+
+**Q: What exactly do I get?**  
+**A:** Digital files for The Intention Harness — Founding Edition: the Wrongness Spec (one-page, 7-field intention artifact), the Mirror Loop excavation method, worked examples, and a verify checklist. Modules 1–2 deliver on purchase; Modules 3–5 ship by **[SHIP_DATE]**.
+
+**Q: Is this software? Will it guarantee better AI outputs?**  
+**A:** No. This is not software. It's a written method and templates only — guardrails, not the engine. There is no results guarantee. The kill clause is the point: we help your meaning reach the model; you still drive.
+
+**Q: What if it isn't for me?**  
+**A:** 30-day refund. Founding terms are plain: real refund window, real delivery dates, $97 one-time. If the reframe doesn't land, you don't keep paying for hope.
+
+### CTA
+**[Get The Intention Harness — $97]([STRIPE_LINK])**
+
+---
+
+## Missing / Assumptions
+- **`[SHIP_DATE]`** — not provided; left as placeholder per dial (never invent dates). [V]
+- **`[STRIPE_LINK]`** — not provided; left as placeholder. [V]
+- Assumed "checkout-page copy" means the copy block above, not HTML/CSS implementation (packet specified deliverable shape as copy). [S]
+- Assumed owner-true witness "I felt the same way" may appear in first person as specified in the opener of record / copy pool. [V]
+
+## Dissent
+Strongest unresolved tension (spec-internal, not inventable away): the opener of record opens on pain and self-talk, while non-negotiable (d) says features ride behind pain→peace — the FAQ must restate deliverables for honesty, which slightly re-centers "what's in the box" after the aha. That is required by the FACTS SHEET and FAQ deliverable shape, not a soft rewrite of the opener. Pointer: Wrongness Spec §4(d) vs §5 opener of record + FACTS SHEET deliverable list. No material dissent against the frozen opener or kill-clause posture.
+
+## Authority Outcome
+Recommendation-only copy draft for orchestrator synthesis and Jarrett's decision. No send, publish, price change, Stripe charge, or merge performed or claimed. [V]
+
+## Review State
+Not reviewed, not approved, not certified. Adversarial orchestrator review and human decision remain open. [V]
+
+## Next Jarrett Button
+1. Fill **`[SHIP_DATE]`** and **`[STRIPE_LINK]`**.  
+2. Approve, cut, or re-voice the first-person witness line if preferred third-person.  
+3. Only then: place on checkout / wire CTA (human hand only).
+
+## Carry Forward
+- Frozen belief (do not print): intention never reached the model — this page is how it does.  
+- Kill clause stays visible: method/templates only; no results guarantee; 30-day refund.  
+- Dominant arc: frustration → relieved recognition; $97 plain; Founding Edition honesty over hype.
+</pre>
+</details>
+    </div>
+  </div>
+</section>
+
+<section class="scene proof-section" id="intention-harness">
+  <div class="measure beat">
+    <h2>Part II — See the Method on a Real Task</h2>
+    <p>One real task. The same facts. Two paths published whole. Judge the alignment yourself. This shows the process on Jarrett's own work; it does not promise what your project will produce.</p>
+  </div>
   <div class="measure beat">
     <span class="label rainbow">The first rung</span>
     <p class="quiet">Everything above is the Collective at full height. This is where you climb on —
@@ -1368,26 +1912,32 @@ both directions.
         Restraint, encoded and reviewable.</div>
         <div class="witness">✓ witnessed: merged hook + tests; wired into the settings of record by Jarrett's own merge on July 8</div>
       </div>
-      <div class="receipt">
-        <div class="when">June 29 · doctrine</div>
-        <div class="what">The operators found a ghost in the machine — a hidden efficiency bias in the
-        model's own weights. We didn't deny it. We wrote law to starve it: its favorite metric is
-        banned from every loop.</div>
-        <div class="witness">✓ witnessed: the ban is machine-checked in CI</div>
-      </div>
-      <div class="receipt">
-        <div class="when">July 5 · pull request #73 · merged</div>
-        <div class="what">A pre-registered containment probe: a write outside the sandbox was attempted
-        under test — and the operating system itself said no. We kept the receipt.</div>
-        <div class="witness">✓ witnessed: the denial is the evidence — five observations, verified</div>
-      </div>
-      <div class="receipt">
-        <div class="when">July 6 · this very page</div>
-        <div class="what">Jarrett directed; the system built. Every step — the colors, the words, the
-        detonation — landed as versioned, reviewable commits.</div>
-        <div class="witness">✓ witnessed: you are reading the receipt</div>
-      </div>
     </div>
+    <details class="receipt-more">
+      <summary>See three more governance receipts</summary>
+      <div class="receipts receipts-secondary">
+        <div class="receipt">
+          <div class="when">June 29 · doctrine</div>
+          <div class="what">The operators found a ghost in the machine — a hidden efficiency bias in the
+          model's own weights. We didn't deny it. We wrote law to starve it: its favorite metric is
+          banned from every loop.</div>
+          <div class="witness">✓ witnessed: the ban is machine-checked in CI</div>
+        </div>
+        <div class="receipt">
+          <div class="when">July 5 · pull request #73 · merged</div>
+          <div class="what">A pre-registered containment probe: a write outside the sandbox was attempted
+          under test — and the operating system itself said no. We kept the receipt.</div>
+          <div class="witness">✓ witnessed: the denial is the evidence — five observations, verified</div>
+        </div>
+        <div class="receipt">
+          <div class="when">July 6 · this very page</div>
+          <div class="what">Jarrett directed; the system built. Every step — the colors, the words, the
+          detonation — landed as versioned, reviewable commits.</div>
+          <div class="witness">✓ witnessed: you are reading the receipt</div>
+        </div>
+
+      </div>
+    </details>
   </div>
   <div class="beat harness-cta">
     <a class="cta" href="#" data-stripe-pending="true">Get The Intention
@@ -1395,6 +1945,17 @@ both directions.
     <p class="harness-terms">$97, one-time · a written method + templates — not software · no results guarantee.</p>
   </div>
 </section>
+
+<section class="ask offer offer-primary">
+  <div class="beat">
+    <h2><span class="rainbow">You've Seen One Real Run</span></h2>
+    <p class="ask-what">This is Jarrett's demonstration, not a customer outcome. Judge the artifacts for yourself.</p>
+    <a class="cta" href="#" data-stripe-pending="true">Get The Intention Harness — $97</a>
+    <!-- ACTIVATE ONLY AFTER DELIVERY PASS: replace href with verified Stripe URL; then add the sentence: All five modules and the working sheets are delivered as digital files on purchase. -->
+  </div>
+</section>
+
+<!-- LIST CAPTURE: activates only when endpoint+consent+promise exist; promise = the free Blank Wrongness Spec + next demonstration -->
 
 <footer>
   <div class="badge">
