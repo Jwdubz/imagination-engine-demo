@@ -619,10 +619,12 @@
     color:var(--imc-ink);font-family:var(--imc-mono);font-size:11px;letter-spacing:.13em;
     text-transform:uppercase;text-decoration:none}
   .imcRecord .record-commission a:hover{background:var(--imc-ink);color:var(--imc-paper)}
-  /* Codex F7: day-world contrast — deepened rainbow, ink small-text, dark hover field */
-  .after .rainbow{background-image:linear-gradient(92deg,#7e2029,#6e4200,#565208,#1c5434,#174a5b,#46307d)}
-  .after .label.rainbow,.after .powered .rainbow{background:none;-webkit-text-fill-color:#4e1d4c;filter:none}
-  .after .ask .cta:hover::before,.after .harness-cta .cta:hover::before{background:linear-gradient(100deg,#7e2029,#6e4200,#565208,#1c5434,#174a5b,#46307d)}
+  /* OWNER DIAL (2026-07-16, verbatim: "revert them back to their original rainbow intensity"):
+     the day-world rainbow overrides that lived here — Codex F7's deepened set, then the Grok-fold
+     AA-asserted set (#7e2029…#46307d, 5.5–8.4:1) — are REMOVED. The master's original
+     .after .rainbow gradient (#e5484d…#7a5fd0) and the base CTA hover gradient rule again.
+     Honest contrast state: the restored original stops are the ones F7 flagged for day-world
+     contrast; this is an owner-directed aesthetic decision, not an accessibility claim. */
 </style>
 
 <style id="flagship-baseline">
@@ -995,8 +997,8 @@
     <!-- OWNER-SCOPED ONE-ASK EXCEPTION (2026-07-13): the booking call is the primary ask;
          email is an alternate contact channel for the same working-session inquiry, not a second offer.
          Owner decision: "Exception. Proceed." The global one-CTA rule remains unchanged.
-         (Carried to the commissioned-run offer 2026-07-16 — same inquiry lane, renamed; flagged
-         for owner re-confirm in the restructure report.) -->
+         (Carried to the commissioned-run offer 2026-07-16 — same inquiry lane, renamed.
+         Owner re-confirmed the carry 2026-07-16: "Yes, the exception carries.") -->
     <a class="cta" href="https://calendar.app.google/X7h54tPNg9WNrQbQ8" target="_blank" rel="noopener">Book the Intake Call — Commission Your Run</a>
     <p class="offer-note">Not ready for a call?</p>
     <a class="cta" href="mailto:Jarrett@jarrettwroten.com">Email Jarrett About Your Run</a>
