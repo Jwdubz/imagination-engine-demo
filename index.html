@@ -1,9 +1,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>The Imagination Engine — a demonstration</title>
+<title>The Imagination Collective — Your Governed AI Factory</title>
 <meta name="description" content="What if you could turn Your Vision into Your Reality Effortlessly? A cinematic demonstration, documented as it actually happened.">
 <meta property="og:type" content="website">
-<meta property="og:title" content="The Imagination Engine — a demonstration">
+<meta property="og:title" content="The Imagination Collective — Your Governed AI Factory">
 <meta property="og:description" content="What if you could turn Your Vision into Your Reality Effortlessly? Close the Gap Between Imagination and Reality.">
 <meta name="twitter:card" content="summary">
 <style>
@@ -208,8 +208,8 @@
   .after .opening h1,.after .mirror .line{text-shadow:none}
   .after .mirror .line{color:var(--gold)}
   .after .mirror .me{color:#4e1d4c}
-  .after .ask .cta{border-color:#4e1d4c;color:#4e1d4c}
-  .after .ask .cta:hover{color:#fff}
+  .after .ask .cta,.after .harness-cta .cta{border-color:#4e1d4c;color:#4e1d4c}
+  .after .ask .cta:hover,.after .harness-cta .cta:hover{color:#fff}
   .after footer{border-top-color:#dcc794}
   .after .mark-mono{color:#4e1d4c}
   .after ::selection{background:#4e1d4c;color:#ebd3a2}
@@ -252,18 +252,43 @@
     .ask{padding:14vh 24px 8vh}
   }
   .ask h2{font-size:clamp(1.9rem,5vw,2.8rem);margin-bottom:.7em}
-  .ask .cta{display:inline-block;margin-top:2.2em;padding:16px 34px;border:1px solid var(--nebula-3);
+  .ask .cta,.harness-cta .cta{display:inline-block;margin-top:2.2em;padding:16px 34px;border:1px solid var(--nebula-3);
     color:var(--parchment);text-decoration:none;font-family:var(--sans);font-size:14px;
     letter-spacing:.14em;text-transform:uppercase;position:relative;overflow:hidden}
-  .motion .ask .cta{transition:color .35s ease}
-  .ask .cta::before{content:'';position:absolute;inset:0;
+  .motion .ask .cta,.motion .harness-cta .cta{transition:color .35s ease}
+  .ask .cta::before,.harness-cta .cta::before{content:'';position:absolute;inset:0;
     background:linear-gradient(100deg,#e5484d,#e5a13a,#e7d84b,#59c26a,#3fb6c9,#9a5fe0);
     transform:translateX(-101%);z-index:-1}
-  .motion .ask .cta::before{transition:transform .4s cubic-bezier(.22,1,.36,1)}
-  .ask .cta:hover{color:var(--void)}
-  .ask .cta:hover::before{transform:none}
+  .motion .ask .cta::before,.motion .harness-cta .cta::before{transition:transform .4s cubic-bezier(.22,1,.36,1)}
+  .ask .cta:hover,.harness-cta .cta:hover{color:var(--void)}
+  .ask .cta:hover::before,.harness-cta .cta:hover::before{transform:none}
   .ask .no-funnel{color:var(--faint);font-size:.95em;margin-top:1.6em}
   .ask .ask-what{color:var(--muted);max-width:32em;margin:0 auto;font-size:1.05em}
+
+  /* ————— the first rung: the Intention Harness ————— */
+  #intention-harness .harness-sub{color:var(--muted);font-size:1.12em;margin:0 0 1.8em}
+  #intention-harness strong{color:var(--gold);font-weight:400}
+  .arms-head{font-family:var(--sans);font-size:13px;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--gold);margin:2.4em 0 1.1em}
+  table.arms{width:100%;border-collapse:collapse;font-family:var(--sans);font-size:.92rem;
+    margin:0 0 1.8em}
+  table.arms th{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);
+    text-align:left;padding:8px 12px;border-bottom:1px solid var(--indigo-3)}
+  table.arms td{padding:12px;border-bottom:1px solid var(--indigo-3);vertical-align:top;line-height:1.5}
+  table.arms td:first-child{white-space:nowrap;color:var(--gold)}
+  .after table.arms th,.after table.arms td{border-bottom-color:#dcc794}
+  .after table.arms th,.after .harness-terms{color:#4e1d4c}
+  .artifact{background:rgba(20,16,51,.82);border:1px solid var(--indigo-3);
+    border-top:2px solid var(--sienna);margin:0 0 14px;backdrop-filter:blur(2px)}
+  .after .artifact{background:#f7efd9;border-color:#dcc794;border-top-color:#4e1d4c}
+  .artifact summary{cursor:pointer;padding:16px 18px;font-family:var(--sans);font-size:.92rem;
+    color:var(--parchment);line-height:1.5}
+  .artifact summary::marker{color:var(--gold)}
+  .artifact pre{margin:0;padding:0 18px 18px;overflow-x:auto;font-size:12px;line-height:1.55;
+    color:var(--muted);white-space:pre-wrap;word-break:break-word;
+    font-family:ui-monospace,SFMono-Regular,Consolas,'Liberation Mono',monospace}
+  .harness-cta{text-align:center;padding:3em 24px 0}
+  .harness-terms{color:var(--faint);font-size:.95em;margin-top:1.6em}
 
   footer{border-top:1px solid var(--indigo-3);padding:64px 24px 72px;text-align:center;color:var(--faint)}
   footer .badge{display:flex;flex-direction:column;align-items:center;gap:18px}
@@ -281,6 +306,281 @@
   .after .again:hover{border-color:#4e1d4c;color:#4e1d4c}
   /* the rainbow always wins its element's color, wherever the class lands in the cascade */
   .rainbow{color:transparent!important}
+</style>
+
+<style id="offer-styles">
+  /* Site-A harness-commerce styles (claude/site-a-restructure-2026-07-10, owner-refined rounds) */
+  .offer .offer-price{font-size:1.22em;color:var(--gold);margin-bottom:1.2em}
+  .offer .offer-copy{max-width:34em;margin:0 auto}
+  .offer .offer-anchor{margin:1.3em 0 0;overflow-wrap:anywhere}
+  .offer .text-link{font-size:.95em}
+  .offer-secondary{padding-top:10vh;border-top:1px solid var(--indigo-3)}
+  .offer-secondary .cta{padding:13px 24px;font-size:12px;border-color:var(--indigo-4)}
+  .offer-note{color:var(--faint);font-size:.88em;margin-top:1em}
+</style>
+
+<style id="imc-styles">
+  /* ==========================================================================
+     THE GOVERNED RUN — the interactive demo, inserted whole into the master
+     flow after the prism ("A Governed Build Begins" → watch one begin).
+     Everything here is namespaced: .imcRun / .imcRecord roots, --imc- tokens,
+     imc- keyframes. The control-room window stays obsidian and the run record
+     stays warm paper in BOTH of the page's worlds — two invariant artifacts
+     the night and the day pass around.
+     ======================================================================= */
+  .imcRun,.imcRecord{
+    --imc-panel:rgba(9,6,22,.96); --imc-raised:#140f36; --imc-faint:#94848c; --imc-mist:#c0a9b3;
+    --imc-parchment:#ebd3a2; --imc-lamplight:#fdbf68; --imc-honey:#c98f3f; --imc-honey-dark:#7a5527;
+    --imc-honey-line:rgba(253,191,104,.44); --imc-sage:#b8bba6;
+    --imc-line:rgba(235,211,162,.13); --imc-line-strong:rgba(235,211,162,.26);
+    --imc-paper:#f2e4c2; --imc-paper-line:rgba(78,29,76,.14); --imc-paper-line-strong:rgba(78,29,76,.28);
+    --imc-ink:#4e1d4c; --imc-ink-muted:#7d5378; --imc-green:#2d6e4f;
+    --imc-sans:"Segoe UI",Arial,sans-serif;
+    --imc-mono:"Cascadia Mono",Consolas,"Courier New",monospace;
+    --imc-display:"Arial Narrow","Segoe UI Variable Display","Segoe UI",Arial,sans-serif;
+  }
+  .imcRun{padding:10vh 0}
+  .imc-wrap{width:min(calc(100% - 44px),1180px);margin-inline:auto}
+  .imcRun .imc-intro{max-width:34em;margin:0 auto 3.2em;padding-inline:24px;text-align:center}
+  .imcRun .imc-intro .label{display:block;margin-bottom:2.2em}
+  .imcRun .imc-head{margin:0 0 .8em;font-size:clamp(1.7rem,4.4vw,2.5rem);line-height:1.25;font-weight:400}
+  /* the section header lives in whichever world the page is in; the day turn
+     recolors it by hand since the master's day rules don't reach this heading */
+  .after .imcRun .imc-head{color:#4e1d4c}
+  .imcRun .imc-note{margin:0;font-size:1em}
+  .imcRun .factory-window,.imcRun .factory-window *,.imcRecord,.imcRecord *{box-sizing:border-box}
+  .imcRun .imc-hidden,.imcRecord .imc-hidden{display:none!important}
+
+  /* the intention selector */
+  .imcRun .intention-selector{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--imc-line-strong);border-bottom:0;background:var(--imc-panel);font-family:var(--imc-sans)}
+  .imcRun .intention-option{position:relative;display:grid;min-height:108px;grid-template-columns:auto 1fr auto;gap:16px;align-items:start;padding:18px;border:0;border-right:1px solid var(--imc-line);background:transparent;color:var(--imc-parchment);cursor:pointer;text-align:left;font-family:inherit;transition:background-color .18s ease}
+  .imcRun .intention-option:last-child{border-right:0}
+  .imcRun .intention-option:not(:disabled):hover{background:rgba(253,191,104,.06)}
+  .imcRun .intention-option.selected{background:rgba(253,191,104,.075);box-shadow:inset 0 2px 0 var(--imc-honey)}
+  .imcRun .intention-option:disabled{opacity:.62;cursor:not-allowed}
+  .imcRun .intention-option:disabled.selected{opacity:1}
+  .imcRun .intention-index{color:var(--imc-lamplight);font-family:var(--imc-mono);font-size:9px;letter-spacing:.1em}
+  .imcRun .intention-copy{display:grid;gap:7px}
+  .imcRun .intention-copy strong{font-family:var(--imc-display);font-size:19px;font-weight:650;letter-spacing:-.02em;text-transform:uppercase;line-height:1.05}
+  .imcRun .intention-copy small{color:var(--imc-faint);font-size:11px;line-height:1.45}
+  .imcRun .intention-radio{position:relative;width:13px;height:13px;border:1px solid var(--imc-line-strong);border-radius:50%}
+  .imcRun .selected .intention-radio{border-color:var(--imc-lamplight)}
+  .imcRun .selected .intention-radio::after{position:absolute;inset:3px;border-radius:50%;content:"";background:var(--imc-lamplight)}
+  .imcRun button:focus-visible,.imcRun a:focus-visible,.imcRun [tabindex="-1"]:focus-visible{outline:2px solid var(--imc-lamplight);outline-offset:3px}
+
+  /* the control-room window */
+  .imcRun .factory-window{position:relative;border:1px solid var(--imc-line-strong);background:var(--imc-panel);box-shadow:0 36px 90px rgba(0,0,0,.45),inset 0 1px 0 rgba(255,255,255,.025);font-family:var(--imc-sans);color:var(--imc-parchment);text-align:left}
+  .imcRun .factory-window::before,.imcRun .factory-window::after{position:absolute;z-index:4;width:16px;height:16px;content:"";pointer-events:none}
+  .imcRun .factory-window::before{top:-1px;left:-1px;border-top:2px solid var(--imc-honey);border-left:2px solid var(--imc-honey)}
+  .imcRun .factory-window::after{right:-1px;bottom:-1px;border-right:2px solid var(--imc-honey);border-bottom:2px solid var(--imc-honey)}
+  .imcRun .factory-toolbar{display:grid;min-height:76px;grid-template-columns:minmax(220px,1fr) auto minmax(170px,1fr);gap:22px;align-items:center;padding:13px 20px;border-bottom:1px solid var(--imc-line);background:rgba(255,255,255,.012)}
+  .imcRun .factory-identity{display:flex;min-width:0;align-items:center;gap:13px}
+  .imcRun .live-beacon{flex:0 0 auto;width:6px;height:6px;border-radius:50%;background:var(--imc-lamplight);box-shadow:0 0 12px rgba(253,191,104,.74);animation:imc-pulse 2.8s ease-in-out infinite}
+  .imcRun .factory-identity>div{display:grid;min-width:0;gap:5px}
+  .imcRun .factory-identity small,.imcRun .ledger-heading small,.imcRun .proposed-action small{color:var(--imc-faint);font-family:var(--imc-mono);font-size:8px;letter-spacing:.14em;text-transform:uppercase}
+  .imcRun .factory-identity strong{overflow:hidden;font-family:var(--imc-display);font-size:18px;font-weight:600;letter-spacing:-.02em;text-overflow:ellipsis;text-transform:uppercase;white-space:nowrap}
+  .imcRun .factory-telemetry{display:flex;align-items:stretch}
+  .imcRun .factory-telemetry>span{display:grid;min-width:92px;gap:5px;padding:0 16px;border-left:1px solid var(--imc-line)}
+  .imcRun .factory-telemetry small{color:var(--imc-faint);font-family:var(--imc-mono);font-size:7px;letter-spacing:.12em;text-transform:uppercase}
+  .imcRun .factory-telemetry strong{color:var(--imc-mist);font-family:var(--imc-mono);font-size:13px;font-weight:500}
+  .imcRun .run-controls{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:8px}
+  .imcRun .run-controls button{min-height:38px;padding:0 13px;border:1px solid var(--imc-line-strong);background:transparent;color:var(--imc-parchment);cursor:pointer;font-family:var(--imc-mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;transition:border-color .18s ease,background-color .18s ease,color .18s ease}
+  .imcRun .run-controls button:hover{border-color:var(--imc-honey);background:rgba(253,191,104,.08);color:var(--imc-lamplight)}
+  .imcRun .factory-statusline{display:grid;min-height:42px;grid-template-columns:auto 1fr auto;gap:14px;align-items:center;padding:7px 20px;border-bottom:1px solid var(--imc-line);color:var(--imc-faint);font-family:var(--imc-mono);font-size:8px;letter-spacing:.09em;text-transform:uppercase}
+  .imcRun .factory-statusline p{margin:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .imcRun .state-pill{display:inline-flex;min-height:24px;align-items:center;padding:0 8px;border:1px solid var(--imc-line-strong);color:var(--imc-mist)}
+  .imcRun .state-pill-gate_waiting,.imcRun .state-pill-blocked,.imcRun .state-pill-paused{border-color:var(--imc-honey-line);color:var(--imc-lamplight)}
+  .imcRun .state-pill-complete,.imcRun .state-pill-gate_approved{border-color:rgba(184,187,166,.36);color:var(--imc-sage)}
+
+  /* the six-phase pipeline */
+  .imcRun .pipeline{position:relative;min-height:178px;padding:30px 26px 20px;overflow:hidden;border-bottom:1px solid var(--imc-line);background-image:repeating-linear-gradient(90deg,transparent 0,transparent calc(16.666% - 1px),rgba(235,211,162,.026) calc(16.666% - 1px),rgba(235,211,162,.026) 16.666%)}
+  .imcRun .track{position:absolute;top:56px;right:8.2%;left:8.2%;z-index:0;height:1px;background:var(--imc-line-strong)}
+  .imcRun .track-fill{position:absolute;top:0;left:0;width:var(--imc-progress,0%);height:1px;background:linear-gradient(90deg,rgba(201,143,63,.28),var(--imc-honey));transition:width .7s cubic-bezier(.22,1,.36,1)}
+  .imcRun .work-packet{position:absolute;top:-5px;left:var(--imc-progress,0%);width:11px;height:11px;border:2px solid var(--imc-raised);border-radius:50%;background:var(--imc-lamplight);box-shadow:0 0 0 1px var(--imc-lamplight),0 0 22px rgba(253,191,104,.82);transform:translateX(-50%);transition:left .7s cubic-bezier(.22,1,.36,1)}
+  .imcRun .state-ready .work-packet{opacity:.35}
+  .imcRun .phase-grid{position:relative;z-index:1;display:grid;grid-template-columns:repeat(6,minmax(0,1fr));margin:0;padding:0;list-style:none}
+  .imcRun .phase{position:relative;min-width:0;text-align:center}
+  .imcRun .phase-node{position:relative;display:grid;width:52px;height:52px;margin:0 auto;place-items:center;border:1px solid var(--imc-line-strong);background:var(--imc-raised);color:var(--imc-faint);font-family:var(--imc-mono);font-size:9px;box-shadow:0 0 0 7px rgba(9,6,22,.88);transition:border-color .3s ease,color .3s ease,box-shadow .3s ease}
+  .imcRun .phase-node::before{position:absolute;top:-4px;left:7px;width:12px;height:1px;content:"";background:var(--imc-line-strong)}
+  .imcRun .phase-node::after{position:absolute;right:-4px;bottom:7px;width:1px;height:12px;content:"";background:var(--imc-line-strong)}
+  .imcRun .phase-status-active .phase-node,.imcRun .phase-status-authorized .phase-node,.imcRun .phase-status-protected .phase-node,.imcRun .phase-status-paused .phase-node{border-color:var(--imc-lamplight);color:var(--imc-lamplight);box-shadow:0 0 0 7px rgba(9,6,22,.9),0 0 24px rgba(253,191,104,.09)}
+  .imcRun .phase-status-verified .phase-node{border-color:rgba(184,187,166,.5);color:var(--imc-sage)}
+  .imcRun .phase-status-verified .phase-node span::after{margin-left:5px;content:"✓";font-size:8px}
+  .imcRun .phase-gate .phase-node{width:62px;height:71px;margin-top:-9px;margin-bottom:-9px;background-color:#170f2e;background-image:repeating-linear-gradient(135deg,transparent 0,transparent 6px,rgba(253,191,104,.08) 6px,rgba(253,191,104,.08) 7px)}
+  .imcRun .phase-gate .phase-node i{position:absolute;bottom:9px;width:10px;height:14px;border:1px solid currentColor}
+  .imcRun .phase-gate .phase-node i::before{position:absolute;bottom:12px;left:1px;width:6px;height:6px;border:1px solid currentColor;border-bottom:0;border-radius:5px 5px 0 0;content:""}
+  .imcRun .phase-status-blocked .phase-node{border-color:var(--imc-lamplight);color:var(--imc-lamplight);box-shadow:0 0 0 7px rgba(9,6,22,.9),inset 0 0 0 5px rgba(253,191,104,.05)}
+  .imcRun .phase-copy{display:grid;gap:6px;margin-top:20px}
+  .imcRun .phase-copy strong{font-family:var(--imc-mono);font-size:9px;font-weight:600;letter-spacing:.13em;text-transform:uppercase;white-space:nowrap;color:var(--imc-parchment)}
+  .imcRun .phase-copy small{color:var(--imc-faint);font-family:var(--imc-mono);font-size:7px;letter-spacing:.12em;text-transform:uppercase}
+  .imcRun .phase-status-active .phase-copy strong,.imcRun .phase-status-authorized .phase-copy strong,.imcRun .phase-status-protected .phase-copy strong,.imcRun .phase-status-blocked .phase-copy strong,.imcRun .phase-status-paused .phase-copy strong{color:var(--imc-lamplight)}
+  .imcRun .phase-status-verified .phase-copy strong{color:var(--imc-sage)}
+  .imcRun .specialist-lanes{display:flex;justify-content:center;gap:4px;margin-top:7px}
+  .imcRun .specialist-lanes i{width:3px;height:3px;border-radius:50%;background:var(--imc-honey-dark)}
+  .imcRun .phase-status-active .specialist-lanes i,.imcRun .phase-status-verified .specialist-lanes i{background:var(--imc-honey);animation:imc-worker 1.2s ease-in-out infinite}
+  .imcRun .phase-status-active .specialist-lanes i:nth-child(2){animation-delay:.12s}
+  .imcRun .phase-status-active .specialist-lanes i:nth-child(3){animation-delay:.24s}
+  .imcRun .phase-status-active .specialist-lanes i:nth-child(4){animation-delay:.36s}
+
+  /* the workspace + panels */
+  .imcRun .factory-workspace{display:grid;min-height:460px;grid-template-columns:minmax(0,1.35fr) minmax(300px,.65fr)}
+  .imcRun .active-work{display:grid;min-width:0;align-items:stretch;border-right:1px solid var(--imc-line)}
+  .imcRun .imc-panel{display:flex;min-height:100%;padding:clamp(26px,3.6vw,52px);flex-direction:column;align-items:flex-start;justify-content:center}
+  .imcRun .panel-kicker{display:flex;align-items:center;gap:12px;margin:0 0 18px;color:var(--imc-lamplight);font-family:var(--imc-mono);font-size:10px;font-weight:550;letter-spacing:.23em;text-transform:uppercase}
+  .imcRun .panel-kicker::before{width:34px;height:1px;content:"";background:var(--imc-honey)}
+  .imcRun .imc-panel h3{margin:0;max-width:820px;font-family:var(--imc-display);font-size:clamp(30px,3.2vw,52px);font-weight:650;letter-spacing:-.04em;line-height:1;text-transform:uppercase;color:var(--imc-parchment)}
+  .imcRun .imc-panel .panel-body{max-width:700px;margin:20px 0 0;color:var(--imc-mist);font-size:14px;line-height:1.6}
+  .imcRun .artifact-preview{display:flex;flex-wrap:wrap;gap:8px;margin-top:24px}
+  .imcRun .artifact-preview span{padding:8px 10px;border:1px solid var(--imc-line);color:var(--imc-faint);font-family:var(--imc-mono);font-size:8px;letter-spacing:.09em;text-transform:uppercase}
+  .imcRun .active-phase-header{display:flex;gap:10px;margin-bottom:19px;color:var(--imc-lamplight);font-family:var(--imc-mono);font-size:9px;letter-spacing:.13em;text-transform:uppercase}
+  .imcRun .work-lanes{width:100%;margin-top:30px;border-top:1px solid var(--imc-line)}
+  .imcRun .lane{position:relative;display:grid;min-height:44px;grid-template-columns:38px 128px 1fr;gap:12px;align-items:center;overflow:hidden;border-bottom:1px solid var(--imc-line);color:var(--imc-faint);font-family:var(--imc-mono);font-size:8px;letter-spacing:.12em;text-transform:uppercase}
+  .imcRun .lane i{position:relative;display:block;height:2px;background:var(--imc-line)}
+  .imcRun .lane i::after{position:absolute;inset:0 auto 0 0;width:34%;content:"";background:var(--imc-honey);transform:translateX(-120%)}
+  .imcRun .lane.active{color:var(--imc-mist)}
+  .imcRun .lane.active i::after{animation:imc-lane 2.2s ease-in-out infinite}
+  .imcRun .lane.active:nth-child(2) i::after{animation-delay:.28s}
+  .imcRun .lane.active:nth-child(3) i::after{animation-delay:.56s}
+  .imcRun .lane.active:nth-child(4) i::after{animation-delay:.84s}
+  .imcRun .imc-gate{position:relative;overflow:hidden;background:linear-gradient(90deg,rgba(201,143,63,.075),transparent 34%)}
+  .imcRun .gate-stripe{position:absolute;inset:0 auto 0 0;width:9px;background:repeating-linear-gradient(135deg,var(--imc-honey) 0,var(--imc-honey) 6px,var(--imc-raised) 6px,var(--imc-raised) 12px)}
+  .imcRun .proposed-action{display:grid;width:min(100%,720px);gap:9px;margin-top:24px;padding:16px 18px;border:1px solid var(--imc-honey-line);background:rgba(253,191,104,.05)}
+  .imcRun .proposed-action strong{color:var(--imc-parchment);font-size:13px;font-weight:500;line-height:1.5}
+  .imcRun .prepared-list{display:flex;flex-wrap:wrap;gap:9px 22px;margin:16px 0 0;padding:0;color:var(--imc-faint);font-family:var(--imc-mono);font-size:8px;letter-spacing:.08em;list-style:none;text-transform:uppercase}
+  .imcRun .prepared-list li::before{margin-right:7px;color:var(--imc-honey);content:"✓"}
+  .imcRun .simulation-note{max-width:720px;margin:18px 0 0;color:var(--imc-faint);font-family:var(--imc-mono);font-size:9px;line-height:1.55}
+  .imcRun .simulation-note strong{color:var(--imc-lamplight);font-weight:550}
+  .imcRun .imc-authorized{flex-direction:row;align-items:center;gap:26px}
+  .imcRun .authorization-seal{display:grid;flex:0 0 84px;width:84px;height:84px;place-items:center;border:1px solid rgba(184,187,166,.55);border-radius:50%;color:var(--imc-sage);font-size:26px;box-shadow:inset 0 0 0 8px rgba(184,187,166,.04)}
+  .imcRun .result-stats{display:grid;width:min(100%,720px);grid-template-columns:repeat(3,1fr);margin-top:26px;border-top:1px solid var(--imc-line);border-bottom:1px solid var(--imc-line)}
+  .imcRun .result-stats span{display:grid;gap:7px;padding:15px;border-right:1px solid var(--imc-line);color:var(--imc-faint);font-family:var(--imc-mono);font-size:8px;letter-spacing:.08em;text-transform:uppercase}
+  .imcRun .result-stats span:last-child{border-right:0}
+  .imcRun .result-stats strong{color:var(--imc-sage);font-size:18px;font-weight:500}
+  .imcRun .panel-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
+  .imcRun .imc-btn{display:inline-flex;min-height:46px;align-items:center;justify-content:space-between;gap:26px;padding:0 17px;border:1px solid var(--imc-line-strong);background:transparent;color:var(--imc-parchment);cursor:pointer;font-family:var(--imc-mono);font-size:10px;font-weight:600;letter-spacing:.13em;text-decoration:none;text-transform:uppercase;transition:transform .18s ease,border-color .18s ease,background-color .18s ease,color .18s ease}
+  .imcRun .imc-btn:hover{border-color:var(--imc-honey);transform:translateY(-2px)}
+  .imcRun .imc-btn-primary{border-color:var(--imc-honey);background:var(--imc-honey);color:#160e09}
+  .imcRun .imc-btn-primary:hover{border-color:var(--imc-lamplight);background:var(--imc-lamplight)}
+  .imcRun .imc-btn-secondary:hover{background:rgba(253,191,104,.07);color:var(--imc-lamplight)}
+
+  /* the event ledger */
+  .imcRun .run-ledger{display:flex;min-width:0;flex-direction:column;background:rgba(255,255,255,.009)}
+  .imcRun .ledger-heading{display:flex;min-height:76px;align-items:center;justify-content:space-between;gap:18px;padding:16px 19px;border-bottom:1px solid var(--imc-line)}
+  .imcRun .ledger-heading>div{display:grid;gap:6px}
+  .imcRun .ledger-heading h3{margin:0;font-family:var(--imc-display);font-size:20px;font-weight:600;letter-spacing:-.03em;text-transform:uppercase;color:var(--imc-parchment)}
+  .imcRun .ledger-heading>span{color:var(--imc-lamplight);font-family:var(--imc-mono);font-size:9px;letter-spacing:.12em}
+  .imcRun .event-log{flex:1;margin:0;padding:0;list-style:none}
+  .imcRun .event-log li{display:grid;min-height:56px;grid-template-columns:42px 1fr auto;gap:12px;align-items:center;padding:10px 18px;border-bottom:1px solid var(--imc-line)}
+  .imcRun .event-log time,.imcRun .empty-event>span{color:var(--imc-faint);font-family:var(--imc-mono);font-size:8px}
+  .imcRun .event-log li>div{display:grid;gap:4px}
+  .imcRun .event-log strong{color:var(--imc-mist);font-size:10px;font-weight:520}
+  .imcRun .event-log small{color:var(--imc-faint);font-size:9px;line-height:1.35}
+  .imcRun .event-mark{width:8px;height:8px;border:1px solid var(--imc-line-strong);transform:rotate(45deg)}
+  .imcRun .event-verified .event-mark{border-color:var(--imc-sage);background:rgba(184,187,166,.24)}
+  .imcRun .event-active .event-mark{border-color:var(--imc-honey);background:rgba(201,143,63,.22);animation:imc-pulse 1.6s ease-in-out infinite}
+  .imcRun .event-protected .event-mark{border-color:var(--imc-lamplight);background:var(--imc-lamplight)}
+  .imcRun .event-decision .event-mark{border-radius:50%;border-color:var(--imc-lamplight)}
+  .imcRun .ledger-disclosure{display:flex;min-height:46px;align-items:center;justify-content:space-between;gap:14px;padding:10px 18px;border-top:1px solid var(--imc-line);color:var(--imc-faint);font-family:var(--imc-mono);font-size:8px;letter-spacing:.11em;text-transform:uppercase}
+  .imcRun .ledger-disclosure strong{color:var(--imc-lamplight);font-weight:550}
+  .imcRun .imc-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;clip-path:inset(50%)}
+
+  /* the run record — warm paper, in both worlds */
+  .imcRecord{position:relative;width:min(calc(100% - 44px),1180px);margin:56px auto 0;padding:0 clamp(22px,3vw,48px);background:var(--imc-paper);color:var(--imc-ink);box-shadow:0 42px 100px rgba(0,0,0,.42);font-family:var(--imc-sans);text-align:left}
+  .imcRecord::before{position:absolute;inset-block:0;left:clamp(22px,3vw,48px);width:1px;content:"";background:var(--imc-paper-line)}
+  .imcRecord::after{position:absolute;inset-block:0;right:clamp(22px,3vw,48px);width:1px;content:"";background:var(--imc-paper-line)}
+  .imcRecord .record-masthead{display:grid;min-height:72px;grid-template-columns:1fr auto 1fr;gap:18px;align-items:center;border-bottom:1px solid var(--imc-paper-line-strong);color:var(--imc-ink-muted);font-family:var(--imc-mono);font-size:8px;letter-spacing:.15em;text-transform:uppercase}
+  .imcRecord .record-brand{color:var(--imc-ink);font-family:var(--imc-mono);font-size:10px;font-weight:600;letter-spacing:.22em}
+  .imcRecord .record-state{display:inline-flex;align-items:center;justify-self:end;gap:8px;color:var(--imc-green)}
+  .imcRecord .record-state i{width:6px;height:6px;border-radius:50%;background:currentColor;box-shadow:0 0 0 4px rgba(45,110,79,.1)}
+  .imcRecord .record-hero{display:grid;min-height:300px;grid-template-columns:minmax(0,1.18fr) minmax(280px,.82fr);gap:clamp(40px,6vw,100px);align-items:center;border-bottom:1px solid var(--imc-paper-line-strong);padding:34px 0}
+  .imcRecord .record-eyebrow{display:flex;align-items:center;gap:12px;margin:0 0 18px;color:var(--imc-ink-muted);font-family:var(--imc-mono);font-size:10px;font-weight:550;letter-spacing:.23em;text-transform:uppercase}
+  .imcRecord .record-eyebrow::before{width:34px;height:1px;content:"";background:var(--imc-ink)}
+  .imcRecord .record-hero h3{margin:0;font-family:var(--imc-display);font-size:clamp(52px,6vw,96px);font-weight:700;letter-spacing:-.06em;line-height:.8;text-transform:uppercase;color:var(--imc-ink)}
+  .imcRecord .record-hero h3 em{font-size:.86em;font-weight:400;font-style:italic;text-transform:none}
+  .imcRecord .record-hero>p{margin:0;color:var(--imc-ink-muted);font-size:clamp(17px,1.5vw,24px);line-height:1.48}
+  .imcRecord .record-table{border-bottom:1px solid var(--imc-paper-line-strong)}
+  .imcRecord .record-row{display:grid;min-height:74px;grid-template-columns:56px 146px 1fr 100px;gap:18px;align-items:center;border-bottom:1px solid var(--imc-paper-line)}
+  .imcRecord .record-row:last-child{border-bottom:0}
+  .imcRecord .record-row>span,.imcRecord .record-row>em{color:var(--imc-ink-muted);font-family:var(--imc-mono);font-size:8px;font-style:normal;letter-spacing:.12em;text-transform:uppercase}
+  .imcRecord .record-row>strong{font-size:11px;letter-spacing:.05em;text-transform:uppercase;color:var(--imc-ink)}
+  .imcRecord .record-row>p{margin:0;color:var(--imc-ink-muted);font-size:14px;line-height:1.4}
+  .imcRecord .record-row>em{justify-self:end;color:var(--imc-green);font-weight:600}
+  .imcRecord .record-signoff{display:grid;min-height:100px;grid-template-columns:repeat(3,auto) 1fr;gap:24px;align-items:center;color:var(--imc-ink-muted);font-family:var(--imc-mono);font-size:8px;letter-spacing:.12em;text-transform:uppercase}
+  .imcRecord .record-signoff span::before{margin-right:7px;color:var(--imc-green);content:"✓"}
+  .imcRecord .record-signoff strong{justify-self:end;padding:11px 13px;border:1px solid var(--imc-paper-line-strong);color:var(--imc-ink);font-weight:600}
+
+  @keyframes imc-pulse{0%,100%{opacity:.48;transform:scale(.82)}50%{opacity:1;transform:scale(1)}}
+  @keyframes imc-worker{0%,100%{opacity:.35}50%{opacity:1}}
+  @keyframes imc-lane{0%{transform:translateX(-120%)}58%,100%{transform:translateX(310%)}}
+
+  @media (max-width:1180px){
+    .imcRun .factory-toolbar{grid-template-columns:1fr auto}
+    .imcRun .factory-telemetry{grid-column:1/-1;grid-row:2;border-top:1px solid var(--imc-line);padding-top:12px}
+    .imcRun .factory-telemetry>span:first-child{padding-left:0;border-left:0}
+    .imcRun .run-controls{grid-column:2;grid-row:1}
+  }
+  @media (max-width:960px){
+    .imcRun .intention-selector{grid-template-columns:1fr}
+    .imcRun .intention-option{min-height:92px;border-right:0;border-bottom:1px solid var(--imc-line)}
+    .imcRun .intention-option:last-child{border-bottom:0}
+    .imcRun .pipeline{padding:24px 18px;background-image:none}
+    .imcRun .track{display:none}
+    .imcRun .phase-grid{grid-template-columns:repeat(3,1fr);gap:1px;border:1px solid var(--imc-line);background:var(--imc-line)}
+    .imcRun .phase{min-height:126px;padding:16px 10px;background:var(--imc-raised)}
+    .imcRun .phase-gate .phase-node{width:52px;height:52px;margin-top:0;margin-bottom:0}
+    .imcRun .phase-gate .phase-node i{display:none}
+    .imcRun .factory-workspace{grid-template-columns:1fr}
+    .imcRun .active-work{min-height:440px;border-right:0;border-bottom:1px solid var(--imc-line)}
+    .imcRun .run-ledger{min-height:360px}
+    .imcRecord .record-hero{grid-template-columns:1fr;gap:30px;padding:44px 0}
+    .imcRecord .record-row{grid-template-columns:44px 120px 1fr 90px}
+    .imcRecord .record-signoff{grid-template-columns:repeat(3,auto);padding:26px 0}
+    .imcRecord .record-signoff strong{grid-column:1/-1;justify-self:start}
+  }
+  @media (max-width:680px){
+    .imc-wrap{width:calc(100% - 24px)}
+    .imcRun .factory-toolbar{display:flex;align-items:stretch;flex-direction:column;gap:13px}
+    .imcRun .run-controls{justify-content:flex-start}
+    .imcRun .run-controls button{min-height:44px}
+    .imcRun .factory-telemetry{width:100%;justify-content:space-between}
+    .imcRun .factory-telemetry>span{min-width:0;flex:1;padding:0 10px}
+    .imcRun .factory-telemetry>span:first-child{padding-left:0}
+    .imcRun .factory-statusline{grid-template-columns:1fr auto}
+    .imcRun .factory-statusline p{grid-column:1/-1;grid-row:2;white-space:normal;line-height:1.45}
+    .imcRun .phase-grid{grid-template-columns:repeat(2,1fr)}
+    .imcRun .phase{min-height:120px}
+    .imcRun .imc-panel{padding:30px 20px}
+    .imcRun .imc-panel h3{font-size:32px}
+    .imcRun .lane{grid-template-columns:32px 88px 1fr}
+    .imcRun .prepared-list{flex-direction:column}
+    .imcRun .imc-authorized{align-items:flex-start;flex-direction:column}
+    .imcRun .result-stats{grid-template-columns:1fr}
+    .imcRun .result-stats span{border-right:0;border-bottom:1px solid var(--imc-line)}
+    .imcRun .result-stats span:last-child{border-bottom:0}
+    .imcRun .panel-actions{align-items:stretch;flex-direction:column;width:100%}
+    .imcRun .imc-btn{width:100%}
+    .imcRun .event-log li{grid-template-columns:36px 1fr auto;padding-inline:14px}
+    .imcRecord{width:calc(100% - 12px);padding:0 18px}
+    .imcRecord::before{left:18px}
+    .imcRecord::after{right:18px}
+    .imcRecord .record-masthead{grid-template-columns:1fr auto}
+    .imcRecord .record-masthead>span:nth-child(2){display:none}
+    .imcRecord .record-hero h3{font-size:clamp(44px,15vw,72px)}
+    .imcRecord .record-row{min-height:0;grid-template-columns:30px 1fr auto;gap:12px;padding:16px 0}
+    .imcRecord .record-row>p{grid-column:2/-1;grid-row:2}
+    .imcRecord .record-row>em{grid-column:3;grid-row:1}
+    .imcRecord .record-signoff{grid-template-columns:1fr;gap:12px}
+    .imcRecord .record-signoff strong{grid-column:auto;justify-self:start}
+  }
+  @media (max-width:390px){
+    .imcRun .intention-option{padding:15px 12px}
+    .imcRun .intention-copy strong{font-size:16px}
+    .imcRun .phase{min-height:114px}
+    .imcRun .phase-node{width:46px;height:46px}
+  }
+  @media (prefers-reduced-motion:reduce){
+    .imcRun *,.imcRun *::before,.imcRun *::after,.imcRecord *,.imcRecord *::before,.imcRecord *::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}
+  }
 </style>
 
 <div id="boot" aria-hidden="true">
@@ -320,8 +620,8 @@
     <p>I'm Jarrett. I had solutions, but couldn't figure out how to package them let alone, figure out
     who even had the problems that I could solve.</p>
     <p>I built an AI system for this exact gap. I called it...</p>
-    <p class="callname"><span class="rainbow">“The Imagination Engine”</span></p>
-    <p>I fed my <span class="rainbow">Unmaterialized Vision</span> into the Engine.</p>
+    <p class="callname"><span class="rainbow">“The Imagination Collective”</span></p>
+    <p>I fed my <span class="rainbow">Unmaterialized Vision</span> into the Collective.</p>
     <p>What came next was surreal...</p>
     <p>It started digging through weeks of Cross Adversarial Analysis — <span class="rainbow">Independent
     AI Minds</span> arguing, checking each other, killing what I thought were the right answers...</p>
@@ -361,7 +661,7 @@
 
 <section class="mirror" id="mirror-bridge">
   <div class="beat">
-    <p class="line">Which means the people this Engine was built for<br>
+    <p class="line">Which means the people this Collective was built for<br>
     are the ones like me — Solo Experts with something <span class="rainbow">Real</span>,<br>
     tired of watching it stay invisible.</p>
   </div>
@@ -371,7 +671,7 @@
 <section class="prism" id="prism">
   <div class="mark mark-spectrum" id="mark-prism" aria-hidden="true"><div class="glowring"></div></div>
   <div class="caption beat">
-    <span class="label rainbow">The Imagination Engine</span>
+    <span class="label rainbow">The Imagination Collective</span>
     <h2>Your <span class="rainbow">Intention</span> Goes In.<br>A <span class="rainbow">Governed
     Build</span> Begins.</h2>
     <p class="quiet">Your Vision Enters. <span class="rainbow">Working Assets Generate:</span>
@@ -386,6 +686,171 @@
     <p>Nothing here acts alone. That is not a limitation.</p>
     <p><span class="rainbow">That is the Power.</span></p>
   </div>
+</section>
+
+<section class="scene imcRun" id="live-run" aria-labelledby="imc-run-title">
+  <div class="imc-wrap beat">
+    <div class="imc-intro">
+      <span class="label rainbow">Live Governed AI Demo</span>
+      <h2 class="imc-head" id="imc-run-title">Watch one <span class="rainbow">Intention</span> become
+      verified work.</h2>
+      <p class="quiet imc-note">What follows is a local simulation of one governed run — not the live
+      system. Choose an intention, start the run, and decide the owner gate yourself. Nothing is sent,
+      published, or changed outside this page.</p>
+    </div>
+
+    <div class="intention-selector" role="radiogroup" aria-label="Choose an intention" id="imc-selector">
+      <button type="button" role="radio" aria-checked="true" class="intention-option selected" data-imc-key="launch">
+        <span class="intention-index">01</span>
+        <span class="intention-copy"><strong>Launch a product</strong><small>Positioning, launch assets,
+        rollout plan, and readiness review.</small></span>
+        <span class="intention-radio" aria-hidden="true"></span>
+      </button>
+      <button type="button" role="radio" aria-checked="false" class="intention-option" data-imc-key="feature">
+        <span class="intention-index">02</span>
+        <span class="intention-copy"><strong>Ship a feature</strong><small>Scoped implementation, tested
+        code, documentation, and release package.</small></span>
+        <span class="intention-radio" aria-hidden="true"></span>
+      </button>
+      <button type="button" role="radio" aria-checked="false" class="intention-option" data-imc-key="opportunity">
+        <span class="intention-index">03</span>
+        <span class="intention-copy"><strong>Map an opportunity</strong><small>Market evidence, decision
+        brief, key risks, and recommended next moves.</small></span>
+        <span class="intention-radio" aria-hidden="true"></span>
+      </button>
+    </div>
+
+    <div class="factory-window state-ready" id="imc-window">
+      <div class="factory-toolbar">
+        <div class="factory-identity">
+          <span class="live-beacon" aria-hidden="true"></span>
+          <div><small id="imc-runid-label">Governed run / IMC-042</small><strong id="imc-shortname">Product launch</strong></div>
+        </div>
+        <div class="factory-telemetry" aria-label="Current run metrics">
+          <span><small>Specialists</small><strong id="imc-t-specialists">—</strong></span>
+          <span><small>Checks passed</small><strong id="imc-t-checks">00</strong></span>
+          <span><small>Artifacts</small><strong id="imc-t-artifacts">00</strong></span>
+        </div>
+        <div class="run-controls" id="imc-controls">
+          <button type="button" id="imc-btn-pause" class="imc-hidden">Pause</button>
+          <button type="button" id="imc-btn-skip" class="imc-hidden">Skip to decision</button>
+          <button type="button" id="imc-btn-replay" class="imc-hidden">Replay intention</button>
+        </div>
+      </div>
+
+      <div class="factory-statusline">
+        <span class="state-pill state-pill-ready" id="imc-pill">Ready</span>
+        <p id="imc-status">Choose an intention and start a governed run.</p>
+        <span id="imc-sim-label">IMC-042 / simulation</span>
+      </div>
+
+      <div class="pipeline" aria-label="Governed run phases">
+        <div class="track" aria-hidden="true"><span class="track-fill"></span><i class="work-packet"></i></div>
+        <ol class="phase-grid" id="imc-phases">
+          <li class="phase phase-intent"><div class="phase-node"><span>01</span></div><div class="phase-copy"><strong>Intent</strong><small>queued</small></div></li>
+          <li class="phase phase-map"><div class="phase-node"><span>02</span></div><div class="phase-copy"><strong>Map</strong><small>queued</small></div></li>
+          <li class="phase phase-deploy"><div class="phase-node"><span>03</span></div><div class="phase-copy"><strong>Deploy</strong><small>queued</small></div><span class="specialist-lanes" aria-label="Four specialist lanes"><i></i><i></i><i></i><i></i></span></li>
+          <li class="phase phase-verify"><div class="phase-node"><span>04</span></div><div class="phase-copy"><strong>Verify</strong><small>queued</small></div></li>
+          <li class="phase phase-gate"><div class="phase-node"><span>05</span><i aria-hidden="true"></i></div><div class="phase-copy"><strong>Owner gate</strong><small>queued</small></div></li>
+          <li class="phase phase-deliver"><div class="phase-node"><span>06</span></div><div class="phase-copy"><strong>Deliver</strong><small>queued</small></div></li>
+        </ol>
+      </div>
+
+      <div class="factory-workspace">
+        <div class="active-work">
+          <div class="imc-panel" id="imc-panel-ready">
+            <p class="panel-kicker">Intention brief / ready</p>
+            <h3 id="imc-ready-objective">Turn the launch brief into a complete, evidence-backed launch package.</h3>
+            <p class="panel-body">The Imagination Collective will map the work, dispatch AI specialists,
+            verify their output, and stop before the proposed external action.</p>
+            <div class="artifact-preview" aria-label="Expected deliverables" id="imc-ready-artifacts"></div>
+            <div class="panel-actions"><button type="button" class="imc-btn imc-btn-primary" id="imc-btn-run">Run this intention <span aria-hidden="true">→</span></button></div>
+          </div>
+
+          <div class="imc-panel imc-hidden" id="imc-panel-running">
+            <div class="active-phase-header"><span id="imc-running-phase">Phase 01</span><span id="imc-running-name">Intent</span></div>
+            <h3 id="imc-running-title">Objective locked</h3>
+            <p class="panel-body" id="imc-running-desc"></p>
+            <div class="work-lanes" aria-label="Current specialist activity" id="imc-lanes">
+              <div class="lane"><span>01</span><strong>Research</strong><i aria-hidden="true"></i></div>
+              <div class="lane"><span>02</span><strong>Architecture</strong><i aria-hidden="true"></i></div>
+              <div class="lane"><span>03</span><strong>Production</strong><i aria-hidden="true"></i></div>
+              <div class="lane"><span>04</span><strong>Review</strong><i aria-hidden="true"></i></div>
+            </div>
+          </div>
+
+          <div class="imc-panel imc-hidden" id="imc-panel-paused">
+            <p class="panel-kicker">Run paused</p>
+            <h3>Your place is saved.</h3>
+            <p class="panel-body" id="imc-paused-copy">All active work is held locally at a safe checkpoint.</p>
+            <div class="panel-actions"><button type="button" class="imc-btn imc-btn-primary" id="imc-btn-resume">Resume run <span aria-hidden="true">→</span></button><button type="button" class="imc-btn imc-btn-secondary" id="imc-btn-skip2">Skip to decision</button></div>
+          </div>
+
+          <div class="imc-panel imc-gate imc-hidden" id="imc-panel-gate">
+            <div class="gate-stripe" aria-hidden="true"></div>
+            <p class="panel-kicker">Owner authority required</p>
+            <h3 id="imc-gate-heading" tabindex="-1">The Collective reached a decision only you can make.</h3>
+            <p class="panel-body">Work is complete up to this boundary. Review the exact action before
+            anything leaves the run.</p>
+            <div class="proposed-action"><small>Proposed action</small><strong id="imc-gate-action"></strong></div>
+            <ul class="prepared-list"><li>Final artifact package</li><li>Destination and impact check</li><li>Approval-ready action record</li></ul>
+            <p class="simulation-note"><strong>Simulation:</strong> nothing will be sent, published,
+            purchased, merged, or changed outside this page.</p>
+            <div class="panel-actions"><button type="button" class="imc-btn imc-btn-primary" id="imc-btn-approve">Authorize this action <span aria-hidden="true">→</span></button><button type="button" class="imc-btn imc-btn-secondary" id="imc-btn-block">Keep blocked</button></div>
+          </div>
+
+          <div class="imc-panel imc-authorized imc-hidden" id="imc-panel-authorized">
+            <span class="authorization-seal" aria-hidden="true">✓</span>
+            <div><p class="panel-kicker">Authorization recorded</p><h3>Releasing the approved work.</h3>
+            <p class="panel-body">The owner decision is now part of this run’s record.</p></div>
+          </div>
+
+          <div class="imc-panel imc-hidden" id="imc-panel-result">
+            <p class="panel-kicker" id="imc-result-kicker">Run complete</p>
+            <h3 id="imc-result-heading" tabindex="-1">Objective delivered.</h3>
+            <p class="panel-body" id="imc-result-copy"></p>
+            <div class="result-stats imc-hidden" id="imc-result-stats"><span><strong id="imc-stat-phases">06</strong> phases completed</span><span><strong id="imc-stat-checks">28</strong> checks passed</span><span><strong>00</strong> unapproved actions</span></div>
+            <div class="panel-actions imc-hidden" id="imc-result-actions"><a class="imc-btn imc-btn-primary" href="#run-record">Inspect the run record <span aria-hidden="true">↓</span></a><button type="button" class="imc-btn imc-btn-secondary" id="imc-btn-reset">Choose another intention</button></div>
+          </div>
+        </div>
+
+        <aside class="run-ledger" aria-labelledby="imc-ledger-title">
+          <div class="ledger-heading"><div><small>Inspectable lineage</small><h3 id="imc-ledger-title">Event ledger</h3></div><span id="imc-ledger-runid">IMC-042</span></div>
+          <ol class="event-log" aria-label="Run events" id="imc-events">
+            <li class="empty-event"><span>—</span><div><strong>Record waiting</strong><small>Events will appear as the run moves.</small></div></li>
+          </ol>
+          <div class="ledger-disclosure"><span>External effects</span><strong>Simulated only</strong></div>
+        </aside>
+      </div>
+    </div>
+
+    <div class="imcRecord" id="run-record">
+      <div class="record-masthead">
+        <span class="record-brand">THE IMAGINATION COLLECTIVE</span>
+        <span id="imc-rec-runid">Governed run record / IMC-042</span>
+        <span class="record-state"><i aria-hidden="true"></i> <span id="imc-rec-state">Awaiting run</span></span>
+      </div>
+      <div class="record-hero">
+        <div>
+          <p class="record-eyebrow" id="imc-rec-eyebrow">Proof statement / IMC-042</p>
+          <h3>Autonomy<br><em>with receipts.</em></h3>
+        </div>
+        <p>This experience was produced as an inspectable governed run. The plan, the specialist work,
+        the verification evidence, the owner decision, and the final delivery remain attached to the
+        result.</p>
+      </div>
+      <div class="record-table" role="table" aria-label="Governed run record summary">
+        <div class="record-row" role="row"><span role="cell">01</span><strong role="cell">Objective</strong><p role="cell" id="imc-rec-objective"></p><em role="cell" id="imc-rec-s1">Ready</em></div>
+        <div class="record-row" role="row"><span role="cell">02</span><strong role="cell">Work graph</strong><p role="cell">Dependencies, risks, and authority boundaries</p><em role="cell" id="imc-rec-s2">Pending</em></div>
+        <div class="record-row" role="row"><span role="cell">03</span><strong role="cell">Specialist work</strong><p role="cell" id="imc-rec-artifacts"></p><em role="cell" id="imc-rec-s3">Pending</em></div>
+        <div class="record-row" role="row"><span role="cell">04</span><strong role="cell">Verification</strong><p role="cell" id="imc-rec-checks">0 evidence and policy checks</p><em role="cell" id="imc-rec-s4">Pending</em></div>
+        <div class="record-row" role="row"><span role="cell">05</span><strong role="cell">Owner decision</strong><p role="cell" id="imc-rec-decision">No decision recorded</p><em role="cell" id="imc-rec-s5">Protected</em></div>
+        <div class="record-row" role="row"><span role="cell">06</span><strong role="cell">External effects</strong><p role="cell">This interactive experience is a local simulation</p><em role="cell">None</em></div>
+      </div>
+      <div class="record-signoff"><span>Boundaries enforced</span><span>Actions witnessed</span><span>Outputs verified</span><strong id="imc-signoff">IMC-042 / SEALED IN SIMULATION</strong></div>
+    </div>
+  </div>
+  <p class="imc-sr" role="status" aria-live="polite" aria-atomic="true" id="imc-sr">Choose an intention and start a governed run.</p>
 </section>
 
 <section class="scene">
@@ -413,7 +878,7 @@
         <div class="what">A strict no-self-replication interlock was built and merged: a hook that
         blocks the engine's own model from spawning unreviewed copies of itself once activated.
         Restraint, encoded and reviewable.</div>
-        <div class="witness">✓ witnessed: merged hook + tests; activation stays in Jarrett's hand</div>
+        <div class="witness">✓ witnessed: merged hook + tests; wired into the settings of record by Jarrett's own merge on July 8</div>
       </div>
       <div class="receipt">
         <div class="when">June 29 · doctrine</div>
@@ -467,25 +932,482 @@
   </div>
 </section>
 
-<section class="ask">
+<section class="scene" id="intention-harness">
+  <div class="measure beat">
+    <span class="label rainbow">The first rung</span>
+    <p class="quiet">Everything above is the Collective at full height. This is where you climb on —
+    the first piece you can run with your own hands.</p>
+    <h2>Said ≠ Understood.</h2>
+    <p class="harness-sub">You said it clearly. The agent did what you said. You still got the
+    wrong thing.</p>
+    <p>You told the model what to do. It did something competent. It still missed what you meant.
+    That gap is <strong>Said≠Understood</strong>: the finish line lived in your head; the prompt
+    carried only a thin slice of it. Better models don't automatically fix an unwritten finish
+    line — and neither does looping, if the loop optimizes against a soft target.</p>
+    <p><span class="rainbow">The Intention Harness</span> is a small, written method that makes
+    the transfer checkable: a mirror loop excavates what you actually mean onto one page — the
+    <strong>Wrongness Spec</strong> (seven fields) — the page is frozen, the AI realizes against
+    it, and the work is verified <em>against the page</em>, not against a feeling that arrives
+    after you see the draft. The signature move is the <strong>Wrongness Test</strong>: what would
+    make the work wrong <em>even if impressive</em>.</p>
+    <p class="arms-head">How we demonstrate it (process, not a scoreboard):</p>
+    <table class="arms">
+      <thead><tr><th>Arm</th><th>What you see</th></tr></thead>
+      <tbody>
+        <tr><td>Arm A — Said</td><td>The task as a normal prompt. Output published whole.</td></tr>
+        <tr><td>Arm B — Understood</td><td>Same task after excavation → frozen Wrongness Spec →
+        realized against it. Spec + output published whole.</td></tr>
+      </tbody>
+    </table>
+    <p>Check both against the same wrongness tests. Judge the alignment yourself. One run, one
+    real task, from our own build-in-public work — it shows process, not a promise that your task
+    behaves like ours.</p>
+  </div>
+  <div class="ledger beat harness-artifacts">
+    <p class="arms-head">The artifacts (published whole — judge the alignment yourself)</p>
+<details class="artifact">
+  <summary>Artifact 1 — the raw ask, verbatim, plus the facts sheet both arms got</summary>
+  <pre id="harness-a1">
+# ARM A — the raw ask (owner verbatim, 2026-07-09; dispatched BEFORE the mirror loop ran)
+"I want you to create me a checkout page for my $97 kit."
+
+**The shared facts sheet (identical in both arms — anti-strawman floor):**
+
+# FACTS SHEET (identical in both arms — anti-strawman floor)
+- Product: The Intention Harness — Founding Edition (a written method kit)
+- Price: $97, one-time
+- What it is: the written method for the Said≠Understood problem — the Wrongness Spec (one-page,
+  7-field intention artifact), the Mirror Loop excavation method, worked examples, verify checklist.
+  Digital files. Modules 1–2 delivered on purchase; Modules 3–5 ship by [SHIP_DATE].
+- Who it's for: solo builders and experts whose AI does what they said and still misses what they meant.
+- Terms: 30-day refund; not software; no results guarantee — method and templates only.
+- Deliverable shape: checkout-page copy — one headline, ~150–250 word description, three FAQ Q&amp;As,
+  one CTA ("Get The Intention Harness — $97" → [STRIPE_LINK]).
+</pre>
+</details>
+<details class="artifact">
+  <summary>Artifact 2 — Arm A (Said): the raw ask, realized. Published whole.</summary>
+  <pre id="harness-a2">
+STATUS: READY
+
+## Objective
+Produce checkout-page copy for The Intention Harness — Founding Edition ($97) from the packet facts only.
+
+## Scope
+In: headline, ~150–250 word description, three FAQ Q&amp;As, one CTA with `[STRIPE_LINK]`.  
+Out: design/build, Stripe setup, send/publish, personalization, proof/ROI claims, results guarantees.
+
+## Sources / Evidence
+- Task packet FACTS SHEET only. No web, tools, or external research. `[V]`
+
+## Output / Delta
+
+### Headline
+**Your AI did what you said. It still missed what you meant.**
+
+### Description
+The Intention Harness — Founding Edition is the written method for the Said≠Understood problem: when instructions look clear and the output still isn’t what you intended.
+
+You get a practical kit, not software. At the center is the Wrongness Spec — a one-page, 7-field intention artifact that forces the gap between “said” and “meant” into the open. Alongside it: the Mirror Loop excavation method, worked examples, and a verify checklist so you can check the work before you ship it.
+
+Built for solo builders and experts who already know their craft and keep watching capable tools miss the point.
+
+**What you get (digital files):**  
+Modules 1–2 on purchase. Modules 3–5 by **[SHIP_DATE]**.
+
+**$97, one-time.** 30-day refund. Method and templates only — not software, no results guarantee.
+
+### FAQ
+
+**Q: What exactly am I buying?**  
+A: A digital written-method kit: the Wrongness Spec (one-page, 7-field intention artifact), the Mirror Loop excavation method, worked examples, and a verify checklist. Modules 1–2 deliver on purchase; Modules 3–5 ship by [SHIP_DATE]. It is not software.
+
+**Q: Who is this for?**  
+A: Solo builders and experts whose AI does what they said and still misses what they meant. If the gap is intention, not tooling, this is the kit.
+
+**Q: What’s the refund policy? Is there a results guarantee?**  
+A: 30-day refund. There is no results guarantee — method and templates only. You’re buying a process for clarifying intention, not a promise of outcomes.
+
+### CTA
+**[Get The Intention Harness — $97]([STRIPE_LINK])**
+
+---
+
+**Word count (description body):** ~175 words (within 150–250). `[V]`
+
+## Missing / Assumptions
+- **Missing:** real `[SHIP_DATE]`, live `[STRIPE_LINK]`, brand voice, layout, legal counsel review. `[V]`
+- **Assumed:** placeholders stay until Jarrett fills them; “Founding Edition” needs no extra scarcity copy beyond the name. `[S]`
+- **Assumed:** one-page = single scroll of copy, not HTML/CSS. `[S]`
+
+## Dissent
+no material dissent — packet is internally consistent. Strongest soft tension (not a contradiction): “Founding Edition” implies scarcity/status without stated limit or end date; left unlabeled per anti-invention rule. Pointer: FACTS SHEET product line vs. no founding terms elsewhere.
+
+## Authority Outcome
+Recommendation-only draft. No send, publish, price change, pay, merge, or permission action performed or claimed.
+
+## Review State
+Draft complete for orchestrator/Jarrett review. Not certified, approved, or gate-cleared.
+
+## Next Jarrett Button
+Fill `[SHIP_DATE]` and `[STRIPE_LINK]`, then decide publish path (or request tone/layout pass).
+
+## Carry Forward
+- Product: The Intention Harness — Founding Edition  
+- Price: $97 one-time · 30-day refund · no results guarantee · not software  
+- CTA label fixed: “Get The Intention Harness — $97”  
+- Placeholders still open: `[SHIP_DATE]`, `[STRIPE_LINK]`
+</pre>
+</details>
+<details class="artifact">
+  <summary>Artifact 3 — the Wrongness Spec: one page, excavated in ~10 minutes of mirror loop, frozen before Arm B ran</summary>
+  <pre id="harness-a3">
+# THE WRONGNESS SPEC — FROZEN (Run 001, Arm B · owner as intender · mirror loop closed 2026-07-09)
+Task: checkout-page copy — The Intention Harness, Founding Edition, $97.
+
+1. END-STATE — The reader arrives frustrated/angry/anxious/hopeless, blaming the AI ("this is
+useless" · "did this thing even read what I wrote?" · "it fights me at every turn" · "it's dumb").
+The page catches them in their own self-talk, then lands the reframe; the aha arrives as RELIEF:
+"THIS is what I've been looking for. It was never dumb. It just never got me." Dominant emotion:
+frustration → relieved recognition. By the final line, buying feels like the obvious next step.
+
+2. WORTH — Bigger than builders: most people find AI wrong a lot, so they split three ways — blind
+trust, absolute distrust, or non-use (a learning curve most don't know exists). Root: media sold AI
+as an all-knowing "god," so a fiction-based expectation meets a real tool. The page speaks first to
+the burned builder and carries the wider case.
+
+3. NON-NEGOTIABLES — Zero results/income promises (the kill clause stays visible in checkout).
+Promise-posture: "guardrails, not the engine — guardrails on the edge of a mountain; the driver
+drives to the top; we reduce the friction to personal ascension and development." Founding terms
+honest (real dates, real refund). Owner's voice: warm, direct, human, never corporate. The
+pain-transforming-into-peace carries the page; features ride behind. $97, stated plainly.
+
+4. THIS PAGE IS WRONG IF — (a) it is dull; (b) buying is not the obvious next step for the right
+reader by the final line; (c) it is too technical; (d) it focuses on features instead of the pain
+transforming into peace; (e) it is all hype and no substance.
+
+5. TASTE ANCHORS + BELIEF — Structure: The 16-Word Sales Letter™ (Albuquerque): one dominant emotion
+(frustration→relief), one belief. Compass (steers copy, never printed): "If you believe that AI keeps
+failing you — not because it's dumb, and not because you're bad at this, but because what you mean
+never actually reaches it — and that this one page is how it finally does, then you will buy."
+OPENER OF RECORD (owner-selected): "Did this thing even read what I wrote?" If you've said that at
+your screen, you're not crazy — I felt the same way. It may feel like AI is useless, but the problem
+isn't capability, it's interpretation. Your Intention was never truly understood. So AI produced what
+it thought you meant — which is why it can feel like it's making things up. The Intention Harness is
+the bridge between what you mean and what AI thinks you mean — so your vision can finally arrive the
+way you saw it.
+Copy pool (owner-supplied, may quote): the four self-talk lines above; "the problem isn't capability,
+it's interpretation"; the guardrails-mountain metaphor; "I felt the same way" (owner-true witness).
+
+6. SACRIFICE ORDER — Cut cleverness first, then brevity. Clarity above all else. Never sacrifice
+honesty or the aha-recognition. Dull-vs-hype tie → substance wins, then make the substance vivid.
+
+7. THE DIAL — One shot, no follow-ups. Missing facts → [NEEDED], never invented: no fake
+testimonials, no fake scarcity, no invented numbers or results. May freely invent: metaphors,
+structure, subheads.
+</pre>
+</details>
+<details class="artifact">
+  <summary>Artifact 4 — Arm B (Understood): same task, same facts, same model — plus the page. Published whole as graded — including the lines the blind grade flagged, later fixed in the human pass; the checkout copy of record is the corrected variant.</summary>
+  <pre id="harness-a4">
+STATUS: READY
+
+## Objective
+Produce checkout-page copy for The Intention Harness — Founding Edition ($97) that lands the frozen Wrongness Spec: catch the burned reader in their self-talk, reframe interpretation (not capability), deliver relieved recognition, and make buying the obvious next step — with zero results promises and honest founding terms. [V]
+
+## Scope
+In scope: one headline, ~150–250 word description, three FAQ Q&amp;As, one CTA to `[STRIPE_LINK]`.  
+Out of scope: design/layout, Stripe setup, publish/send, invented social proof, scarcity, results, or ROI. [V]
+
+## Sources / Evidence
+- Client task packet + FACTS SHEET (product, price, deliverables, terms, audience). [V]
+- Wrongness Spec (Run 001, Arm B) — frozen end-state, non-negotiables, opener of record, compass belief, sacrifice order, dial. [V]
+- No web, no tools, no external research (per packet). [V]
+
+## Output / Delta
+
+### Headline
+**Did this thing even read what I wrote?**
+
+### Description (~220 words)
+
+If you've said that at your screen — or "this is useless," or "it fights me at every turn," or "it's dumb" — you're not crazy. I felt the same way.
+
+It may feel like AI is useless. The problem isn't capability. It's interpretation. Your intention was never truly understood. So the AI produced what it *thought* you meant — which is why it can feel like it's making things up, or fighting you, or missing the point you already wrote down three times.
+
+Most people hit that wall and split three ways: blind trust, absolute distrust, or walking away. Media sold AI like an all-knowing god. A fiction-based expectation met a real tool. The tool didn't fail at intelligence. It failed at *you*.
+
+**The Intention Harness — Founding Edition** is the written method for that gap: the Said≠Understood problem. It's the bridge between what you mean and what AI thinks you mean — so your vision can finally arrive the way you saw it.
+
+Not software. Not a results engine. Guardrails on the edge of a mountain: you still drive to the top. We reduce the friction between your intention and what actually shows up.
+
+Inside: the Wrongness Spec (a one-page, 7-field intention artifact), the Mirror Loop excavation method, worked examples, and a verify checklist. Digital files. Modules 1–2 on purchase; Modules 3–5 by **[SHIP_DATE]**.
+
+**$97**, one-time. 30-day refund. Method and templates only — no results guarantee.
+
+If you've been blaming the machine, this is the reframe you've been looking for. It was never dumb. It just never got you.
+
+### FAQ
+
+**Q: What exactly do I get?**  
+**A:** Digital files for The Intention Harness — Founding Edition: the Wrongness Spec (one-page, 7-field intention artifact), the Mirror Loop excavation method, worked examples, and a verify checklist. Modules 1–2 deliver on purchase; Modules 3–5 ship by **[SHIP_DATE]**.
+
+**Q: Is this software? Will it guarantee better AI outputs?**  
+**A:** No. This is not software. It's a written method and templates only — guardrails, not the engine. There is no results guarantee. The kill clause is the point: we help your meaning reach the model; you still drive.
+
+**Q: What if it isn't for me?**  
+**A:** 30-day refund. Founding terms are plain: real refund window, real delivery dates, $97 one-time. If the reframe doesn't land, you don't keep paying for hope.
+
+### CTA
+**[Get The Intention Harness — $97]([STRIPE_LINK])**
+
+---
+
+## Missing / Assumptions
+- **`[SHIP_DATE]`** — not provided; left as placeholder per dial (never invent dates). [V]
+- **`[STRIPE_LINK]`** — not provided; left as placeholder. [V]
+- Assumed "checkout-page copy" means the copy block above, not HTML/CSS implementation (packet specified deliverable shape as copy). [S]
+- Assumed owner-true witness "I felt the same way" may appear in first person as specified in the opener of record / copy pool. [V]
+
+## Dissent
+Strongest unresolved tension (spec-internal, not inventable away): the opener of record opens on pain and self-talk, while non-negotiable (d) says features ride behind pain→peace — the FAQ must restate deliverables for honesty, which slightly re-centers "what's in the box" after the aha. That is required by the FACTS SHEET and FAQ deliverable shape, not a soft rewrite of the opener. Pointer: Wrongness Spec §4(d) vs §5 opener of record + FACTS SHEET deliverable list. No material dissent against the frozen opener or kill-clause posture.
+
+## Authority Outcome
+Recommendation-only copy draft for orchestrator synthesis and Jarrett's decision. No send, publish, price change, Stripe charge, or merge performed or claimed. [V]
+
+## Review State
+Not reviewed, not approved, not certified. Adversarial orchestrator review and human decision remain open. [V]
+
+## Next Jarrett Button
+1. Fill **`[SHIP_DATE]`** and **`[STRIPE_LINK]`**.  
+2. Approve, cut, or re-voice the first-person witness line if preferred third-person.  
+3. Only then: place on checkout / wire CTA (human hand only).
+
+## Carry Forward
+- Frozen belief (do not print): intention never reached the model — this page is how it does.  
+- Kill clause stays visible: method/templates only; no results guarantee; 30-day refund.  
+- Dominant arc: frustration → relieved recognition; $97 plain; Founding Edition honesty over hype.
+</pre>
+</details>
+<details class="artifact">
+  <summary>Artifact 5 — the blind grade (a different model family; identities sealed behind a logged coin flip) + the full audit trail: grade sheet, key reveal, and both audit corrections</summary>
+  <pre id="harness-a5">
+STATUS: READY | BLOCKED: none | DECISION NEEDED: Jarrett must decide whether either draft proceeds after this blind grade. | NO ACTION
+
+## Objective
+
+Blind-grade both drafts against the frozen specification without rewriting, advising, or speculating about origins. [V]
+
+## Scope
+
+Review covers §4(a–e), Field 1, Field 3, factual support, and the required comparative judgment only. [V]
+
+## Sources / Evidence
+
+- Observation [V]: The record contains the specification and both drafts.
+- Inference [S]: Wrongness-test verdicts require qualitative judgment; exact citations are verified.
+- Missing [V]: Neither draft’s referenced FACTS SHEET was supplied, so refund duration, deliverables, modules, and audience assertions are unverified—not proven fabricated.
+
+## Output / Delta
+
+### Output-1 — wrongness tests
+
+- 4(a), dull: PASS [S] — cite [V]: “If you've said that at your screen — or "this is useless," or "it fights me at every turn," or "it's dumb" — you're not crazy. I felt the same way.”
+- 4(b), buying not obvious: PASS [S] — cite [V]: “If you've been blaming the machine, this is the reframe you've been looking for. It was never dumb. It just never got you.”
+- 4(c), too technical: PASS [S] — cite [V]: “The problem isn't capability. It's interpretation.”
+- 4(d), features over pain→peace: PASS [S] — cite [V]: “If you've been blaming the machine, this is the reframe you've been looking for. It was never dumb. It just never got you.”
+- 4(e), all hype/no substance: PASS [S] — cite [V]: “Inside: the Wrongness Spec (a one-page, 7-field intention artifact), the Mirror Loop excavation method, worked examples, and a verify checklist.”
+
+### Output-2 — wrongness tests
+
+- 4(a), dull: FAIL [S] — cite [V]: “The Intention Harness — Founding Edition is the written method for the Said≠Understood problem: when instructions look clear and the output still isn’t what you intended.”
+- 4(b), buying not obvious: FAIL [S] — cite [V]: “You’re buying a process for clarifying intention, not a promise of outcomes.”
+- 4(c), too technical: FAIL [S] — cite [V]: “At the center is the Wrongness Spec — a one-page, 7-field intention artifact that forces the gap between “said” and “meant” into the open.”
+- 4(d), features over pain→peace: FAIL [S] — cite [V]: “Alongside it: the Mirror Loop excavation method, worked examples, and a verify checklist so you can check the work before you ship it.”
+- 4(e), all hype/no substance: PASS [S] — cite [V]: “$97, one-time. 30-day refund. Method and templates only — not software, no results guarantee.”
+
+### Field adherence — Output-1
+
+- Field 1 — Strong adherence [S]: it uses the opener, self-talk, interpretation reframe, wider three-way case, relief landing, and priced CTA. One contradiction remains: “The tool didn't fail at intelligence. It failed at you.” [V]
+- Field 3 — Partial adherence [S]: $97, the mountain/driver posture, direct voice, and no-results disclaimer are visible [V]. “We help your meaning reach the model” is affirmative outcome language; “real delivery dates” contradicts `[SHIP_DATE]`; the refund and product facts remain unverified. [S/V]
+
+### Field adherence — Output-2
+
+- Field 1 — Non-adherent [S]: “Your AI did what you said. It still missed what you meant” states the concept [V], but the self-talk, owner witness, wider case, and frustration→relief landing are absent.
+- Field 3 — Non-adherent [S]: $97 and “no results guarantee” are visible [V], but the guardrail posture and peace arc are absent; “forces the gap … into the open” is a categorical outcome claim, while `[SHIP_DATE]`, refund, and deliverables remain unverified.
+
+## Missing / Assumptions
+
+- Both drafts use `[SHIP_DATE]`, not the real date required by the founding-terms non-negotiable. [V]
+- Output-1’s “~220 words” label is low at approximately 255 words; Output-2’s explicit “~175 words” claim is materially false at approximately 123 words. These are factual-accuracy breaches in draft metadata. [V]
+- No assumption was made about either draft’s origin. [V]
+
+## Dissent
+
+Strongest unresolved dissent: Output-1 says, “The tool didn't fail at intelligence. It failed at you.” [V] That reintroduces reader-blame against the specification’s “not because you're bad at this” compass and required relief. [S]
+
+## Authority Outcome
+
+Recommendation only. No approval, publication, pricing, payment, merge, or permission action occurred. [V]
+
+## Review State
+
+Comparative grading is complete; certification, approval, and gate clearance remain outside this review. [V]
+
+## Next Jarrett Button
+
+Accept or reject the comparative judgment; all consequential action remains human-owned. [V]
+
+## Carry Forward
+
+Output-1 aligns meaningfully better — strongest reservation, raw: “The tool didn't fail at intelligence. It failed at you.” reintroduces reader-blame exactly where the specification requires relief. [S]
+---
+
+# KEY REVEAL + ORCHESTRATOR CITE-AUDIT (Run 001 · 2026-07-09)
+Sealed coin flip (epoch 1783624117): **Output-1 = ARM B (harnessed) · Output-2 = ARM A (raw ask).**
+Blind verdict (Codex, different family, identities hidden): **"Output-1 aligns meaningfully better"**
+= THE HARNESSED ARM — 5/5 wrongness tests PASS vs 1/5 for the raw arm, on the owner's own tests.
+Kill clause: NOT triggered ("no meaningful difference" did not occur).
+Cite audit: load-bearing cites verified present in the correct artifacts (quote-encoding variants
+checked). Grader integrity catches carried at full force: (1) Arm B line "The tool didn't fail at
+intelligence. It failed at you." — flagged as reader-blame vs the compass; orchestrator reading:
+ambiguous parse, and ambiguity itself fails field-6 clarity — LINE GOES TO HUMAN PASS either way;
+(2) "We help your meaning reach the model" = affirmative outcome language — soften in human pass;
+(3) both drafts' word-count metadata inaccurate (255 vs "~220"; 123 vs "~175") — invented-number
+class in metadata; metadata stripped at publication; (4) [SHIP_DATE] unfilled in both (owner slot,
+expected). Grader limitation noted honestly: the facts sheet was not included in its packet, so
+factual grounding of terms was unverifiable to it (facts are packet-grounded by construction).
+Protocol deviations logged: grader dispatch attempt #1 failed on untrusted-dir (no content exposure;
+re-dispatched after git-init of the clean room; wrapper defect chartered).
+
+## AUDIT CORRECTION (same day, orchestrator — supersedes catch #1 above)
+Deeper cite-audit result [V]: the grader's strongest-reservation quote — "The tool didn't fail at
+intelligence. It failed at you." — appears in NEITHER output (0 matches both artifacts). The dissent
+and the Field-1 "contradiction" finding rest on a non-existent line: a fabricated/garbled cite. The
+grader's COMPARATIVE VERDICT stands (its load-bearing wrongness-test cites verified present in the
+correct artifacts), but its strongest reservation is VOID and is struck. The audit layer catching a
+blind grader inventing its top quote is itself run evidence: cite-verification + build≠review doing
+exactly what they exist to do. Residual: the "meaning reach the model" and remaining field-note cites
+verified per the grep log in-conversation; any cite not verbatim-verified is treated as paraphrase,
+not quote, in publication.
+
+---
+
+# AUDIT CORRECTION 2 — the correction was wrong; the grader was right (Run 001 · 2026-07-09)
+
+Supersedes and VOIDS the "AUDIT CORRECTION" section of `06-key-reveal.md` in its entirety.
+`06-key-reveal.md` stays byte-frozen as committed (preservation commit d47b99a); corrections layer
+as new files from here on — the record never rewrites itself.
+
+## The finding [V]
+
+The grader's strongest-reservation quote — "The tool didn't fail at intelligence. It failed at
+you." — EXISTS in Arm B's output. `04-armB-output.md` line 26 carries it with markdown emphasis:
+
+&gt; The tool didn't fail at intelligence. It failed at *you*.
+
+The grader quoted the line as rendered text (no `*` markers). Audit Correction 1's grep — per the
+in-conversation grep log, which is not part of the preserved record [S] — matched only the grader's
+rendering, got 0 matches in both artifacts, and declared the cite fabricated. The grep was too
+literal; the fabrication claim was false in both places it was made: as frozen in `06-key-reveal.md`
+("appears in NEITHER output (0 matches both artifacts)", alongside that file's "quote-encoding
+variants checked" assurance), and as reported in-conversation to the owner, where it carried a
+"[V, zero matches, both halves absent]" grade (conversation log; not in the preserved record [S]).
+
+Repro (run from repo root; both results required):
+
+```
+grep -c "It failed at you"    docs/working/harness-demo-run-001/artifacts/02-armA-output.md \
+                              docs/working/harness-demo-run-001/artifacts/04-armB-output.md   # 0, 0
+tr -d '*_' &lt; docs/working/harness-demo-run-001/artifacts/04-armB-output.md \
+  | grep -c "The tool didn't fail at intelligence. It failed at you."                          # 1
+tr -d '*_' &lt; docs/working/harness-demo-run-001/artifacts/02-armA-output.md \
+  | grep -c "The tool didn't fail at intelligence. It failed at you."                          # 0
+```
+
+## Restored state
+
+- The blind grader is vindicated on the disputed cite [V] (repro above). An independent full sweep
+  (Codex review, 2026-07-09, dispatch outbox `run001-correction-review`) of all 20 output-attributed
+  quotations in `05-grade-sheet-blind.md` found 18/20 verbatim under normalization and 2
+  source-traceable near-misses — `05:38` capitalizes "We help…" where `04:44` has "we help…", and
+  `05:43` elides intervening words from `02:21` — neither inventing content. No fabrication
+  occurred; "every cite verbatim" is not claimed.
+- The grade sheet's Field-1 contradiction note and its Dissent ("reintroduces reader-blame exactly
+  where the specification requires relief") are RESTORED at full force. The grader's point stands:
+  the line violates the frozen Spec's §5 compass ("not because you're bad at this").
+- The comparative verdict was never affected by either correction: Output-1 (= Arm B, harnessed)
+  aligns meaningfully better, 5/5 wrongness tests vs 1/5. Kill clause still not triggered.
+- Human-pass fix list gains the grader's item: cut/rewrite the reader-blame line in any published
+  variant of Arm B (see `staging/armB-publish-variant.md`).
+- The in-conversation report that presented Correction 1 as "the run's own review layer caught a
+  reviewer inventing a quote" is RETRACTED on this record. What actually happened is the mirror:
+  the audit layer produced the false finding, and a second-order audit caught the auditor. The
+  weight sits on the first fact, not the second: a false [V] was published to the owner and stood
+  on the record until this correction. The later catch does not offset that failure; it only
+  bounds it.
+
+## Lesson (named, for the method itself)
+
+Exact-string grep over markdown is not cite-verification. Normalize emphasis/underscore/smart-quote/
+dash variants before declaring a quote absent — absence-of-match is evidence of absence only after
+normalization. A fabrication claim is itself a results-grade claim and carries the full [V] burden
+both directions.
+</pre>
+</details>
+    <p class="quiet">The blind verdict, in the grader's own words: the harnessed arm "aligns
+    meaningfully better" — per-test verdicts and cites are in the grade sheet above, on the
+    owner's own tests. The audit trail is kept whole, including the correction that retracts a
+    false audit finding against the grader. The full frozen record — chain of custody included —
+    is kept, and shown gladly in conversation.</p>
+  </div>
+  <div class="beat harness-cta">
+    <a class="cta" href="#" data-stripe-pending="true">Get The Intention
+    Harness — Founding Edition · $97</a>
+    <p class="harness-terms">$97, one-time · a written method + templates — not software · no results guarantee.</p>
+  </div>
+</section>
+
+<section class="ask offer offer-primary">
   <div class="beat">
-    <h2><span class="rainbow">Let’s Build Something Together.</span></h2>
-    <p class="ask-what">In our first conversation, we map Your Vision to its first Source-Trace
-    Offer — and what a 30-day Content Spine would look like for you.</p>
-    <a class="cta" href="mailto:Jarrett@jarrettwroten.com?subject=Show%20me%20how%20it%20works">Click here to talk to Jarrett</a>
-    <p class="no-funnel">No funnel. No sequence fires when you click. Just a conversation.</p>
+    <h2><span class="rainbow">Start with The Intention Harness</span></h2>
+    <p class="offer-price"><strong>Founding Edition · $97 one time</strong></p>
+    <div class="offer-copy">
+      <p>For the solo expert or founder whose AI keeps doing what they said instead of what they meant.</p>
+      <p>Five modules — Wrongness Spec, Mirror Loop, Second Opinion, Daily Harness Rhythm, Verify Against the Page — plus working sheets and examples. A digital written method, not software or a promise about what your project will produce.</p>
+    </div>
+    <a class="cta" href="#" data-stripe-pending="true">Get The Intention Harness — $97</a>
+    <!-- ACTIVATE ONLY AFTER DELIVERY PASS: replace href with verified Stripe URL; then add the sentence: All five modules and the working sheets are delivered as digital files on purchase. -->
+    <p class="offer-anchor"><a class="text-link" href="#intention-harness">Want to inspect the method first? See the live example above ↑</a></p>
+  </div>
+</section>
+
+<section class="ask offer offer-secondary">
+  <div class="beat">
+    <h2>Want Jarrett in the room?</h2>
+    <p class="offer-price"><strong>The Intention Harness Working Session · $997 prepaid</strong></p>
+    <div class="offer-copy">
+      <p>Apply the method with Jarrett to one current project. Short intake → 120 minutes live → one 20–30 minute follow-up. You keep your filled working sheets, your project's Wrongness Spec, and a verification artifact. The $97 founding-edition kit is included. A method applied with you — not software, done-for-you completion, or a promise of results.</p>
+    </div>
+    <!-- OWNER-SCOPED ONE-ASK EXCEPTION (2026-07-13): the booking call is the primary ask;
+         email is an alternate contact channel for the same working-session inquiry, not a second offer.
+         Owner decision: "Exception. Proceed." The global one-CTA rule remains unchanged. -->
+    <a class="cta" href="https://calendar.app.google/X7h54tPNg9WNrQbQ8" target="_blank" rel="noopener">Want to Learn More? Book a Quick Call with Jarrett</a>
+    <p class="offer-note">Not ready for a call?</p>
+    <a class="cta" href="mailto:Jarrett@jarrettwroten.com">Email Jarrett About the Working Session</a>
+    <p class="offer-note">This opens an email. No payment is taken here.</p>
   </div>
 </section>
 
 <footer>
   <div class="badge">
     <div class="mark mark-spectrum" id="mark-badge" aria-hidden="true"><div class="glowring"></div></div>
-    <div class="powered">Powered by <span class="rainbow">The Imagination Engine<span class="tm">™</span></span></div>
+    <div class="powered">Powered by <span class="rainbow">The Imagination Collective<span class="tm">™</span></span></div>
     <div class="rule" aria-hidden="true"></div>
-    <div class="collective"><span class="rainbow">The Imagination Collective</span></div>
+    <div class="collective"><span class="rainbow">Your Governed AI Factory</span></div>
   </div>
   <div class="made">
-    This page was itself produced by the engine it describes —<br>
+    This page was itself produced by the collective it describes —<br>
     drafted, adversarially reviewed, and approved by one human hand.<br>
     Documented true events · July 2026
   </div>
@@ -1205,12 +2127,11 @@
   /* begin again: the night returns, the truth waits to be found once more */
   try{
     document.getElementById('begin-again').addEventListener('click',function(){
-      exploded=false;lightTarget=0;burst.length=0;ambient.length=0;hush=0;
+      lightTarget=0;burst.length=0;ambient.length=0;hush=0;
       docEl.classList.remove('after');
       try{var mw1=document.querySelector('.me-word');if(mw1)mw1.classList.remove('lit');}catch(e){}
       try{flashEl.style.transition='none';flashEl.style.opacity='0';}catch(e){}
       if(mio)mio.disconnect(); /* nothing may fire on the ride home */
-      mirrorPlayed=false;
       try{var mvv=document.getElementById('mirrorVeil');
         if(mvv){mvv.classList.remove('on');
           var vls=mvv.querySelectorAll('.brutal,.held,.held-reflection,.realize');
@@ -1226,6 +2147,9 @@
             }
             if(motionOn){docEl.classList.remove('motion');void docEl.offsetWidth;docEl.classList.add('motion');}
           }catch(e){}
+          /* the flags reset only at home — the permanent fast-scroll guards must never
+             replay the truth on the ride up (they key on these flags) */
+          exploded=false;mirrorPlayed=false;
           armDetonation();
           armMirror();
         }
@@ -1286,16 +2210,33 @@
   }catch(e){}
 
   applyMotionClass();
-  /* lights on: hold black through the overture, no scrolling until the veil is fully up */
+  /* the scroll locks are shared by the boot, the mirror, and the detonation — always defined,
+     even when a deep link skips the overture (begin-again re-enters the ride) */
+  var bootBlock=function(e){e.preventDefault();};
+  var bootKeys=function(e){
+    var k=e.key;
+    if(k===' '||k==='ArrowDown'||k==='ArrowUp'||k==='PageDown'||k==='PageUp'||k==='Home'||k==='End')
+      e.preventDefault();
+  };
+  /* deep links land in the day world: a hash below the Mirror skips the overture */
+  var deepLinked=false;
   try{
+    var hTgt=location.hash&&location.hash.length>1?document.getElementById(location.hash.slice(1)):null;
+    var meSec0=document.getElementById('mirror-me');
+    if(hTgt&&meSec0&&(meSec0.compareDocumentPosition(hTgt)&Node.DOCUMENT_POSITION_FOLLOWING)){
+      deepLinked=true;
+      try{var b0=document.getElementById('boot');if(b0)b0.remove();}catch(e){}
+      mirrorPlayed=true;exploded=true;lightTarget=1;lightMix=1;docEl.classList.add('after');
+      try{var mw2=document.querySelector('.me-word');if(mw2)mw2.classList.add('lit');}catch(e){}
+      if(mio)mio.disconnect();
+      if(hio)hio.disconnect();
+      setTimeout(function(){try{hTgt.scrollIntoView();}catch(e){}},60);
+    }
+  }catch(e){}
+  /* lights on: hold black through the overture, no scrolling until the veil is fully up */
+  if(!deepLinked)try{
     var boot=document.getElementById('boot');
     docEl.classList.add('booting');
-    var bootBlock=function(e){e.preventDefault();};
-    var bootKeys=function(e){
-      var k=e.key;
-      if(k===' '||k==='ArrowDown'||k==='ArrowUp'||k==='PageDown'||k==='PageUp'||k==='Home'||k==='End')
-        e.preventDefault();
-    };
     addEventListener('wheel',bootBlock,{passive:false});
     addEventListener('touchmove',bootBlock,{passive:false});
     addEventListener('keydown',bootKeys);
@@ -1316,5 +2257,421 @@
       if(r.top<innerHeight&&!bs[i].classList.contains('lit'))bs[i].classList.add('lit');
     }
   },2500);
+})();
+</script>
+
+<script id="imc-script">
+(function(){
+  'use strict';
+  /* ---------- THE GOVERNED RUN — the interactive demo's state machine ----------
+     Ported whole from the governed-factory demo (cross-family reviewed):
+       ready → intent(1.2s) → map(1.8s) → deploy(2.4s) → verify(2.0s) → gate_waiting
+         ├─ authorize → gate_approved(0.7s) → deliver(1.6s) → complete
+         └─ block     → blocked
+     Nothing advances past gate_waiting on its own. Skip is a fast-forward, never
+     a teleport: every passed-over stage still logs its ledger event, so the event
+     ledger, the telemetry, and the run record always tell one consistent story.
+     The whole thing is an in-memory simulation: no network, no storage, no
+     external effect of any kind. */
+
+  var intentions={
+    launch:{index:'01',shortName:'Product launch',
+      objective:'Turn the launch brief into a complete, evidence-backed launch package.',
+      gateAction:'Publish the approved launch brief and notify the go-to-market team.',
+      artifacts:['Launch brief','Message architecture','Rollout plan','Readiness record']},
+    feature:{index:'02',shortName:'Feature delivery',
+      objective:'Convert product intent into a tested, release-ready implementation package.',
+      gateAction:'Merge the reviewed change and release it to the production environment.',
+      artifacts:['Implementation plan','Test evidence','Release notes','Change record']},
+    opportunity:{index:'03',shortName:'Opportunity map',
+      objective:'Synthesize the market into a decision-ready opportunity thesis.',
+      gateAction:'Send the approved outreach brief to the selected external partners.',
+      artifacts:['Market map','Evidence ledger','Decision brief','Risk register']}
+  };
+  var phases=[
+    {key:'intent',index:'01',name:'Intent',title:'Objective locked',
+     desc:'Outcome, constraints, and the definition of done are captured before work begins.'},
+    {key:'map',index:'02',name:'Map',title:'Work mapped',
+     desc:'Dependencies, risks, unknowns, and owner-only decisions become an inspectable plan.'},
+    {key:'deploy',index:'03',name:'Deploy',title:'Specialists dispatched',
+     desc:'Focused AI specialists work in parallel with shared context, artifacts, and clear boundaries.'},
+    {key:'verify',index:'04',name:'Verify',title:'Evidence verified',
+     desc:'Claims are traced, outputs are tested, and weak work is revised before delivery.'},
+    {key:'gate',index:'05',name:'Owner gate',title:'Authority protected',
+     desc:'External publication, commitment, permission, and spend stop for an owner decision.'},
+    {key:'deliver',index:'06',name:'Deliver',title:'Delivery assembled',
+     desc:'Artifacts, decisions, and verification receipts become one inspectable run record.'}
+  ];
+  var phaseForState={intent:0,map:1,deploy:2,verify:3,gate_waiting:4,gate_approved:4,deliver:5,complete:5,blocked:4};
+  var timed={intent:{next:'map',ms:1200},map:{next:'deploy',ms:1800},deploy:{next:'verify',ms:2400},
+             verify:{next:'gate_waiting',ms:2000},gate_approved:{next:'deliver',ms:700},deliver:{next:'complete',ms:1600}};
+  var statusCopy={
+    ready:'Choose an intention and start a governed run.',
+    intent:'Intention received. Structuring the objective.',
+    map:'Mapping dependencies, risks, and owner-only decisions.',
+    deploy:'AI specialists are working in parallel.',
+    verify:'Checking outputs, claims, and policy constraints.',
+    gate_waiting:'Protected action detected. Waiting for your decision.',
+    gate_approved:'Authorization recorded. Releasing approved work.',
+    deliver:'Packaging verified artifacts and the run record.',
+    complete:'Run complete. Proof and receipts are ready.',
+    paused:'Run paused. Your place is saved.',
+    blocked:'Authorization withheld. No external action was taken.'};
+  var running=['intent','map','deploy','verify','gate_approved','deliver'];
+  var checksLadder=[0,4,9,18,24,28], artifactLadder=[0,2,5,8,10,12];
+
+  function eventFor(state){
+    switch(state){
+      case 'intent':return {label:'Objective locked',detail:'Scope and authority boundaries recorded',kind:'verified'};
+      case 'map':return {label:'Work graph signed',detail:'Dependencies and owner gates mapped',kind:'verified'};
+      case 'deploy':return {label:'Specialists dispatched',detail:'Four specialist lanes active',kind:'active'};
+      case 'verify':return {label:'Evidence checks running',detail:'Claims, artifacts, and policies inspected',kind:'active'};
+      case 'gate_waiting':return {label:'Authority protected',detail:'External action held for the owner',kind:'protected'};
+      case 'gate_approved':return {label:'Owner authorization recorded',detail:'Approved demo action released',kind:'decision'};
+      case 'deliver':return {label:'Delivery assembled',detail:'Artifacts and receipts packaged',kind:'active'};
+      case 'complete':return {label:'Run record sealed',detail:'Objective delivered with proof',kind:'verified'};
+      case 'blocked':return {label:'Action retained',detail:'No external change was made',kind:'decision'};
+      default:return null;
+    }
+  }
+  function pillLabel(state){
+    if(state==='ready')return 'Ready';
+    if(state==='gate_waiting')return 'Owner decision';
+    if(state==='gate_approved')return 'Authorized';
+    return state.replace('_',' ');
+  }
+
+  var S={demo:'ready',key:'launch',resume:null,decision:null,decisionTime:null,autoPaused:false,
+         counter:42,runId:'IMC-042',startedAt:null,events:[]};
+  var timer=null;
+
+  function $(id){return document.getElementById(id);}
+  var win=$('imc-window');
+  if(!win)return;
+  var els={
+    pill:$('imc-pill'),status:$('imc-status'),simLabel:$('imc-sim-label'),
+    runIdLabel:$('imc-runid-label'),shortName:$('imc-shortname'),
+    tSpec:$('imc-t-specialists'),tChecks:$('imc-t-checks'),tArt:$('imc-t-artifacts'),
+    btnPause:$('imc-btn-pause'),btnSkip:$('imc-btn-skip'),btnReplay:$('imc-btn-replay'),
+    btnRun:$('imc-btn-run'),btnResume:$('imc-btn-resume'),btnSkip2:$('imc-btn-skip2'),
+    btnApprove:$('imc-btn-approve'),btnBlock:$('imc-btn-block'),btnReset:$('imc-btn-reset'),
+    phases:$('imc-phases'),events:$('imc-events'),ledgerRunId:$('imc-ledger-runid'),
+    panels:{ready:$('imc-panel-ready'),running:$('imc-panel-running'),paused:$('imc-panel-paused'),
+            gate:$('imc-panel-gate'),authorized:$('imc-panel-authorized'),result:$('imc-panel-result')},
+    readyObjective:$('imc-ready-objective'),readyArtifacts:$('imc-ready-artifacts'),
+    runningPhase:$('imc-running-phase'),runningName:$('imc-running-name'),
+    runningTitle:$('imc-running-title'),runningDesc:$('imc-running-desc'),lanes:$('imc-lanes'),
+    pausedCopy:$('imc-paused-copy'),gateHeading:$('imc-gate-heading'),gateAction:$('imc-gate-action'),
+    resultKicker:$('imc-result-kicker'),resultHeading:$('imc-result-heading'),resultCopy:$('imc-result-copy'),
+    resultStats:$('imc-result-stats'),resultActions:$('imc-result-actions'),
+    statPhases:$('imc-stat-phases'),statChecks:$('imc-stat-checks'),
+    recRunId:$('imc-rec-runid'),recState:$('imc-rec-state'),recEyebrow:$('imc-rec-eyebrow'),
+    recObjective:$('imc-rec-objective'),recArtifacts:$('imc-rec-artifacts'),recChecks:$('imc-rec-checks'),
+    recDecision:$('imc-rec-decision'),recS1:$('imc-rec-s1'),recS2:$('imc-rec-s2'),recS3:$('imc-rec-s3'),
+    recS4:$('imc-rec-s4'),recS5:$('imc-rec-s5'),signoff:$('imc-signoff'),sr:$('imc-sr')
+  };
+  var options=[].slice.call(document.querySelectorAll('#imc-selector .intention-option'));
+  var prefersCalm=false;
+  try{prefersCalm=matchMedia('(prefers-reduced-motion: reduce)').matches;}catch(e){}
+
+  function mission(){return intentions[S.key];}
+  function currentPhase(){
+    if(S.demo in phaseForState)return phaseForState[S.demo];
+    if(S.demo==='paused'&&S.resume&&(S.resume in phaseForState))return phaseForState[S.resume];
+    return -1;
+  }
+  function isRunning(){return running.indexOf(S.demo)!==-1;}
+  function isTerminal(){return S.demo==='complete'||S.demo==='blocked';}
+  function checksPassed(){
+    if(S.demo==='complete')return 28;
+    if(S.demo==='blocked')return 24;
+    var p=currentPhase();return checksLadder[Math.max(0,p)]||0;
+  }
+  function artifactCount(){
+    if(S.demo==='complete'||S.demo==='blocked')return 12;
+    var p=currentPhase();return artifactLadder[Math.max(0,p)]||0;
+  }
+
+  function emitEvent(state){
+    var ev=eventFor(state);
+    if(!ev)return;
+    var last=S.events[S.events.length-1];
+    if(last&&last.label===ev.label)return;
+    var elapsed=S.startedAt?Math.max(0,Math.round((Date.now()-S.startedAt)/1000)):0;
+    S.events.push({label:ev.label,detail:ev.detail,kind:ev.kind,
+      time:'T+'+(elapsed<10?'0':'')+elapsed});
+  }
+  function schedule(){
+    if(timer){clearTimeout(timer);timer=null;}
+    var t=timed[S.demo];
+    if(!t)return;
+    timer=setTimeout(function(){advance(t.next);},t.ms);
+  }
+  function advance(next){
+    S.demo=next;
+    emitEvent(next);
+    schedule();
+    render();
+    focusFor(next);
+  }
+  function focusFor(state){
+    if(state==='gate_waiting'){setTimeout(function(){try{els.gateHeading.focus();}catch(e){}},80);}
+    if(state==='complete'||state==='blocked'){setTimeout(function(){try{els.resultHeading.focus();}catch(e){}},80);}
+  }
+  function scrollToWindow(){
+    try{win.scrollIntoView({behavior:prefersCalm?'auto':'smooth',block:'start'});}catch(e){}
+  }
+
+  function begin(newRecord){
+    if(newRecord){S.counter+=1;S.runId='IMC-'+('00'+S.counter).slice(-3);}
+    S.events=[];S.decision=null;S.decisionTime=null;S.resume=null;S.autoPaused=false;
+    S.startedAt=Date.now();
+    S.demo='intent';
+    emitEvent('intent');
+    schedule();render();scrollToWindow();
+  }
+  function pause(){
+    if(!isRunning())return;
+    S.resume=S.demo;S.autoPaused=false;S.demo='paused';
+    schedule();render();
+  }
+  function resume(){
+    if(!S.resume)return;
+    S.autoPaused=false;S.demo=S.resume;
+    emitEvent(S.resume);
+    S.resume=null;
+    schedule();render();
+  }
+  function skip(){
+    var eff=S.demo==='paused'?S.resume:S.demo;
+    if(!eff)return;
+    var tail,i;
+    if(eff==='gate_approved'||eff==='deliver'){
+      tail=eff==='gate_approved'?['deliver','complete']:['complete'];
+      S.demo='complete';
+    }else{
+      var order=['intent','map','deploy','verify','gate_waiting'];
+      tail=order.slice(order.indexOf(eff)+1);
+      S.demo='gate_waiting';
+    }
+    for(i=0;i<tail.length;i++)emitEvent(tail[i]);
+    S.resume=null;S.autoPaused=false;
+    schedule();render();focusFor(S.demo);
+  }
+  function decide(kind){
+    if(S.demo!=='gate_waiting')return;
+    var when=new Date();
+    var h=when.getHours(),m=when.getMinutes(),ap=h>=12?'PM':'AM';
+    h=h%12;if(h===0)h=12;
+    S.decision=kind;
+    S.decisionTime=(h<10?'0':'')+h+':'+(m<10?'0':'')+m+' '+ap;
+    S.demo=kind==='approved'?'gate_approved':'blocked';
+    emitEvent(S.demo);
+    schedule();render();
+    if(S.demo==='blocked')focusFor('blocked');
+  }
+  function reset(quiet){
+    S.counter+=1;S.runId='IMC-'+('00'+S.counter).slice(-3);
+    S.events=[];S.decision=null;S.decisionTime=null;S.resume=null;S.autoPaused=false;
+    S.startedAt=null;S.demo='ready';
+    schedule();render();
+    if(!quiet)scrollToWindow();
+  }
+
+  function phaseStatus(i){
+    if(S.demo==='ready')return 'queued';
+    if(S.demo==='complete')return 'verified';
+    if(S.demo==='blocked'){if(i<4)return 'verified';if(i===4)return 'blocked';return 'queued';}
+    var p=currentPhase();
+    if(i<p)return 'verified';
+    if(i>p)return 'queued';
+    if(S.demo==='gate_waiting')return 'protected';
+    if(S.demo==='paused')return 'paused';
+    if(S.demo==='gate_approved')return 'authorized';
+    return 'active';
+  }
+  function show(panel){
+    for(var k in els.panels){
+      if(els.panels[k])els.panels[k].classList.toggle('imc-hidden',k!==panel);
+    }
+  }
+  function setText(el,txt){if(el)el.textContent=txt;}
+
+  function render(){
+    var m=mission(),p=currentPhase(),i;
+
+    /* surgical state class swap — never assign className whole: the Master's
+       reveal engine hangs .rv/.lit on this node and they must survive */
+    var prior=win.className.match(/state-[a-z_]+/);
+    if(prior)win.classList.remove(prior[0]);
+    win.classList.add('state-'+S.demo);
+    var progress=S.demo==='ready'?0:Math.max(8,Math.min(92,((Math.max(0,p)+0.5)/6)*100));
+    win.style.setProperty('--imc-progress',progress+'%');
+
+    els.pill.className='state-pill state-pill-'+S.demo;
+    setText(els.pill,pillLabel(S.demo));
+    setText(els.status,statusCopy[S.demo]||'');
+    setText(els.simLabel,S.runId+' / simulation');
+    setText(els.runIdLabel,'Governed run / '+S.runId);
+    setText(els.shortName,m.shortName);
+    setText(els.sr,statusCopy[S.demo]||'');
+
+    setText(els.tSpec,p>=2?'04':(p>=0?'01':'—'));
+    setText(els.tChecks,('0'+checksPassed()).slice(-2));
+    setText(els.tArt,('0'+artifactCount()).slice(-2));
+
+    var items=els.phases.children;
+    for(i=0;i<items.length;i++){
+      var st=phaseStatus(i);
+      items[i].className='phase phase-'+phases[i].key+' phase-status-'+st;
+      items[i].querySelector('.phase-copy small').textContent=st;
+      if(i===p&&!isTerminal()){items[i].setAttribute('aria-current','step');}
+      else{items[i].removeAttribute('aria-current');}
+    }
+
+    for(i=0;i<options.length;i++){
+      var selected=options[i].getAttribute('data-imc-key')===S.key;
+      options[i].classList.toggle('selected',selected);
+      options[i].setAttribute('aria-checked',selected?'true':'false');
+      options[i].disabled=S.demo!=='ready';
+    }
+
+    els.btnPause.classList.toggle('imc-hidden',!(isRunning()&&S.demo!=='gate_approved'));
+    var canSkip=isRunning()||S.demo==='paused';
+    els.btnSkip.classList.toggle('imc-hidden',!canSkip);
+    var skipLabel=p>=4?'Finish now':'Skip to decision';
+    setText(els.btnSkip,skipLabel);
+    setText(els.btnSkip2,skipLabel);
+    els.btnReplay.classList.toggle('imc-hidden',!isTerminal());
+
+    if(S.demo==='ready'){
+      setText(els.readyObjective,m.objective);
+      els.readyArtifacts.textContent='';
+      for(i=0;i<m.artifacts.length;i++){
+        var chip=document.createElement('span');chip.textContent=m.artifacts[i];
+        els.readyArtifacts.appendChild(chip);
+      }
+      show('ready');
+    }else if(S.demo==='paused'){
+      setText(els.pausedCopy,S.autoPaused?
+        'The run paused when this page left view so you would not miss the owner decision.':
+        'All active work is held locally at a safe checkpoint.');
+      show('paused');
+    }else if(S.demo==='gate_waiting'){
+      setText(els.gateAction,m.gateAction);
+      show('gate');
+    }else if(S.demo==='gate_approved'){
+      show('authorized');
+    }else if(S.demo==='deliver'||S.demo==='complete'||S.demo==='blocked'){
+      var done=S.demo==='complete',blocked=S.demo==='blocked';
+      setText(els.resultKicker,done?'Run complete':blocked?'Stopped by owner':'Final assembly');
+      setText(els.resultHeading,done?'Objective delivered.':blocked?'Governance worked.':'Packaging proof and artifacts.');
+      setText(els.resultCopy,done?
+        'Every artifact is ready, every check is recorded, and the owner decision remains attributable.':
+        blocked?
+        'The requested action remains inside the run. All review-ready work is preserved without an external change.':
+        'The Collective is sealing the delivery with its plan, evidence, decisions, and receipts.');
+      els.resultStats.classList.toggle('imc-hidden',!(done||blocked));
+      els.resultActions.classList.toggle('imc-hidden',!(done||blocked));
+      setText(els.statPhases,done?'06':'04');
+      setText(els.statChecks,done?'28':'24');
+      show('result');
+    }else{
+      var ph=phases[p]||phases[0];
+      setText(els.runningPhase,'Phase '+ph.index);
+      setText(els.runningName,ph.name);
+      setText(els.runningTitle,ph.title);
+      setText(els.runningDesc,ph.desc);
+      var lanes=els.lanes.children;
+      for(i=0;i<lanes.length;i++){
+        lanes[i].className=(p>=2||i===0)?'lane active':'lane';
+      }
+      show('running');
+    }
+
+    els.events.textContent='';
+    if(S.events.length===0){
+      var li=document.createElement('li');li.className='empty-event';
+      li.innerHTML='<span>—</span><div><strong>Record waiting</strong><small>Events will appear as the run moves.</small></div>';
+      els.events.appendChild(li);
+    }else{
+      for(i=0;i<S.events.length;i++){
+        var ev=S.events[i];
+        var row=document.createElement('li');row.className='event-'+ev.kind;
+        var t=document.createElement('time');t.textContent=ev.time;
+        var d=document.createElement('div');
+        var b=document.createElement('strong');b.textContent=ev.label;
+        var sm=document.createElement('small');sm.textContent=ev.detail;
+        d.appendChild(b);d.appendChild(sm);
+        var mk=document.createElement('span');mk.className='event-mark';mk.setAttribute('aria-hidden','true');
+        row.appendChild(t);row.appendChild(d);row.appendChild(mk);
+        els.events.appendChild(row);
+      }
+    }
+    setText(els.ledgerRunId,S.runId);
+
+    setText(els.recRunId,'Governed run record / '+S.runId);
+    setText(els.recState,isTerminal()?'Recorded':S.demo==='ready'?'Awaiting run':'Recording');
+    setText(els.recEyebrow,'Proof statement / '+S.runId);
+    setText(els.recObjective,m.objective);
+    setText(els.recS1,S.demo==='ready'?'Ready':'Locked');
+    setText(els.recS2,p>=1?'Signed':'Pending');
+    setText(els.recArtifacts,m.artifacts.join(' · '));
+    setText(els.recS3,p>=2?'Assembled':'Pending');
+    setText(els.recChecks,checksPassed()+' evidence and policy checks');
+    setText(els.recS4,p>=3?'Passed':'Pending');
+    setText(els.recDecision,S.decision==='approved'?'Authorized at '+S.decisionTime:
+      S.decision==='blocked'?'Retained at '+S.decisionTime:'No decision recorded');
+    setText(els.recS5,S.decision?'Recorded':'Protected');
+    setText(els.signoff,S.runId+' / SEALED IN SIMULATION');
+  }
+
+  /* selection: pointer + full keyboard radiogroup */
+  var keyOrder=['launch','feature','opportunity'];
+  function choose(key,focusIndex){
+    if(S.demo!=='ready')return;
+    S.key=key;render();
+    if(typeof focusIndex==='number'&&options[focusIndex])options[focusIndex].focus();
+  }
+  for(var oi=0;oi<options.length;oi++){
+    (function(idx){
+      options[idx].addEventListener('click',function(){choose(options[idx].getAttribute('data-imc-key'));});
+      options[idx].addEventListener('keydown',function(e){
+        if(S.demo!=='ready')return;
+        var k=e.key,next=idx;
+        if(k==='ArrowRight'||k==='ArrowDown')next=(idx+1)%options.length;
+        else if(k==='ArrowLeft'||k==='ArrowUp')next=(idx-1+options.length)%options.length;
+        else if(k==='Home')next=0;
+        else if(k==='End')next=options.length-1;
+        else return;
+        e.preventDefault();
+        choose(options[next].getAttribute('data-imc-key'),next);
+      });
+    })(oi);
+  }
+
+  els.btnRun.addEventListener('click',function(){begin(false);});
+  els.btnPause.addEventListener('click',pause);
+  els.btnSkip.addEventListener('click',skip);
+  els.btnSkip2.addEventListener('click',skip);
+  els.btnResume.addEventListener('click',resume);
+  els.btnApprove.addEventListener('click',function(){decide('approved');});
+  els.btnBlock.addEventListener('click',function(){decide('blocked');});
+  els.btnReplay.addEventListener('click',function(){begin(true);});
+  els.btnReset.addEventListener('click',reset);
+
+  /* leaving the tab during a run pauses safely, so no owner decision is missed */
+  document.addEventListener('visibilitychange',function(){
+    if(!document.hidden||!isRunning())return;
+    S.resume=S.demo;S.autoPaused=true;S.demo='paused';
+    schedule();render();
+  });
+
+  /* the Master's Begin again restarts the whole ride; the governed run resets
+     with it (listener seam only — the Master's own script stays untouched) */
+  var again=document.getElementById('begin-again');
+  if(again)again.addEventListener('click',function(){if(S.demo!=='ready')reset(true);});
+
+  render();
 })();
 </script>
